@@ -332,6 +332,7 @@
       cursor: grab;
       position: relative;
       z-index: 1;
+      touch-action: pan-y;
     }
     #spiral-canvas:active { cursor: grabbing; }
 
@@ -1109,7 +1110,7 @@
   <section class="block decor-3d-section" style="padding: 3rem 2.2rem;">
     <div class="block-inner">
       <div class="decor-3d-wrap" style="position: relative; width: 100%; height: 500px; border: 1px solid var(--rule); background: radial-gradient(circle at center, rgba(212,175,55,0.04) 0%, transparent 70%);">
-        <canvas id="decor-3d-canvas" style="display: block; width: 100%; height: 100%; cursor: grab; position: relative; z-index: 1;"></canvas>
+        <canvas id="decor-3d-canvas" style="display: block; width: 100%; height: 100%; cursor: grab; position: relative; z-index: 1; touch-action: pan-y;"></canvas>
         <div style="position: absolute; bottom: 1.1rem; left: 1.2rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.32em; color: var(--muted-dim); text-transform: uppercase; z-index: 2;">
           <span style="color: var(--gold);"></span> MATHEMATICAL OBJECT · DRAG TO ROTATE
         </div>
@@ -1769,6 +1770,16 @@
         mouse.x = -2; mouse.y = -2;
       });
 
+      // 修复：setPointerCapture 会拦截滚轮事件，重新派发到 window 让 Lenis 处理
+      canvas.addEventListener('wheel', (e) => {
+        window.dispatchEvent(new WheelEvent('wheel', {
+          deltaX: e.deltaX, deltaY: e.deltaY, deltaZ: e.deltaZ,
+          deltaMode: e.deltaMode,
+          clientX: e.clientX, clientY: e.clientY,
+          screenX: e.screenX, screenY: e.screenY
+        }));
+      }, { passive: true });
+
       // === 自适应尺寸 ===
       function resize() {
         const w = wrap.clientWidth;
@@ -1901,6 +1912,17 @@
     controls.enablePan = false;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
+
+    // 修复：OrbitControls 即使 enableZoom=false 也会调用 preventDefault() 拦截滚轮
+    // 将滚轮事件重新派发到 window，让 Lenis 平滑滚动正常工作
+    decorCanvas.addEventListener('wheel', (e) => {
+      window.dispatchEvent(new WheelEvent('wheel', {
+        deltaX: e.deltaX, deltaY: e.deltaY, deltaZ: e.deltaZ,
+        deltaMode: e.deltaMode,
+        clientX: e.clientX, clientY: e.clientY,
+        screenX: e.screenX, screenY: e.screenY
+      }));
+    }, { passive: true });
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {
