@@ -1770,16 +1770,7 @@
         mouse.x = -2; mouse.y = -2;
       });
 
-      // 修复：canvas 拦截滚轮事件，用 capture 阶段拦截并阻止 OrbitControls/pCapture 吞事件
-      // 手动调用 lenis.scrollTo() 驱动平滑滚动（synthetic dispatch 的 isTrusted=false 被 Lenis 忽略）
-      canvas.addEventListener('wheel', (e) => {
-        e.stopImmediatePropagation();
-        if (typeof lenis !== 'undefined' && lenis) {
-          lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
-        } else {
-          window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
-        }
-      }, { capture: true, passive: true });
+      // 滚轮事件不做任何拦截，让浏览器原生滚轮自然传播到 Lenis
 
       // === 自适应尺寸 ===
       function resize() {
@@ -1906,7 +1897,14 @@
     scene.add(wireSurf);
 
     // OrbitControls：自动旋转 + 阻尼 + 禁用缩放
+    // 猴子补丁：阻止 OrbitControls 注册 wheel 监听器（即使 zoom/pan 已禁用，某些版本仍会拦截事件）
+    const _origAddEv = renderer.domElement.addEventListener.bind(renderer.domElement);
+    renderer.domElement.addEventListener = function(type, listener, options) {
+      if (type === 'wheel') return;
+      return _origAddEv(type, listener, options);
+    };
     const controls = new OrbitControls(camera, renderer.domElement);
+    renderer.domElement.addEventListener = _origAddEv;
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.enableZoom = false;
@@ -1914,17 +1912,7 @@
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
 
-    // 修复：OrbitControls 即使 enableZoom=false 仍添加 wheel listener 并可能调 preventDefault()
-    // capture 阶段 stopImmediatePropagation 阻止 OrbitControls 看到事件
-    // 手动调用 lenis.scrollTo() 驱动平滑滚动
-    decorCanvas.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation();
-      if (typeof lenis !== 'undefined' && lenis) {
-        lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
-      } else {
-        window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
-      }
-    }, { capture: true, passive: true });
+    // 滚轮事件自然传播到 Lenis（OrbitControls 的 wheel listener 已被猴子补丁阻止注册）
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {

@@ -1286,7 +1286,7 @@
   <section class="block decor-3d-section" style="padding: 3rem 2.2rem;">
     <div class="block-inner">
       <div class="decor-3d-wrap" style="position: relative; width: 100%; height: 500px; border: 1px solid var(--rule); background: radial-gradient(circle at center, rgba(212,175,55,0.04) 0%, transparent 70%);">
-        <canvas id="decor-3d-canvas" style="display: block; width: 100%; height: 100%; cursor: grab; position: relative; z-index: 1;"></canvas>
+        <canvas id="decor-3d-canvas" style="display: block; width: 100%; height: 100%; cursor: grab; position: relative; z-index: 1; touch-action: pan-y;"></canvas>
         <div style="position: absolute; bottom: 1.1rem; left: 1.2rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.32em; color: var(--muted-dim); text-transform: uppercase; z-index: 2;">
           <span style="color: var(--gold);"></span> MATHEMATICAL OBJECT · DRAG TO ROTATE
         </div>
@@ -2097,16 +2097,7 @@
       canvas.addEventListener('pointercancel', endDrag);
       canvas.addEventListener('pointerleave', endDrag);
 
-      // 修复：setPointerCapture 拦截滚轮，capture 阶段 stopImmediatePropagation 后手动驱动 Lenis
-      canvas.style.touchAction = 'pan-y';
-      canvas.addEventListener('wheel', (e) => {
-        e.stopImmediatePropagation();
-        if (typeof lenis !== 'undefined' && lenis) {
-          lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
-        } else {
-          window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
-        }
-      }, { capture: true, passive: true });
+      // 滚轮事件不做任何拦截，让浏览器原生滚轮自然传播到 Lenis
 
       // === Raycaster：hover 高亮 + tooltip ===
       const raycaster = new THREE.Raycaster();
@@ -2266,7 +2257,14 @@
     scene.add(wire);
 
     // OrbitControls：自动旋转 + 阻尼 + 禁用缩放
+    // 猴子补丁：阻止 OrbitControls 注册 wheel 监听器
+    const _origAddEv = renderer.domElement.addEventListener.bind(renderer.domElement);
+    renderer.domElement.addEventListener = function(type, listener, options) {
+      if (type === 'wheel') return;
+      return _origAddEv(type, listener, options);
+    };
     const controls = new OrbitControls(camera, renderer.domElement);
+    renderer.domElement.addEventListener = _origAddEv;
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.enableZoom = false;
@@ -2274,16 +2272,7 @@
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
 
-    // 修复：OrbitControls wheel listener 拦截滚轮，capture 阶段拦截后手动驱动 Lenis
-    decorCanvas.style.touchAction = 'pan-y';
-    decorCanvas.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation();
-      if (typeof lenis !== 'undefined' && lenis) {
-        lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
-      } else {
-        window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
-      }
-    }, { capture: true, passive: true });
+    // 滚轮事件自然传播到 Lenis（OrbitControls 的 wheel listener 已被猴子补丁阻止注册）
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {
