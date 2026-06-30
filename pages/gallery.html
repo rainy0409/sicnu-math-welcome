@@ -11,7 +11,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <script type="importmap">
   {
@@ -40,7 +39,7 @@
       --mono: "Orbitron", "Rajdhani", monospace;
     }
 
-    html { scroll-behavior: auto; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -84,7 +83,7 @@
         color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
         text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; background: #fff; }
     .nav-links {
         display: flex; gap: 0.25rem; list-style: none; align-items: center;
     }
@@ -1376,19 +1375,8 @@
       gsap.fromTo(sym, { y: '+=20' }, { y: '-=20', duration: 8 + Math.random() * 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     });
 
-    // ---- Lenis 平滑滚动 ----
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      wheelMultiplier: 1,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    // 背景装饰动画已完成，使用浏览器原生平滑滚动 + GSAP ScrollTrigger
     gsap.ticker.lagSmoothing(0);
-    // 额外备用 raf（参考 guide.html，双 RAF 确保 Lenis 不会被 3D 卡顿中断）
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
 
     // ---- 鼠标跟随金色光点 ----
     const cursorGlow = document.getElementById('cursor-glow');
@@ -1738,7 +1726,7 @@
         rotState.dragging = true;
         rotState.lastX = e.clientX;
         rotState.lastY = e.clientY;
-        // 不使用 setPointerCapture：它会劫持 wheel 事件，导致 Lenis 无法滚动
+        // 不使用 setPointerCapture避免劫持 wheel 事件
       });
       // 把 pointermove/pointerup 绑定到 window，避免鼠标移出 canvas 时丢失事件
       window.addEventListener('pointermove', (e) => {
@@ -1772,7 +1760,7 @@
         mouse.x = -2; mouse.y = -2;
       });
 
-      // 滚轮事件不做任何拦截，让浏览器原生滚轮自然传播到 Lenis
+      // 滚轮事件不做任何拦截，浏览器原生滚动
 
       // === 自适应尺寸 ===
       function resize() {
@@ -1899,22 +1887,13 @@
     scene.add(wireSurf);
 
     // OrbitControls：自动旋转 + 阻尼 + 禁用缩放
-    // 猴子补丁：阻止 OrbitControls 注册 wheel 监听器（即使 zoom/pan 已禁用，某些版本仍会拦截事件）
-    const _origAddEv = renderer.domElement.addEventListener.bind(renderer.domElement);
-    renderer.domElement.addEventListener = function(type, listener, options) {
-      if (type === 'wheel') return;
-      return _origAddEv(type, listener, options);
-    };
     const controls = new OrbitControls(camera, renderer.domElement);
-    renderer.domElement.addEventListener = _origAddEv;
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
-
-    // 滚轮事件自然传播到 Lenis（OrbitControls 的 wheel listener 已被猴子补丁阻止注册）
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {

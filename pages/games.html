@@ -11,7 +11,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <script type="importmap">
   {
@@ -40,7 +39,7 @@
       --mono: "Orbitron", "Rajdhani", monospace;
     }
 
-    html { scroll-behavior: auto; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -84,7 +83,7 @@
         color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
         text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; background: #fff; }
     .nav-links {
         display: flex; gap: 0.25rem; list-style: none; align-items: center;
     }
@@ -1636,20 +1635,13 @@
       gsap.fromTo(sym, { y: '+=20' }, { y: '-=20', duration: 8 + Math.random() * 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     });
 
-    // ---- Lenis 平滑滚动 ----
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      wheelMultiplier: 1,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    // 背景装饰动画完成，使用浏览器原生平滑滚动 + GSAP ScrollTrigger
     gsap.ticker.lagSmoothing(0);
-    window.lenis = lenis;
-    // 额外备用 raf（参考 guide.html，双 RAF 确保 Lenis 不会被 3D 卡顿中断）
-    function _raf(time) { lenis.raf(time); requestAnimationFrame(_raf); }
-    requestAnimationFrame(_raf);
+    // scrollTo polyfill for quiz navigation
+    window._scrollTo = function(el, offset) {
+      const top = el.getBoundingClientRect().top + window.pageYOffset + (offset || 0);
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    };
 
     // ---- 鼠标跟随金色光点 ----
     const glow = document.getElementById('cursor-glow');
@@ -1750,7 +1742,7 @@
     document.querySelectorAll('.badge-cell').forEach((cell, i) => {
       cell.addEventListener('click', () => {
         const el = document.getElementById(badgeTargets[i]);
-        if (el) lenis.scrollTo(el, { offset: -80 });
+        if (el) { const top = el.getBoundingClientRect().top + window.pageYOffset - 80; window.scrollTo({ top: top, behavior: 'smooth' }); }
       });
     });
 
@@ -1935,11 +1927,10 @@
       }
 
       function scrollToCard() {
-        // 答题过程中 Lenis 滚动到题目卡片中央
-        if (window.lenis) {
-          const offset = quizCard.offsetHeight / 2 - window.innerHeight / 2;
-          window.lenis.scrollTo(quizCard, { offset, duration: 0.8 });
-        }
+        // 答题过程中滚动到题目卡片中央
+        const offset = quizCard.offsetHeight / 2 - window.innerHeight / 2;
+        const top = quizCard.getBoundingClientRect().top + window.pageYOffset + offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
 
       elNextBtn.addEventListener('click', goNext);
@@ -2077,7 +2068,7 @@
       canvas.addEventListener('pointerdown', (e) => {
         rotState.dragging = true;
         rotState.lastX = e.clientX; rotState.lastY = e.clientY;
-        // 不使用 setPointerCapture：它会劫持 wheel 事件，导致 Lenis 无法滚动
+        // 不使用 setPointerCapture避免劫持 wheel 事件
       });
       // 把 pointermove/pointerup 绑定到 window，避免鼠标移出 canvas 时丢失事件
       window.addEventListener('pointermove', (e) => {
@@ -2099,7 +2090,7 @@
       window.addEventListener('pointerup', endDrag);
       window.addEventListener('pointercancel', endDrag);
 
-      // 滚轮事件不做任何拦截，让浏览器原生滚轮自然传播到 Lenis
+      // 滚轮事件不做任何拦截，浏览器原生滚动
 
       // === Raycaster：hover 高亮 + tooltip ===
       const raycaster = new THREE.Raycaster();
@@ -2157,7 +2148,7 @@
       canvas.addEventListener('click', (e) => {
         if (!hovered) return;
         const el = document.getElementById(hovered.userData.target);
-        if (el && window.lenis) window.lenis.scrollTo(el, { offset: -80 });
+        if (el) { const top = el.getBoundingClientRect().top + window.pageYOffset - 80; window.scrollTo({ top: top, behavior: 'smooth' }); }
         else if (el) el.scrollIntoView({ behavior: 'smooth' });
       });
 
@@ -2274,7 +2265,7 @@
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
 
-    // 滚轮事件自然传播到 Lenis（OrbitControls 的 wheel listener 已被猴子补丁阻止注册）
+    // 浏览器原生滚动处理
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {
