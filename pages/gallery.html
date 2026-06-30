@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -84,7 +84,7 @@
         color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
         text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; background: #fff; }
     .nav-links {
         display: flex; gap: 0.25rem; list-style: none; align-items: center;
     }
@@ -1214,13 +1214,13 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img loading="lazy" src="../assets/gallery-card07-nightsports.jpg" alt="夜间运动">
+            <img loading="lazy" src="../assets/gallery-card07-nightsports.jpg" alt="夜间舞台表演">
             <div class="photo-fib-badge">F(7) = 13</div>
             <div class="photo-index">07 / <span>12</span></div>
           </div>
           <div class="photo-info">
-            <h3 class="photo-title">夜间运动</h3>
-            <p class="photo-desc">狮子山校区的草坪音乐节，灯光璀璨，青春飞扬。街舞、乐队、草地狂欢——这是属于数科人的夜晚，数学也可以如此浪漫和自由</p>
+            <h3 class="photo-title">夜间舞台</h3>
+            <p class="photo-desc">夜幕下操场化身舞台，灯光亮起，活力四射的舞者们在聚光灯下跃动。荧光绿与白在夜色中格外耀眼——数科人不仅会算，更会跳出数学的节奏与韵律</p>
           </div>
         </article>
 
@@ -1573,7 +1573,7 @@
         { src: 'gallery-card04-professor.jpg',   title: '师者风采',  fib: 3 },
         { src: 'gallery-card05-artfestival.jpg', title: '艺术节',   fib: 5 },
         { src: 'gallery-card06-volunteer.jpg',   title: '志愿服务',  fib: 8 },
-        { src: 'gallery-card07-nightsports.jpg', title: '夜间运动',  fib: 13 },
+        { src: 'gallery-card07-nightsports.jpg', title: '夜间舞台',  fib: 13 },
         { src: 'gallery-card08-community.jpg',   title: '社团活动',  fib: 21 },
         { src: 'gallery-card09-careerplan.jpg',  title: '职业规划',  fib: 34 },
         { src: 'gallery-card10-studyhall.jpg',   title: '自习时光',  fib: 55 },
@@ -1735,9 +1735,10 @@
         rotState.dragging = true;
         rotState.lastX = e.clientX;
         rotState.lastY = e.clientY;
-        canvas.setPointerCapture(e.pointerId);
+        // 不使用 setPointerCapture：它会劫持 wheel 事件，导致 Lenis 无法滚动
       });
-      canvas.addEventListener('pointermove', (e) => {
+      // 把 pointermove/pointerup 绑定到 window，避免鼠标移出 canvas 时丢失事件
+      window.addEventListener('pointermove', (e) => {
         if (!rotState.dragging) return;
         const dx = e.clientX - rotState.lastX;
         const dy = e.clientY - rotState.lastY;
@@ -1748,14 +1749,12 @@
         rotState.lastX = e.clientX;
         rotState.lastY = e.clientY;
       });
-      const endDrag = (e) => {
+      const endDrag = () => {
         if (!rotState.dragging) return;
         rotState.dragging = false;
-        try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
       };
-      canvas.addEventListener('pointerup', endDrag);
-      canvas.addEventListener('pointercancel', endDrag);
-      canvas.addEventListener('pointerleave', endDrag);
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', endDrag);
 
       // === 悬停高亮（Raycaster）===
       const raycaster = new THREE.Raycaster();

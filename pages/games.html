@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -84,7 +84,7 @@
         color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
         text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; background: #fff; }
     .nav-links {
         display: flex; gap: 0.25rem; list-style: none; align-items: center;
     }
@@ -2074,9 +2074,10 @@
       canvas.addEventListener('pointerdown', (e) => {
         rotState.dragging = true;
         rotState.lastX = e.clientX; rotState.lastY = e.clientY;
-        canvas.setPointerCapture(e.pointerId);
+        // 不使用 setPointerCapture：它会劫持 wheel 事件，导致 Lenis 无法滚动
       });
-      canvas.addEventListener('pointermove', (e) => {
+      // 把 pointermove/pointerup 绑定到 window，避免鼠标移出 canvas 时丢失事件
+      window.addEventListener('pointermove', (e) => {
         if (rotState.dragging) {
           const dx = e.clientX - rotState.lastX;
           const dy = e.clientY - rotState.lastY;
@@ -2088,14 +2089,12 @@
           rotState.lastX = e.clientX; rotState.lastY = e.clientY;
         }
       });
-      const endDrag = (e) => {
+      const endDrag = () => {
         if (!rotState.dragging) return;
         rotState.dragging = false;
-        try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
       };
-      canvas.addEventListener('pointerup', endDrag);
-      canvas.addEventListener('pointercancel', endDrag);
-      canvas.addEventListener('pointerleave', endDrag);
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', endDrag);
 
       // 滚轮事件不做任何拦截，让浏览器原生滚轮自然传播到 Lenis
 
