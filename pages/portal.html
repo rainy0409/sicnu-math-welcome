@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>四川师范大学数学科学学院 · 迎新宇宙</title>
+  <meta name="description" content="四川师范大学数学科学学院2025级迎新网站——探索七大板块，开启你的数科院之旅">
+  <meta property="og:title" content="数科院迎新宇宙 · 四川师范大学数学科学学院">
+  <meta property="og:description" content="万物皆数，大衍求真。四川师范大学数学科学学院2025级新生欢迎页">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #d4af37;
+      --gold-dim: rgba(212,175,55,0.35);
+      --bg: #040410;
+      --bg2: #08081a;
+      --text: #e8e8f0;
+      --text-dim: #a0a0b8;
+      --border: rgba(212,175,55,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== 动态背景 ===== */
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 40s linear infinite;
+    }
+    @keyframes gridDrift { to { background-position: 60px 60px; } }
+
+    .bg-glow {
+      position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 80vw; height: 60vh; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(25,25,80,0.8) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: relative; z-index: 10;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.55em; color: var(--gold); opacity: 0.85;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 1s ease both;
+    }
+    .header-eyebrow::before, .header-eyebrow::after {
+      content: ''; display: inline-block; width: 36px; height: 1px;
+      background: var(--gold); vertical-align: middle; margin: 0 1.2rem; opacity: 0.5;
+    }
+    .header-title {
+      font-family: 'Noto Serif SC', serif; font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 400; letter-spacing: 0.15em; line-height: 1.3;
+      animation: fadeDown 1s 0.15s ease both;
+    }
+    .header-title span { color: var(--gold); }
+    .header-subtitle {
+      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.4em; color: #5a5a78; margin-top: 1.2rem;
+      animation: fadeDown 1s 0.3s ease both;
+    }
+    .header-motto {
+      margin-top: 2rem; font-family: 'Noto Serif SC', serif; font-size: 1rem;
+      font-weight: 300; letter-spacing: 0.8em; color: #4a4a60;
+      animation: fadeDown 1s 0.45s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== 统计栏 ===== */
+    .stats-bar {
+      position: relative; z-index: 10;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      margin: 0 2rem 4rem;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+    .stat-item {
+      flex: 1; min-width: 120px; max-width: 200px;
+      padding: 1.5rem 1rem; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem; color: #6a6a80; margin-top: 0.4rem; letter-spacing: 0.15em;
+    }
+
+    /* ===== 卡片网格 ===== */
+    .section-title {
+      position: relative; z-index: 10;
+      text-align: center; margin-bottom: 2.5rem;
+      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.55em; color: #5a5a78;
+    }
+    .section-title::before, .section-title::after {
+      content: ''; display: inline-block; width: 48px; height: 1px;
+      background: var(--border); vertical-align: middle; margin: 0 1.2rem;
+    }
+
+    .grid {
+      position: relative; z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem 5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(8, 8, 22, 0.6);
+      border: 1px solid var(--border);
+      padding: 2.2rem 2rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none; color: inherit;
+      display: block;
+    }
+    .card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transition: right 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .card:hover {
+      border-color: rgba(212,175,55,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.15);
+    }
+    .card:hover::before { opacity: 1; }
+    .card:hover::after { right: 0; }
+
+    .card-number {
+      font-family: 'Orbitron', sans-serif; font-size: 0.55rem; font-weight: 500;
+      letter-spacing: 0.45em; color: #3a3a50; margin-bottom: 1.5rem;
+    }
+    .card-icon {
+      font-size: 2.2rem; margin-bottom: 1rem; display: block;
+      filter: drop-shadow(0 0 12px rgba(212,175,55,0.3));
+    }
+    .card-eyebrow {
+      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.4em; color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .card-title {
+      font-family: 'Noto Serif SC', serif; font-size: 1.5rem; font-weight: 400;
+      letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.8rem;
+    }
+    .card-body {
+      font-size: 0.82rem; color: var(--text-dim); line-height: 1.9;
+      font-weight: 300;
+    }
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+    }
+    .tag {
+      font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 0.3em;
+      color: #5a5a78; border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.3rem 0.7rem;
+    }
+    .card-arrow {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
+      color: #3a3a50; transition: all 0.3s;
+    }
+    .card:hover .card-arrow { color: var(--gold); transform: translateX(4px); }
+
+    /* 特色大卡 */
+    .card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(15,15,35,0.9) 0%, rgba(8,8,22,0.8) 100%);
+    }
+    .card.featured .card-title { font-size: 2rem; }
+    @media (max-width: 768px) {
+      .card.featured { grid-column: span 1; }
+      .stats-bar { margin: 0 0 3rem; }
+      .grid { padding: 0 1rem 4rem; gap: 1rem; }
+      .card { padding: 1.6rem 1.4rem; }
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      position: relative; z-index: 10;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Noto Serif SC', serif; font-size: 1.1rem; font-weight: 400;
+      letter-spacing: 0.2em; margin-bottom: 0.5rem;
+    }
+    .footer-meta {
+      font-family: 'Orbitron', sans-serif; font-size: 0.58rem;
+      letter-spacing: 0.35em; color: #3a3a50; margin-bottom: 1.5rem;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: #3a3a50; letter-spacing: 0.1em;
+    }
+
+    /* ===== 卡片入场动画 ===== */
+    .card { animation: cardIn 0.6s ease both; }
+    .card:nth-child(1) { animation-delay: 0.7s; }
+    .card:nth-child(2) { animation-delay: 0.8s; }
+    .card:nth-child(3) { animation-delay: 0.9s; }
+    .card:nth-child(4) { animation-delay: 1.0s; }
+    .card:nth-child(5) { animation-delay: 1.1s; }
+    .card:nth-child(6) { animation-delay: 1.2s; }
+    .card:nth-child(7) { animation-delay: 1.3s; }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header>
+    <div class="header-eyebrow">SICNU · MATHEMATICAL SCIENCES · CLASS OF 2025</div>
+    <h1 class="header-title">四川师范大学<br><span>数学科学学院</span></h1>
+    <div class="header-subtitle">EST. 1946 · 80TH ANNIVERSARY · WELCOME UNIVERSE</div>
+    <div class="header-motto">万物皆数 · 大衍求真</div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">121</div>
+      <div class="stat-label">专任教师</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">28</div>
+      <div class="stat-label">博士生导师</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24</div>
+      <div class="stat-label">国自然项目</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">595<small style="font-size:0.6em">+</small></div>
+      <div class="stat-label">科研论文</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">国家级一流课程</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">80</div>
+      <div class="stat-label">建院周年</div>
+    </div>
+  </div>
+
+  <div class="section-title">EXPLORE · SEVEN SECTORS</div>
+
+  <div class="grid">
+    <!-- 01 欢迎首页 -->
+    <a class="card featured" href="welcome.html">
+      <div class="card-number">SECTOR · 01</div>
+      <span class="card-icon">🌌</span>
+      <div class="card-eyebrow">PROLOGUE</div>
+      <div class="card-title">欢迎首页</div>
+      <div class="card-body">推开数学殿堂的第一扇门。院徽、校歌《托起祖国的太阳》、四支 B 站官方形象片，以及六张真实狮子山校区实景——迎新宇宙的起点在这里。</div>
+      <div class="card-tags">
+        <span class="tag">院徽院训</span>
+        <span class="tag">校歌</span>
+        <span class="tag">形象视频</span>
+        <span class="tag">校园实景</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 02 学院介绍 -->
+    <a class="card" href="about.html">
+      <div class="card-number">SECTOR · 02</div>
+      <span class="card-icon">🏛️</span>
+      <div class="card-eyebrow">INSTITUTE</div>
+      <div class="card-title">学院介绍</div>
+      <div class="card-body">七十九年沉淀，121 名教师，博导 28 位。近五年国自然 24 项、论文 595+ 篇，国家级一流课程 2 门。院史、师资、科研、荣誉一览。</div>
+      <div class="card-tags">
+        <span class="tag">院史</span>
+        <span class="tag">师资</span>
+        <span class="tag">科研</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 03 专业介绍 -->
+    <a class="card" href="college.html">
+      <div class="card-number">SECTOR · 03</div>
+      <span class="card-icon">📐</span>
+      <div class="card-eyebrow">MAJORS</div>
+      <div class="card-title">专业介绍</div>
+      <div class="card-body">四个本科专业：数学与应用数学（国家级一流·1946）、信息与计算科学（省级一流·华为ICT）、统计学、金融数学。七维横向对比，核心课程全收录。</div>
+      <div class="card-tags">
+        <span class="tag">数学</span>
+        <span class="tag">信计</span>
+        <span class="tag">统计</span>
+        <span class="tag">金融数学</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 04 宣传画廊 -->
+    <a class="card" href="gallery.html">
+      <div class="card-number">SECTOR · 04</div>
+      <span class="card-icon">🖼️</span>
+      <div class="card-eyebrow">GALLERY</div>
+      <div class="card-title">宣传画廊</div>
+      <div class="card-body">十二张真实校园活动照，串起一学年高光时刻。开学典礼、数学文化节、师范生技能赛、毕业典礼——每一帧都是数科院人的共同记忆。</div>
+      <div class="card-tags">
+        <span class="tag">校园照片</span>
+        <span class="tag">活动剪影</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 05 校园地图 -->
+    <a class="card" href="map.html">
+      <div class="card-number">SECTOR · 05</div>
+      <span class="card-icon">🗺️</span>
+      <div class="card-eyebrow">CAMPUS</div>
+      <div class="card-title">校园地图</div>
+      <div class="card-body">狮子山·成龙·遂宁，三校区全覆盖。十二栋核心建筑标记，含教学楼、图书馆、实验室、宿舍、食堂与运动场，附 360° VR 全景入口。</div>
+      <div class="card-tags">
+        <span class="tag">三校区</span>
+        <span class="tag">VR全景</span>
+        <span class="tag">交通路线</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 06 互动游戏 -->
+    <a class="card" href="games.html">
+      <div class="card-number">SECTOR · 06</div>
+      <span class="card-icon">🎮</span>
+      <div class="card-eyebrow">ARENA</div>
+      <div class="card-title">互动游戏</div>
+      <div class="card-body">五款专业数学游戏：极限追逐·矩阵消消乐·曲线方程师·概率转盘·数论密码锁，分别对应数分、线代、解几、概率论、初等数论五门核心课。</div>
+      <div class="card-tags">
+        <span class="tag">数学分析</span>
+        <span class="tag">线性代数</span>
+        <span class="tag">概率论</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+
+    <!-- 07 入学指南 -->
+    <a class="card" href="guide.html">
+      <div class="card-number">SECTOR · 07</div>
+      <span class="card-icon">📋</span>
+      <div class="card-eyebrow">GUIDE</div>
+      <div class="card-title">入学指南</div>
+      <div class="card-body">九月九日至十四日，六天新生报到全流程。40+ 社团、志愿 213 小时要求、十项必备物品清单、九条交通路线——一册在手，从容启程。</div>
+      <div class="card-tags">
+        <span class="tag">报到流程</span>
+        <span class="tag">社团</span>
+        <span class="tag">志愿服务</span>
+        <span class="tag">FAQ</span>
+      </div>
+      <div class="card-arrow">ENTER →</div>
+    </a>
+  </div>
+
+  <footer>
+    <div class="footer-logo">四川师范大学 数学科学学院</div>
+    <div class="footer-meta">SICHUAN NORMAL UNIVERSITY · SCHOOL OF MATHEMATICAL SCIENCES · EST. 1946</div>
+    <div class="footer-copy">© 2025 数科院迎新宇宙 · 万物皆数，大衍求真</div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="../assets/space-bg.js"></script>
+</body>
+</html>

@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>专业介绍 · 四川师范大学数学科学学院</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #040410;
+      --bg-soft: #0a0a1c;
+      --text: #e8e8f0;
+      --muted: #a0a0b8;
+      --muted-dim: #5a5a78;
+      --muted-fade: #3a3a50;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.18);
+      --rule: #2a2a40;
+      --serif: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+      --sans: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+      --mono: "Orbitron", "Rajdhani", monospace;
+    }
+
+    html { scroll-behavior: auto; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* 全局坐标系网格背景层（0.05 透明度） */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAVIGATION ===== */
+    #main-nav {
+        position: fixed; top: -80px; left: 0; right: 0; z-index: 1000;
+        padding: 0 2rem; height: 64px;
+        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(10,14,26,0.82);
+        backdrop-filter: blur(20px) saturate(1.5);
+        -webkit-backdrop-filter: blur(20px) saturate(1.5);
+        border-bottom: 1px solid rgba(212,175,55,0.08);
+        transition: box-shadow 0.4s ease;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5), 0 0 30px rgba(212,175,55,0.05); }
+    .nav-logo {
+        display: flex; align-items: center; gap: 10px;
+        font-family: 'Orbitron', monospace; font-size: 0.95rem; font-weight: 700;
+        color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
+        text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links {
+        display: flex; gap: 0.25rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+        text-decoration: none; color: rgba(240,240,255,0.55);
+        font-family: 'Rajdhani', sans-serif; font-size: 0.92rem; font-weight: 600;
+        padding: 0.5rem 1rem; border-radius: 6px;
+        transition: color 0.3s, background 0.3s;
+        position: relative; letter-spacing: 0.02em;
+    }
+    .nav-links a::after {
+        content: ''; position: absolute; bottom: 2px; left: 50%;
+        transform: translateX(-50%) scaleX(0); width: 60%; height: 2px;
+        background: #d4af37; box-shadow: 0 0 8px rgba(212,175,55,0.6);
+        border-radius: 1px; transition: transform 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+        color: #d4af37; text-shadow: 0 0 8px rgba(212,175,55,0.4);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: translateX(-50%) scaleX(1); }
+
+    /* Hamburger */
+    .nav-hamburger {
+        display: none; flex-direction: column; gap: 5px;
+        cursor: pointer; padding: 8px; z-index: 1002;
+    }
+    .nav-hamburger .bar {
+        width: 24px; height: 2px; background: #f0f0ff; border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open .bar:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+        .nav-hamburger { display: flex; }
+        .nav-links {
+            position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+            flex-direction: column;
+            background: rgba(10,14,26,0.96); backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px); padding: 5rem 2rem 2rem;
+            gap: 0.5rem; transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+            border-left: 1px solid rgba(212,175,55,0.1);
+        }
+        .nav-links.open { right: 0; }
+        .nav-links a { font-size: 1.1rem; padding: 0.75rem 1rem; width: 100%; }
+        body { cursor: auto; }
+    }
+
+    /* ===== BOTTOM NAVIGATION ===== */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1rem;
+        background: rgba(4, 4, 16, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+    }
+    .bottom-nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.35rem 0.7rem;
+        font-family: 'Orbitron', 'Rajdhani', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        color: rgba(240, 240, 255, 0.45);
+        text-transform: uppercase;
+        border-radius: 9999px;
+        transition: all 0.3s ease;
+    }
+    .bottom-nav-link .bn-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: rgba(240, 240, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+    .bottom-nav-link:hover,
+    .bottom-nav-link.active {
+        color: var(--gold);
+        background: rgba(212, 175, 55, 0.08);
+    }
+    .bottom-nav-link:hover .bn-dot,
+    .bottom-nav-link.active .bn-dot {
+        background: var(--gold);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    body { padding-bottom: 72px; }
+
+    /* 鼠标跟随金色光点 */
+    .cursor-dot {
+      position: fixed; top: 0; left: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: screen;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.7), 0 0 32px rgba(212, 175, 55, 0.3);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      will-change: transform;
+    }
+    .cursor-dot.is-visible { opacity: 0.85; }
+    @media (hover: none) { .cursor-dot { display: none; } }
+
+    /* ==================== TOP BAR ==================== */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 2.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(180deg, rgba(4, 4, 16, 0.85) 0%, rgba(4, 4, 16, 0) 100%);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.3em; color: var(--gold);
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .back-link::before {
+      content: ''; display: inline-block; width: 28px; height: 1px;
+      background: var(--gold); opacity: 0.7;
+      transition: width 0.3s;
+    }
+    .back-link:hover { opacity: 0.8; }
+    .back-link:hover::before { width: 42px; }
+
+    .topbar-brand {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.4em; color: var(--muted-dim);
+      text-transform: uppercase;
+    }
+    .topbar-brand span { color: var(--gold); }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 2.2rem 4rem;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('../assets/campus-teaching-building.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.55) contrast(1.05) brightness(0.7);
+      transform: scale(1.05);
+      will-change: transform;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(4, 4, 16, 0.86) 0%, rgba(4, 4, 16, 0.94) 100%);
+      z-index: 1;
+    }
+    .hero-overlay::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 72% 48%, rgba(212, 175, 55, 0.10) 0%, transparent 52%),
+        linear-gradient(90deg, rgba(4, 4, 16, 0.55) 0%, transparent 60%);
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.4em; color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block; width: 32px; height: 1px;
+      background: var(--gold); vertical-align: middle; margin-right: 1rem; opacity: 0.7;
+    }
+
+    .hero-title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+      line-height: 1.25; letter-spacing: 0.12em;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .hero-desc {
+      font-family: var(--serif); font-weight: 300;
+      font-size: 1rem; line-height: 2;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 2.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-meta {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.32em; color: var(--muted-fade);
+      text-transform: uppercase;
+    }
+    .hero-meta span { color: var(--gold); }
+
+    /* 3D Canvas 容器（嵌入文档流 540px）*/
+    .hero-3d-wrap {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      border: 1px solid var(--rule);
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    }
+    .hero-3d-wrap::before, .hero-3d-wrap::after {
+      content: ''; position: absolute;
+      width: 18px; height: 18px;
+      border: 1px solid var(--gold);
+      opacity: 0.5;
+    }
+    .hero-3d-wrap::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+    .hero-3d-wrap::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+    #platonic-canvas {
+      display: block;
+      width: 100%; height: 100%;
+      cursor: grab;
+      position: relative;
+      z-index: 1;
+    }
+    #platonic-canvas:active { cursor: grabbing; }
+
+    .hero-3d-label {
+      position: absolute; top: 1.1rem; left: 1.2rem;
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 400;
+      letter-spacing: 0.32em; color: var(--muted-dim);
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .hero-3d-label span { color: var(--gold); }
+    .hero-3d-drag-hint {
+      position: absolute; top: 1.1rem; right: 1.2rem;
+      font-family: var(--mono); font-size: 0.55rem; font-weight: 400;
+      letter-spacing: 0.28em; color: var(--muted-fade);
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    /* Canvas 旁当前专业名（大 overlay）*/
+    .hero-3d-major {
+      position: absolute;
+      bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-3d-major-index {
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.32em; color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      opacity: 0.85;
+    }
+    .hero-3d-major-name {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      letter-spacing: 0.12em;
+      color: var(--text);
+      line-height: 1.2;
+      will-change: opacity, transform;
+    }
+    .hero-3d-major-meta {
+      margin-top: 0.4rem;
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.28em; color: var(--muted-dim);
+      text-transform: uppercase;
+      will-change: opacity, transform;
+    }
+    .hero-3d-major-meta span { color: var(--gold); }
+
+    /* Canvas 切换指示器（4 个小点） */
+    .hero-3d-pager {
+      position: absolute;
+      bottom: 1.2rem; right: 1.2rem;
+      z-index: 3;
+      display: flex; gap: 0.5rem;
+      pointer-events: none;
+    }
+    .hero-3d-pager-dot {
+      width: 6px; height: 6px;
+      border: 1px solid var(--muted-dim);
+      background: transparent;
+      transition: all 0.4s;
+    }
+    .hero-3d-pager-dot.is-active {
+      background: var(--gold);
+      border-color: var(--gold);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    /* Hero 核心数字 */
+    .hero-stats {
+      grid-column: 1 / -1;
+      margin-top: 3.5rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-stat {
+      padding: 1.6rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero-stat:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 22%;
+      height: 56%; width: 1px;
+      background: linear-gradient(180deg, transparent, var(--rule), transparent);
+    }
+    .hero-stat-num {
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .hero-stat-suffix {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--muted-dim);
+      margin-left: 0.2rem;
+    }
+    .hero-stat-label {
+      font-family: var(--sans); font-weight: 400;
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      color: var(--muted); margin-top: 0.6rem;
+    }
+
+    /* ==================== 公式分隔 ==================== */
+    .formula-divider {
+      position: relative;
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+    .formula-divider .formula {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      font-size: clamp(1rem, 1.6vw, 1.4rem);
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.85;
+      display: inline-block;
+      will-change: transform;
+    }
+    .formula-divider .formula::before,
+    .formula-divider .formula::after {
+      content: ''; display: inline-block; vertical-align: middle;
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.4;
+      margin: 0 1.6rem;
+    }
+    .formula-divider .formula-note {
+      display: block;
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 400;
+      letter-spacing: 0.35em; color: var(--muted-fade);
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    /* ==================== SECTION 通用 ==================== */
+    section.block {
+      position: relative;
+      padding: 7rem 2.2rem;
+      z-index: 1;
+    }
+    .block-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-eyebrow {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.4em; color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .section-eyebrow::before {
+      content: ''; display: inline-block; width: 24px; height: 1px;
+      background: var(--gold); vertical-align: middle; margin-right: 0.9rem; opacity: 0.7;
+    }
+    .section-title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: 0.15em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-family: var(--serif); font-weight: 300;
+      font-size: 0.95rem; color: var(--muted-dim);
+      letter-spacing: 0.08em;
+      max-width: 560px;
+    }
+
+    /* ==================== 4 专业详解 ==================== */
+    .majors-section {
+      background:
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 50%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .majors-section::before {
+      content: '';
+      position: absolute; top: 50%; right: -240px;
+      width: 520px; height: 520px;
+      background-image: url('../assets/campus-spring-shizishan.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.08;
+      filter: blur(1px) saturate(0.5);
+      transform: translateY(-50%) rotate(8deg);
+      pointer-events: none;
+    }
+    .majors-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+      margin-top: 4rem;
+    }
+    .major-card {
+      position: relative;
+      padding: 2.4rem 2.1rem;
+      background: rgba(10, 10, 28, 0.55);
+      border: 1px solid var(--rule);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.4s;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .major-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 36px; height: 1px;
+      background: var(--gold);
+    }
+    .major-card::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 1px; height: 36px;
+      background: var(--gold);
+    }
+    .major-card:hover {
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .major-card-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .major-symbol {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      font-size: 1.8rem; color: var(--gold);
+      line-height: 1; letter-spacing: 0;
+    }
+    .major-badge {
+      font-family: var(--mono); font-size: 0.56rem; font-weight: 500;
+      letter-spacing: 0.22em; color: var(--gold);
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.04);
+      white-space: nowrap;
+    }
+    .major-name {
+      font-family: var(--serif); font-weight: 600;
+      font-size: 1.35rem; color: var(--text);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.45rem;
+    }
+    .major-meta {
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.28em; color: var(--muted-dim);
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+    }
+    .major-meta span { color: var(--gold); }
+
+    .major-row {
+      margin-bottom: 1.4rem;
+    }
+    .major-row:last-child { margin-bottom: 0; }
+    .major-row-label {
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.3em; color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .major-row-label .sym {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      font-size: 0.9rem; color: var(--gold); letter-spacing: 0;
+    }
+    .major-row-text {
+      font-family: var(--sans); font-weight: 300;
+      font-size: 0.88rem; line-height: 1.95;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+    .major-row-text strong {
+      color: var(--text); font-weight: 500;
+    }
+
+    /* 课程 chips */
+    .course-grid {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+    }
+    .course-chip {
+      padding: 0.28rem 0.7rem;
+      font-family: var(--sans); font-size: 0.76rem; font-weight: 400;
+      color: var(--muted);
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      letter-spacing: 0.04em;
+      transition: all 0.3s;
+    }
+    .course-chip:hover {
+      color: var(--gold);
+      border-color: rgba(212, 175, 55, 0.4);
+      background: rgba(212, 175, 55, 0.1);
+    }
+    .course-chip.is-key {
+      color: var(--gold);
+      border-color: rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    /* 就业方向 list */
+    .dir-list {
+      list-style: none; padding: 0;
+    }
+    .dir-list li {
+      padding: 0.3rem 0;
+      font-family: var(--sans); font-size: 0.86rem;
+      color: var(--muted);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      letter-spacing: 0.03em;
+    }
+    .dir-list li .marker {
+      color: var(--gold); font-family: var(--mono);
+      font-size: 0.62rem; margin-top: 0.18rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ==================== 3D 书本展示 ==================== */
+    .book-section {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .book-section::before {
+      content: '';
+      position: absolute; top: 50%; left: -240px;
+      width: 520px; height: 520px;
+      background-image: url('../assets/campus-shizishan.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.07;
+      filter: blur(1px) saturate(0.5);
+      transform: translateY(-50%) rotate(-8deg);
+      pointer-events: none;
+    }
+    .book-stage {
+      margin-top: 4rem;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .book-stage-side {
+      padding: 0 0.5rem;
+    }
+    .book-stage-side.left { text-align: right; }
+    .book-stage-side.right { text-align: left; }
+
+    .book-stage-note {
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.32em; color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .book-stage-name {
+      font-family: var(--serif); font-weight: 600;
+      font-size: 1.2rem; color: var(--text);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+    .book-stage-en {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.25em; color: var(--muted-dim);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .book-stage-desc {
+      font-family: var(--sans); font-weight: 300;
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+
+    .book-showcase {
+      display: flex; gap: 2.5rem; justify-content: center;
+      perspective: 1400px;
+    }
+    .book-3d {
+      position: relative; width: 180px; height: 250px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+    .book-3d-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateY(-12deg) rotateX(4deg);
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+    .book-3d:hover .book-3d-inner {
+      transform: rotateY(-22deg) rotateX(-2deg) translateZ(20px);
+    }
+    .book-cover {
+      position: absolute; inset: 0;
+      border-radius: 3px 8px 8px 3px;
+      overflow: hidden;
+      box-shadow:
+        6px 6px 28px rgba(0, 0, 0, 0.6),
+        inset 0 0 40px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(212, 175, 55, 0.25);
+      z-index: 2;
+    }
+    .book-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 3px 8px 8px 3px;
+      filter: saturate(0.7) contrast(1.05);
+    }
+    .book-spine {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 20px;
+      transform: rotateY(0deg) translateZ(-10px);
+      background: linear-gradient(180deg, #b89530 0%, #d4af37 50%, #b89530 100%);
+      border-left: 2px solid rgba(212, 175, 55, 0.6);
+      box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .book-pages {
+      position: absolute; right: 0; top: 4px; bottom: 4px; width: 14px;
+      background: repeating-linear-gradient(180deg,
+        #e8e8f0 0px, #e8e8f0 1px,
+        #a0a0b8 1px, #a0a0b8 2px);
+      transform: rotateY(90deg) translateZ(-7px);
+      transform-origin: right;
+      z-index: 1;
+    }
+    .book-glow {
+      position: absolute; inset: -24px;
+      opacity: 0; transition: opacity 0.5s;
+      z-index: -1;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+    }
+    .book-3d:hover .book-glow { opacity: 1; }
+
+    .book-tag {
+      position: absolute;
+      top: -0.6rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: 0.55rem; font-weight: 500;
+      letter-spacing: 0.32em; color: var(--gold);
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: var(--bg);
+      padding: 0 0.6rem;
+    }
+
+    .book-stage-footer {
+      grid-column: 1 / -1;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      font-family: var(--serif); font-weight: 300;
+      font-size: 0.95rem; color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .book-stage-footer .sym {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      color: var(--gold); margin: 0 0.4rem;
+    }
+
+    /* ==================== 横向对比 ==================== */
+    .compare-section {
+      background:
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      position: relative;
+    }
+    .compare-wrap {
+      margin-top: 4rem;
+      overflow-x: auto;
+      border: 1px solid var(--rule);
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-family: var(--sans);
+      min-width: 760px;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding: 1.05rem 1rem;
+      text-align: left;
+      vertical-align: top;
+      letter-spacing: 0.04em;
+    }
+    .compare-table thead th {
+      background: rgba(10, 10, 28, 0.85);
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.28em; color: var(--gold);
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      white-space: nowrap;
+    }
+    .compare-table thead th:first-child {
+      color: var(--muted-dim);
+    }
+    .compare-table tbody tr {
+      transition: background 0.3s;
+    }
+    .compare-table tbody tr:hover {
+      background: rgba(212, 175, 55, 0.04);
+    }
+    .compare-table tbody td {
+      font-size: 0.85rem; color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      font-weight: 300;
+    }
+    .compare-table tbody td:first-child {
+      color: var(--gold);
+      font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .compare-table tbody td.is-key {
+      color: var(--text); font-weight: 500;
+    }
+    .compare-table tbody tr:last-child td { border-bottom: none; }
+    .compare-table .cell-sym {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      color: var(--gold); margin-right: 0.4rem;
+    }
+
+    /* ==================== CTA ==================== */
+    .cta-section {
+      text-align: center;
+      padding: 8rem 2.2rem;
+      background: var(--bg);
+      position: relative;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 60px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+    .cta-lead {
+      font-family: var(--serif); font-weight: 300;
+      font-size: 1.1rem; color: var(--muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 1.2rem;
+      padding: 1rem 2.8rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--mono); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s ease;
+      z-index: -1;
+    }
+    .cta-btn:hover { color: var(--bg); }
+    .cta-btn:hover::before { transform: scaleX(1); }
+    .cta-btn .arrow { transition: transform 0.4s; }
+    .cta-btn:hover .arrow { transform: translateX(6px); }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      padding: 3rem 2.2rem 2rem;
+      border-top: 1px solid var(--rule);
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--mono); font-size: 0.66rem; font-weight: 400;
+      letter-spacing: 0.32em; color: var(--muted-dim);
+      text-transform: uppercase;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-formula {
+      font-family: "Cambria Math", "Consolas", var(--mono);
+      font-size: 0.72rem; color: var(--muted-fade);
+      letter-spacing: 0.08em;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-3d-wrap { height: 460px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-stat:nth-child(2)::after, .hero-stat:nth-child(4)::after { display: none; }
+      .hero-stat:nth-child(1), .hero-stat:nth-child(2) {
+        border-bottom: 1px solid var(--rule);
+      }
+      .majors-grid { grid-template-columns: 1fr; }
+      .book-stage { grid-template-columns: 1fr; gap: 2rem; }
+      .book-stage-side.left { text-align: center; }
+      .book-stage-side.right { text-align: center; }
+    }
+    @media (max-width: 640px) {
+      section.block { padding: 5rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .topbar { padding: 1.2rem 1.5rem; }
+      .topbar-brand { display: none; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stat::after { display: none !important; }
+      .hero-stat { border-bottom: 1px solid var(--rule); }
+      .hero-stat:last-child { border-bottom: none; }
+      .formula-divider .formula::before,
+      .formula-divider .formula::after { width: 24px; margin: 0 0.7rem; }
+      .book-showcase { gap: 1.2rem; flex-wrap: wrap; }
+      .book-3d { width: 140px; height: 200px; }
+    }
+
+    /* ==================== 背景装饰层（星点 / 数学符号 / 星云）==================== */
+    .bg-decor { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .bg-decor-stars {
+      position: absolute; inset: -10%;
+      background-image:
+        radial-gradient(1px 1px at 25% 15%, rgba(212,175,55,0.7), transparent 60%),
+        radial-gradient(1px 1px at 75% 35%, rgba(232,232,240,0.6), transparent 60%),
+        radial-gradient(1px 1px at 45% 65%, rgba(212,175,55,0.5), transparent 60%),
+        radial-gradient(1px 1px at 90% 80%, rgba(232,232,240,0.7), transparent 60%),
+        radial-gradient(1px 1px at 10% 90%, rgba(212,175,55,0.6), transparent 60%),
+        radial-gradient(1px 1px at 60% 10%, rgba(232,232,240,0.5), transparent 60%),
+        radial-gradient(1.5px 1.5px at 30% 45%, rgba(212,175,55,0.7), transparent 60%),
+        radial-gradient(1px 1px at 85% 25%, rgba(232,232,240,0.5), transparent 60%),
+        radial-gradient(1px 1px at 5% 50%, rgba(212,175,55,0.4), transparent 60%),
+        radial-gradient(1px 1px at 95% 60%, rgba(232,232,240,0.5), transparent 60%);
+      background-size: 250px 250px, 200px 200px, 300px 300px, 180px 180px, 220px 220px, 280px 280px, 320px 320px, 240px 240px, 260px 260px, 210px 210px;
+      background-repeat: repeat;
+      opacity: 0.4;
+    }
+    .bg-decor-nebula {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 40% 30% at 15% 25%, rgba(90,42,122,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 85% 60%, rgba(42,90,138,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 20% at 50% 90%, rgba(212,175,55,0.06) 0%, transparent 60%);
+    }
+    .bg-decor-symbols span {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: rgba(212,175,55,0.06);
+      font-weight: 300;
+      user-select: none;
+      line-height: 1;
+    }
+    @media (max-width: 768px) { .bg-decor { display: none; } }
+
+    /* === 3D 模型节点标记系统 === */
+    .model-anchor-frame { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+    .model-anchor-corner {
+      position: absolute;
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.55rem;
+      letter-spacing: 0.15em; color: var(--gold, #d4af37);
+      opacity: 0.55;
+    }
+    .model-anchor-corner.tl { top: 0.6rem; left: 0.6rem; }
+    .model-anchor-corner.tr { top: 0.6rem; right: 0.6rem; }
+    .model-anchor-corner.bl { bottom: 0.6rem; left: 0.6rem; }
+    .model-anchor-corner.br { bottom: 0.6rem; right: 0.6rem; }
+    .model-anchor-corner::before {
+      content: '+'; display: inline-block; margin-right: 0.4rem;
+      color: var(--gold, #d4af37); font-weight: 700;
+    }
+    .model-anchor-crosshair {
+      position: absolute; top: 50%; left: 50%;
+      width: 14px; height: 14px;
+      transform: translate(-50%, -50%);
+      opacity: 0.3;
+    }
+    .model-anchor-crosshair::before, .model-anchor-crosshair::after {
+      content: ''; position: absolute; background: var(--gold, #d4af37);
+    }
+    .model-anchor-crosshair::before { left: 50%; top: 0; width: 1px; height: 100%; transform: translateX(-50%); }
+    .model-anchor-crosshair::after { top: 50%; left: 0; height: 1px; width: 100%; transform: translateY(-50%); }
+
+    .anchor-mapping {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.8rem; padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.05);
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; color: var(--gold, #d4af37);
+      text-transform: uppercase;
+    }
+
+    .section-anchor {
+      position: absolute; left: -1.4rem; top: 0;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.4rem;
+    }
+    .section-anchor-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold, #d4af37);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+    .section-anchor-line {
+      width: 1px; height: 30px;
+      background: linear-gradient(180deg, var(--gold, #d4af37), transparent);
+      opacity: 0.4;
+    }
+    .section-anchor-id {
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.5rem;
+      letter-spacing: 0.2em; color: var(--gold, #d4af37);
+      writing-mode: vertical-rl;
+      opacity: 0.7;
+    }
+
+    .section-title-wrap { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .section-anchor-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px;
+      border: 1px solid var(--gold, #d4af37); border-radius: 50%;
+      color: var(--gold, #d4af37); font-size: 0.7rem;
+      position: relative; cursor: help;
+      transition: background 0.3s;
+    }
+    .section-anchor-link:hover { background: rgba(212, 175, 55, 0.2); }
+    .section-anchor-link[data-tip]::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      white-space: nowrap;
+      background: rgba(4, 4, 16, 0.95); color: var(--gold, #d4af37);
+      border: 1px solid var(--rule, #2a2a40);
+      padding: 0.4rem 0.7rem;
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.55rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .section-anchor-link:hover::after { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .model-anchor-corner, .model-anchor-crosshair { display: none; }
+      .section-anchor { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 鼠标跟随金色光点 -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- ========== 背景装饰层（星点 / 数学符号 / 星云）========== -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="bg-decor-nebula"></div>
+    <div class="bg-decor-stars"></div>
+    <div class="bg-decor-symbols">
+      <span style="top:8%;left:4%"></span>
+      <span style="top:18%;right:6%"></span>
+      <span style="top:42%;left:8%;font-size:5rem">π</span>
+      <span style="top:62%;right:5%">φ</span>
+      <span style="top:78%;left:6%;font-size:3rem"></span>
+      <span style="top:30%;right:8%"></span>
+      <span style="top:88%;right:10%;font-size:3rem"></span>
+      <span style="top:52%;left:5%"></span>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="main-nav">
+      <a href="index.html" class="nav-logo">
+          <img src="../assets/math-college-logo-round.png" alt="数科院院徽">
+      </a>
+      <ul class="nav-links" id="navLinks">
+          <li><a href="welcome.html">首页</a></li>
+          <li><a href="about.html">学院</a></li>
+          <li><a href="college.html" class="active">专业</a></li>
+          <li><a href="map.html">地图</a></li>
+          <li><a href="gallery.html">画廊</a></li>
+          <li><a href="games.html">试炼</a></li>
+          <li><a href="guide.html">指南</a></li>
+      </ul>
+      <div class="nav-hamburger" id="hamburger" aria-label="菜单">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+  </nav>
+
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <a href="index.html" class="back-link">返回宇宙</a>
+    <div class="topbar-brand">SICNU · <span>Mathematical Sciences</span></div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow" id="hero-eyebrow">Majors · 专业介绍</div>
+        <h1 class="hero-title" id="hero-title">
+          四种<em>数学语言</em><br>
+          四条<em>探索路径</em>
+        </h1>
+        <p class="hero-desc" id="hero-desc">
+          四个柏拉图立体，对应四个本科专业。从 1946 到 2014，从纯数学的推理之美，到统计、计算、金融的交叉之野——每一种几何，都是一种通向无穷的语法。
+        </p>
+        <div class="hero-meta">MAJORS <span>04</span> · FIRST-CLASS <span>02</span> · ORIGIN <span>1946</span></div>
+      </div>
+
+      <div class="hero-3d-wrap">
+        <canvas id="platonic-canvas"></canvas>
+        <div class="hero-3d-drag-hint">Drag / Click · 拖拽旋转</div>
+        <div class="hero-3d-label">Platonic Solids · <span>4 Majors</span></div>
+
+        <div class="hero-3d-major">
+          <div class="hero-3d-major-index" id="major-index">01 / 04</div>
+          <div class="hero-3d-major-name" id="major-name">数学与应用数学</div>
+          <div class="hero-3d-major-meta" id="major-meta">Tetrahedron · <span>1946</span> · National First-Class</div>
+        </div>
+
+        <div class="hero-3d-pager" id="major-pager">
+          <div class="hero-3d-pager-dot is-active"></div>
+          <div class="hero-3d-pager-dot"></div>
+          <div class="hero-3d-pager-dot"></div>
+          <div class="hero-3d-pager-dot"></div>
+        </div>
+      </div>
+
+      <div class="hero-stats" id="hero-stats">
+        <div class="hero-stat">
+          <div><span class="hero-stat-num" data-target="4">0</span><span class="hero-stat-suffix"></span></div>
+          <div class="hero-stat-label">本科专业</div>
+        </div>
+        <div class="hero-stat">
+          <div><span class="hero-stat-num" data-target="2">0</span><span class="hero-stat-suffix"></span></div>
+          <div class="hero-stat-label">一流专业</div>
+        </div>
+        <div class="hero-stat">
+          <div><span class="hero-stat-num" data-target="1946">0</span></div>
+          <div class="hero-stat-label">最早设立年</div>
+        </div>
+        <div class="hero-stat">
+          <div><span class="hero-stat-num" data-target="7">0</span><span class="hero-stat-suffix"></span></div>
+          <div class="hero-stat-label">对比维度</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 公式分隔 1 ========== -->
+  <div class="formula-divider">
+    <span class="formula" data-drift="1">∫f(x) dx = F(x) + C</span>
+    <span class="formula-note">Antiderivative · Accumulation</span>
+  </div>
+
+  <!-- ========== 大型可互动 3D 数学模型：环面纽结 (Torus Knot) ========== -->
+  <section class="block decor-3d-section" style="padding: 3rem 2.2rem;">
+    <div class="block-inner">
+      <div class="decor-3d-wrap" style="position: relative; width: 100%; height: 500px; border: 1px solid var(--rule); background: radial-gradient(circle at center, rgba(212,175,55,0.04) 0%, transparent 70%);">
+        <canvas id="decor-3d-canvas" style="display: block; width: 100%; height: 100%; cursor: grab; position: relative; z-index: 1;"></canvas>
+        <div style="position: absolute; bottom: 1.1rem; left: 1.2rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.32em; color: var(--muted-dim); text-transform: uppercase; z-index: 2;">
+          <span style="color: var(--gold);"></span> MATHEMATICAL OBJECT · DRAG TO ROTATE
+        </div>
+        <div class="model-anchor-frame">
+          <span class="model-anchor-corner tl">x:-2.5 y:+2.5</span>
+          <span class="model-anchor-corner tr">x:+2.5 y:+2.5</span>
+          <span class="model-anchor-corner bl">x:-2.5 y:-2.5</span>
+          <span class="model-anchor-corner br">x:+2.5 y:-2.5</span>
+          <div class="model-anchor-crosshair"></div>
+        </div>
+      </div>
+      <div class="anchor-mapping">⊕ 映射至 · 专业介绍 · TorusKnot(2,0.6,3,4)</div>
+    </div>
+  </section>
+
+  <!-- ========== 4 专业详解 ========== -->
+  <section class="block majors-section" id="majors">
+    <div class="section-anchor">
+      <div class="section-anchor-dot"></div>
+      <div class="section-anchor-line"></div>
+      <div class="section-anchor-id">§01</div>
+    </div>
+    <div class="block-inner">
+      <div class="section-eyebrow">Detail · 专业详解</div>
+      <h2 class="section-title">四个立体 · 四种命题 <span class="section-anchor-link" data-tip="本节对应 3D 节点 · TorusKnot"></span></h2>
+      <p class="section-subtitle">M = { Tetra, Hexa, Octa, Dodeca } · 四个柏拉图立体各对应一个本科专业，从教师到量化，从纯推到计算</p>
+
+      <div class="majors-grid">
+
+        <!-- ===== 数学与应用数学（正四面体）===== -->
+        <div class="major-card" data-tilt>
+          <div class="major-card-head">
+            <div class="major-symbol">△</div>
+            <div class="major-badge">National First-Class</div>
+          </div>
+          <div class="major-name">数学与应用数学</div>
+          <div class="major-meta">Tetrahedron · <span>1946</span> · 理学学士 · 师范方向</div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym">∀</span> 培养目标</div>
+            <p class="major-row-text">面向<strong>卓越中小学数学教师</strong><strong>基础数学拔尖人才</strong><strong>应用数学交叉创新</strong>三类方向，培养扎实数学基础与较强创新实践能力的高素质人才</p>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 核心课程</div>
+            <div class="course-grid">
+              <span class="course-chip is-key">数学分析</span>
+              <span class="course-chip is-key">高等代数</span>
+              <span class="course-chip is-key">几何学基础</span>
+              <span class="course-chip">复变函数</span>
+              <span class="course-chip">近世代数</span>
+              <span class="course-chip">常微分方程</span>
+              <span class="course-chip">概率论与数理统计</span>
+            </div>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 就业方向</div>
+            <ul class="dir-list">
+              <li><span class="marker">01</span> 中小学数学教师 / 教育科研机构</li>
+              <li><span class="marker">02</span> 数学博士 / 教育硕士深造</li>
+              <li><span class="marker">03</span> 应用数学与工程交叉岗位</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ===== 信息与计算科学（正六面体）===== -->
+        <div class="major-card" data-tilt>
+          <div class="major-card-head">
+            <div class="major-symbol">□</div>
+            <div class="major-badge">Provincial First-Class</div>
+          </div>
+          <div class="major-name">信息与计算科学</div>
+          <div class="major-meta">Hexahedron · <span>2001</span> · 理学学士 · 华为 ICT 班</div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 培养目标</div>
+            <p class="major-row-text">面向<strong>AI for Science</strong><strong>AI for Data</strong>拔尖创新、应用工程落地两类方向，前身承自 1986 计算数学、1987 计算机专业，"数学底子 + 计算机技术"双核驱动</p>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 核心课程</div>
+            <div class="course-grid">
+              <span class="course-chip is-key">数学分析</span>
+              <span class="course-chip is-key">高等代数</span>
+              <span class="course-chip is-key">离散数学</span>
+              <span class="course-chip">数值计算</span>
+              <span class="course-chip">数据结构</span>
+              <span class="course-chip">数学建模</span>
+              <span class="course-chip">数据挖掘</span>
+              <span class="course-chip">AI 概述</span>
+            </div>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 就业方向</div>
+            <ul class="dir-list">
+              <li><span class="marker">01</span> <strong>华为 ICT 卓越创新实验班</strong>（2021 年起）</li>
+              <li><span class="marker">02</span> 互联网算法工程师 / 数据科学家</li>
+              <li><span class="marker">03</span> AI / 计算机硕士深造</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ===== 统计学（正八面体）===== -->
+        <div class="major-card" data-tilt>
+          <div class="major-card-head">
+            <div class="major-symbol">⬢</div>
+            <div class="major-badge">Emerging Cross</div>
+          </div>
+          <div class="major-name">统计学</div>
+          <div class="major-meta">Octahedron · <span>2003</span> · 理学学士 · 万人计划 1 人</div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym">σ</span> 培养目标</div>
+            <p class="major-row-text">面向数据时代<strong>统计推断</strong><strong>大数据处理</strong><strong>精算</strong>人才，拥有应用统计专业硕士点。近 5 年国家级 3 项 + 省部 6 项，SCI 论文 20 余篇</p>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 核心课程</div>
+            <div class="course-grid">
+              <span class="course-chip is-key">数理统计</span>
+              <span class="course-chip is-key">随机过程</span>
+              <span class="course-chip">回归分析</span>
+              <span class="course-chip">非参数统计</span>
+              <span class="course-chip">精算</span>
+              <span class="course-chip">实验设计</span>
+              <span class="course-chip">智能抽样</span>
+              <span class="course-chip">时间序列建模</span>
+            </div>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 就业方向</div>
+            <ul class="dir-list">
+              <li><span class="marker">01</span> 应用统计硕士 / 生物统计深造</li>
+              <li><span class="marker">02</span> 数据分析师 / 精算师</li>
+              <li><span class="marker">03</span> 金融与互联网数据岗位</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ===== 金融数学（正十二面体）===== -->
+        <div class="major-card" data-tilt>
+          <div class="major-card-head">
+            <div class="major-symbol">⬠</div>
+            <div class="major-badge">MOE Special</div>
+          </div>
+          <div class="major-name">金融数学</div>
+          <div class="major-meta">Dodecahedron · <span>2014</span> · 经济学学士 · 教育部特设</div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym">Δ</span> 培养目标</div>
+            <p class="major-row-text">构建<strong>数学理论 + 金融建模 + 数值计算</strong>三合一复合体系，教育部特设专业（应用经济学门类），授予<strong>经济学学士</strong>学位，紧贴量化投资与风险管理前沿</p>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 核心课程</div>
+            <div class="course-grid">
+              <span class="course-chip is-key">计量经济学</span>
+              <span class="course-chip is-key">金融随机分析</span>
+              <span class="course-chip">微观经济</span>
+              <span class="course-chip">宏观经济</span>
+              <span class="course-chip">量化投资</span>
+              <span class="course-chip">衍生品定价</span>
+              <span class="course-chip">风险管理</span>
+              <span class="course-chip">深度学习</span>
+            </div>
+          </div>
+
+          <div class="major-row">
+            <div class="major-row-label"><span class="sym"></span> 就业方向</div>
+            <ul class="dir-list">
+              <li><span class="marker">01</span> 量化投资 / 衍生品定价 / 风险评估</li>
+              <li><span class="marker">02</span> 投行 / 资管 / 金融科技</li>
+              <li><span class="marker">03</span> 金融工程 / 计量经济硕士深造</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 公式分隔 2 ========== -->
+  <div class="formula-divider">
+    <span class="formula" data-drift="1">∂f / ∂x = lim<sub>h→0</sub> [f(x+h) − f(x)] / h</span>
+    <span class="formula-note">Partial Derivative · Rate of Change</span>
+  </div>
+
+  <!-- ========== 3D 书本展示 ========== -->
+  <section class="block book-section" id="books">
+    <div class="block-inner">
+      <div class="section-eyebrow">Textbooks · 核心教材</div>
+      <h2 class="section-title">三册基石 · 一座数学之塔</h2>
+      <p class="section-subtitle">T = { Analysis, Algebra, Geometry } · 数学分析、高等代数、解析几何——支撑四年推理的三大支柱</p>
+
+      <div class="book-stage">
+
+        <div class="book-stage-side left">
+          <div class="book-stage-note">Book 01 · Analysis</div>
+          <div class="book-stage-name">数学分析</div>
+          <div class="book-stage-en">Mathematical Analysis</div>
+          <p class="book-stage-desc">微积分的严格化语言，从极限到勒贝格积分。四年长线核心课程，奠定连续与无穷的直觉</p>
+        </div>
+
+        <div class="book-showcase">
+          <div class="book-3d" id="book-algebra" data-tilt>
+            <div class="book-tag">Algebra</div>
+            <div class="book-glow"></div>
+            <div class="book-3d-inner">
+              <div class="book-cover">
+                <img src="../assets/textbook-advanced-algebra.jpg" alt="高等代数">
+              </div>
+              <div class="book-spine"></div>
+              <div class="book-pages"></div>
+            </div>
+          </div>
+
+          <div class="book-3d" id="book-analysis" data-tilt>
+            <div class="book-tag">Analysis</div>
+            <div class="book-glow"></div>
+            <div class="book-3d-inner">
+              <div class="book-cover">
+                <img src="../assets/textbook-math-analysis.jpg" alt="数学分析">
+              </div>
+              <div class="book-spine"></div>
+              <div class="book-pages"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-stage-side right">
+          <div class="book-stage-note">Book 02 · Algebra</div>
+          <div class="book-stage-name">高等代数</div>
+          <div class="book-stage-en">Advanced Algebra</div>
+          <p class="book-stage-desc">从矩阵到线性空间，从群环到不变量。代数是结构的科学，也是几何的另一种语法</p>
+        </div>
+
+        <div class="book-stage-footer">
+          <span class="sym"></span> Analysis <span class="sym">·</span> Algebra <span class="sym">·</span> Geometry <span class="sym"></span> &nbsp; 三册构成数学与应用数学的入门基石
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 公式分隔 3 ========== -->
+  <div class="formula-divider">
+    <span class="formula" data-drift="1">Σ<sub>n=1</sub><sup>∞</sup> 1/n² = π² / 6</span>
+    <span class="formula-note">Basel Problem · Euler's Resolution</span>
+  </div>
+
+  <!-- ========== 横向对比 ========== -->
+  <section class="block compare-section" id="compare">
+    <div class="block-inner">
+      <div class="section-eyebrow">Matrix · 横向对比</div>
+      <h2 class="section-title">四专业 × 七维度</h2>
+      <p class="section-subtitle">M ∈ ℝ<sup>4×7</sup> · 设立 / 学位 / 一流级别 / 特色 / 课程 / 就业 / 适合人群——一张矩阵看清四条路径</p>
+
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>维度 / Major</th>
+              <th>数学与应用数学</th>
+              <th>信息与计算科学</th>
+              <th>统计学</th>
+              <th>金融数学</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>设立年份</td>
+              <td class="is-key">1946</td>
+              <td class="is-key">2001</td>
+              <td class="is-key">2003</td>
+              <td class="is-key">2014</td>
+            </tr>
+            <tr>
+              <td>学位类型</td>
+              <td>理学学士</td>
+              <td>理学学士</td>
+              <td>理学学士</td>
+              <td>经济学学士</td>
+            </tr>
+            <tr>
+              <td>一流级别</td>
+              <td><span class="cell-sym"></span>国家级一流</td>
+              <td><span class="cell-sym"></span>省级一流</td>
+              <td>新兴交叉</td>
+              <td>教育部特设</td>
+            </tr>
+            <tr>
+              <td>特色亮点</td>
+              <td>3 培养方向 / 师范</td>
+              <td>华为 ICT 班</td>
+              <td>万人计划 1 人</td>
+              <td>经济学学士</td>
+            </tr>
+            <tr>
+              <td>核心课程</td>
+              <td>数分 / 高代 / 复变</td>
+              <td>离散 / 数据结构</td>
+              <td>数理统计 / 精算</td>
+              <td>计量 / 量化 / 衍生品</td>
+            </tr>
+            <tr>
+              <td>就业方向</td>
+              <td>教师 / 深造</td>
+              <td>算法 / AI / ICT</td>
+              <td>数据 / 精算</td>
+              <td>量化 / 投行</td>
+            </tr>
+            <tr>
+              <td>适合人群</td>
+              <td>热爱推导 / 想做教师</td>
+              <td>数学 + 编程双修</td>
+              <td>数据直觉强</td>
+              <td>数理 + 金融双修</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 公式分隔 4 ========== -->
+  <div class="formula-divider">
+    <span class="formula" data-drift="1">lim<sub>x→∞</sub> (1 + 1/x)<sup>x</sup> = e</span>
+    <span class="formula-note">Euler's Number · Continuous Growth</span>
+  </div>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-section" id="cta">
+    <p class="cta-lead">看清了四条数学路径，下一步走进校园地图</p>
+    <a href="map.html" class="cta-btn">
+      <span>探索校园</span>
+      <span class="arrow"></span>
+    </a>
+    <a href="map.html" class="cta-btn next-section-btn" style="margin-top:1.4rem;">
+      <span>继续 · 下一板块</span>
+      <span class="arrow"></span>
+    </a>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">SICNU · <span>School of Mathematical Sciences</span> · 2026 Freshman Orientation</div>
+      <div class="footer-formula">∀ M ∈ {Tetra, Hexa, Octa, Dodeca}, ∃ path ∎</div>
+    </div>
+  </footer>
+
+  <!-- ========== GSAP + LENIS + 互动 ========== -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- 背景装饰层动画（星点漂移 + 数学符号浮动）----
+    gsap.to('.bg-decor-stars', { backgroundPosition: '+=400 -=300', duration: 60, repeat: -1, ease: 'none' });
+    gsap.utils.toArray('.bg-decor-symbols span').forEach((sym) => {
+      gsap.fromTo(sym, { y: '+=20' }, { y: '-=20', duration: 8 + Math.random() * 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    });
+
+    // ---- Lenis 平滑滚动 ----
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      smooth: true,
+    });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    // ---- 鼠标跟随金色光点 ----
+    const cursorDot = document.getElementById('cursor-dot');
+    const xTo = gsap.quickTo(cursorDot, 'x', { duration: 0.4, ease: 'power3' });
+    const yTo = gsap.quickTo(cursorDot, 'y', { duration: 0.4, ease: 'power3' });
+    window.addEventListener('pointermove', (e) => {
+      xTo(e.clientX); yTo(e.clientY);
+      cursorDot.classList.add('is-visible');
+    });
+    window.addEventListener('pointerleave', () => {
+      cursorDot.classList.remove('is-visible');
+    });
+
+    // ---- Hero 入场 ----
+    const heroTl = gsap.timeline({ delay: 0.2 });
+    heroTl
+      .from('#hero-eyebrow', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' })
+      .from('#hero-title',   { y: 30, opacity: 0, duration: 1.0, ease: 'power3.out' }, '-=0.4')
+      .from('#hero-desc',    { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+      .from('.hero-meta',    { y: 20, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+      .from('.hero-3d-wrap', { x: 40, opacity: 0, scale: 0.96, duration: 1.1, ease: 'power3.out' }, '-=1.0')
+      .from('.hero-stat',    { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' }, '-=0.4');
+
+    // ---- Hero 背景视差 ----
+    gsap.to('#hero-bg', {
+      y: '12%',
+      ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+    });
+    gsap.to('.hero-text', {
+      y: -40, opacity: 0.6,
+      ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+    });
+
+    // ---- 公式分隔器漂移 ----
+    gsap.utils.toArray('.formula[data-drift]').forEach((el) => {
+      gsap.to(el, {
+        x: '+=40', y: '-=8',
+        duration: 6, repeat: -1, yoyo: true,
+        ease: 'sine.inOut',
+      });
+      gsap.from(el, {
+        opacity: 0, y: 20,
+        duration: 1, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+      });
+    });
+
+    // ---- 通用 section 入场 ----
+    gsap.utils.toArray('section.block').forEach((sec) => {
+      const eyebrow = sec.querySelector('.section-eyebrow');
+      const title = sec.querySelector('.section-title');
+      const subtitle = sec.querySelector('.section-subtitle');
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: sec, start: 'top 78%', toggleActions: 'play none none reverse' }
+      });
+      if (eyebrow) tl.from(eyebrow, { y: 16, opacity: 0, duration: 0.7, ease: 'power3.out' });
+      if (title) tl.from(title, { y: 24, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3');
+      if (subtitle) tl.from(subtitle, { y: 16, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.4');
+    });
+
+    // ---- 4 专业详解卡入场 ----
+    gsap.utils.toArray('.major-card').forEach((card, i) => {
+      gsap.from(card, {
+        y: 50, opacity: 0, duration: 0.8, delay: i * 0.12,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.majors-grid', start: 'top 80%', toggleActions: 'play none none reverse' }
+      });
+    });
+
+    // ---- 卡片 3D tilt ----
+    gsap.utils.toArray('[data-tilt]').forEach((card) => {
+      const isBook = card.classList.contains('book-3d');
+      const target = isBook ? card.querySelector('.book-3d-inner') || card : card;
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        if (isBook) {
+          gsap.to(target, {
+            rotationY: x * 18, rotationX: -y * 10,
+            transformPerspective: 1000,
+            duration: 0.3, ease: 'power2.out', overwrite: 'auto'
+          });
+        } else {
+          gsap.to(card, {
+            rotationY: x * 8, rotationX: -y * 8,
+            transformPerspective: 900,
+            duration: 0.4, ease: 'power2.out', overwrite: 'auto'
+          });
+        }
+      });
+      card.addEventListener('pointerleave', () => {
+        if (isBook) {
+          gsap.to(target, {
+            rotationY: -12, rotationX: 4,
+            duration: 0.7, ease: 'power3.out', overwrite: 'auto'
+          });
+        } else {
+          gsap.to(card, {
+            rotationY: 0, rotationX: 0,
+            duration: 0.8, ease: 'power3.out', overwrite: 'auto'
+          });
+        }
+      });
+    });
+
+    // ---- 书本悬浮 idle ----
+    gsap.to('#book-algebra .book-3d-inner', {
+      y: 6, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut'
+    });
+    gsap.to('#book-analysis .book-3d-inner', {
+      y: -6, duration: 2.3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.4
+    });
+
+    // ---- 对比表入场 ----
+    gsap.from('.compare-table', {
+      y: 40, opacity: 0, duration: 1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.compare-wrap', start: 'top 82%', toggleActions: 'play none none reverse' }
+    });
+    gsap.utils.toArray('.compare-table tbody tr').forEach((row, i) => {
+      gsap.from(row, {
+        x: -20, opacity: 0, duration: 0.5, delay: i * 0.08,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.compare-table', start: 'top 80%', toggleActions: 'play none none reverse' }
+      });
+    });
+
+    // ---- 数字计数动画 ----
+    gsap.utils.toArray('[data-target]').forEach((counter) => {
+      const target = parseInt(counter.getAttribute('data-target'), 10);
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2.2,
+            ease: 'power1.out',
+            onUpdate: () => { counter.textContent = Math.round(obj.val); }
+          });
+        }
+      });
+    });
+
+    // ---- CTA 入场 ----
+    gsap.from('.cta-section > *', {
+      y: 30, opacity: 0, duration: 0.8, stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.cta-section', start: 'top 80%', toggleActions: 'play none none reverse' }
+    });
+  </script>
+
+  <!-- ========== THREE.JS 4 柏拉图立体切换（内联 ES module）========== -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('platonic-canvas');
+    if (canvas) {
+      const wrap = canvas.parentElement;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.set(0, 0.4, 6.4);
+      camera.lookAt(0, 0, 0);
+
+      // === 4 个柏拉图立体定义（对应 4 专业）===
+      const SOLIDS = [
+        {
+          // 正四面体 · 数学与应用数学（1946，国家级一流）
+          geo: new THREE.TetrahedronGeometry(1.7, 0),
+          name: '数学与应用数学',
+          year: '1946',
+          level: 'National First-Class',
+          solid: 'Tetrahedron',
+        },
+        {
+          // 正六面体 · 信息与计算科学（2001，省级一流，华为 ICT 班）
+          geo: new THREE.BoxGeometry(2.1, 2.1, 2.1),
+          name: '信息与计算科学',
+          year: '2001',
+          level: 'Provincial · Huawei ICT',
+          solid: 'Hexahedron',
+        },
+        {
+          // 正八面体 · 统计学（2003）
+          geo: new THREE.OctahedronGeometry(1.7, 0),
+          name: '统计学',
+          year: '2003',
+          level: 'Emerging · 万人计划',
+          solid: 'Octahedron',
+        },
+        {
+          // 正十二面体 · 金融数学（2014）
+          geo: new THREE.DodecahedronGeometry(1.5, 0),
+          name: '金融数学',
+          year: '2014',
+          level: 'MOE Special · 经济学学士',
+          solid: 'Dodecahedron',
+        },
+      ];
+
+      // 金色金属材质（color 0xd4af37, metalness 0.9, roughness 0.25）
+      const makeMat = () => new THREE.MeshStandardMaterial({
+        color: 0xd4af37,
+        metalness: 0.9,
+        roughness: 0.25,
+        emissive: 0x3a2a08,
+        emissiveIntensity: 0.18,
+        transparent: true,
+        opacity: 1,
+      });
+
+      // 容器 group（拖拽旋转）
+      const solidGroup = new THREE.Group();
+      scene.add(solidGroup);
+
+      // 创建 4 个 mesh
+      const meshes = SOLIDS.map((s, i) => {
+        const mat = makeMat();
+        const mesh = new THREE.Mesh(s.geo, mat);
+        if (i === 0) {
+          mesh.scale.set(1, 1, 1);
+          mat.opacity = 1;
+        } else {
+          mesh.scale.set(0.001, 0.001, 0.001);
+          mat.opacity = 0;
+        }
+        solidGroup.add(mesh);
+        return mesh;
+      });
+
+      // 当前立体对应的线框（强调结构）
+      const wireMat = new THREE.LineBasicMaterial({
+        color: 0xd4af37, transparent: true, opacity: 0.22,
+      });
+      const wireMeshes = SOLIDS.map((s) => {
+        const wireGeo = new THREE.WireframeGeometry(s.geo);
+        const wire = new THREE.LineSegments(wireGeo, wireMat);
+        wire.scale.set(0.001, 0.001, 0.001);
+        solidGroup.add(wire);
+        return wire;
+      });
+      wireMeshes[0].scale.set(1, 1, 1);
+
+      // === 光照 ===
+      scene.add(new THREE.AmbientLight(0xffffff, 0.32));
+
+      const keyLight = new THREE.DirectionalLight(0xfff2cc, 1.25);
+      keyLight.position.set(4, 6, 5);
+      scene.add(keyLight);
+
+      const rimLight = new THREE.DirectionalLight(0xd4af37, 0.85);
+      rimLight.position.set(-5, -2, -3);
+      scene.add(rimLight);
+
+      const fillLight = new THREE.PointLight(0xffffff, 0.45, 30);
+      fillLight.position.set(0, 0, 5);
+      scene.add(fillLight);
+
+      // === 220 个粒子环绕飘动 ===
+      const PARTICLE_COUNT = 220;
+      const particleGeo = new THREE.BufferGeometry();
+      const positions = new Float32Array(PARTICLE_COUNT * 3);
+      const seeds = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const r = 2.6 + (Math.random() - 0.5) * 2.4;
+        const y = (Math.random() - 0.5) * 3.2;
+        positions[i * 3 + 0] = r * Math.cos(theta);
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = r * Math.sin(theta);
+        seeds.push({
+          theta, r, y,
+          speed: 0.2 + Math.random() * 0.6,
+          bobAmp: 0.1 + Math.random() * 0.35,
+        });
+      }
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const particleMat = new THREE.PointsMaterial({
+        color: 0xd4af37,
+        size: 0.05,
+        transparent: true,
+        opacity: 0.85,
+        sizeAttenuation: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      });
+      const particles = new THREE.Points(particleGeo, particleMat);
+      scene.add(particles);
+
+      // === 状态 ===
+      let currentIndex = 0;
+      let switching = false;
+
+      const majorIndexEl = document.getElementById('major-index');
+      const majorNameEl = document.getElementById('major-name');
+      const majorMetaEl = document.getElementById('major-meta');
+      const pagerDots = document.querySelectorAll('.hero-3d-pager-dot');
+
+      function updateMajorLabel(index) {
+        const s = SOLIDS[index];
+        const idx = String(index + 1).padStart(2, '0');
+        // 文字淡出 → 更新 → 淡入
+        gsap.to([majorNameEl, majorMetaEl, majorIndexEl], {
+          opacity: 0, y: 10, duration: 0.3, ease: 'power2.in',
+          onComplete: () => {
+            majorIndexEl.textContent = idx + ' / 04';
+            majorNameEl.textContent = s.name;
+            majorMetaEl.innerHTML = s.solid + ' · <span>' + s.year + '</span> · ' + s.level;
+            gsap.fromTo([majorIndexEl, majorNameEl, majorMetaEl],
+              { opacity: 0, y: -10 },
+              { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.05 }
+            );
+          }
+        });
+        pagerDots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+      }
+
+      // === 切换函数（旧立体淡出旋转，新立体淡入）===
+      function switchTo(index) {
+        if (index === currentIndex || switching) return;
+        switching = true;
+        const oldIdx = currentIndex;
+        const oldMesh = meshes[oldIdx];
+        const newMesh = meshes[index];
+        const oldWire = wireMeshes[oldIdx];
+        const newWire = wireMeshes[index];
+
+        // 旧立体淡出 + 旋转
+        gsap.to(oldMesh.scale, { x: 0.001, y: 0.001, z: 0.001, duration: 0.5, ease: 'power2.in' });
+        gsap.to(oldMesh.material, { opacity: 0, duration: 0.5, ease: 'power2.in' });
+        gsap.to(oldMesh.rotation, { y: '+=Math.PI * 1.5', duration: 0.5, ease: 'power2.in' });
+        gsap.to(oldWire.scale, { x: 0.001, y: 0.001, z: 0.001, duration: 0.5, ease: 'power2.in' });
+
+        // 0.5s 后新立体淡入
+        setTimeout(() => {
+          currentIndex = index;
+          newMesh.scale.set(0.001, 0.001, 0.001);
+          newMesh.material.opacity = 0;
+          newMesh.rotation.y = -Math.PI * 1.5;
+          newWire.scale.set(0.001, 0.001, 0.001);
+          gsap.to(newMesh.scale, { x: 1, y: 1, z: 1, duration: 0.7, ease: 'back.out(1.4)' });
+          gsap.to(newMesh.material, { opacity: 1, duration: 0.7, ease: 'power2.out' });
+          gsap.to(newMesh.rotation, { y: 0, duration: 0.7, ease: 'power3.out' });
+          gsap.to(newWire.scale, { x: 1, y: 1, z: 1, duration: 0.7, ease: 'back.out(1.4)' });
+          updateMajorLabel(index);
+          switching = false;
+        }, 500);
+      }
+
+      // === 每 5 秒自动切换 ===
+      setInterval(() => {
+        switchTo((currentIndex + 1) % SOLIDS.length);
+      }, 5000);
+
+      // === 鼠标拖拽旋转（group） 点击切换 ===
+      const rotState = {
+        targetX: -0.15,
+        targetY: 0,
+        curX: -0.15,
+        curY: 0,
+        dragging: false,
+        lastX: 0, lastY: 0,
+        velY: 0.003,
+        moved: false,
+      };
+
+      canvas.addEventListener('pointerdown', (e) => {
+        rotState.dragging = true;
+        rotState.moved = false;
+        rotState.lastX = e.clientX;
+        rotState.lastY = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!rotState.dragging) return;
+        const dx = e.clientX - rotState.lastX;
+        const dy = e.clientY - rotState.lastY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) rotState.moved = true;
+        rotState.targetY += dx * 0.006;
+        rotState.targetX += dy * 0.006;
+        rotState.targetX = Math.max(-1.1, Math.min(1.1, rotState.targetX));
+        rotState.velY = dx * 0.0006;
+        rotState.lastX = e.clientX;
+        rotState.lastY = e.clientY;
+      });
+      const endDrag = (e) => {
+        if (!rotState.dragging) return;
+        const wasMoved = rotState.moved;
+        rotState.dragging = false;
+        try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+        // 没拖动则视为点击 → 切换
+        if (!wasMoved) {
+          switchTo((currentIndex + 1) % SOLIDS.length);
+        }
+      };
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
+      canvas.addEventListener('pointerleave', endDrag);
+
+      // === 自适应尺寸 ===
+      function resize() {
+        const w = wrap.clientWidth;
+        const h = wrap.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      const ro = new ResizeObserver(resize);
+      ro.observe(wrap);
+      resize();
+
+      // === 渲染循环 ===
+      const clock = new THREE.Clock();
+      function tick() {
+        const t = clock.getElapsedTime();
+
+        // 拖拽平滑 + 惯性自转
+        if (!rotState.dragging) {
+          rotState.targetY += rotState.velY;
+          rotState.velY *= 0.94;
+          if (Math.abs(rotState.velY) < 0.0001) rotState.velY = 0.003;
+        }
+        rotState.curX += (rotState.targetX - rotState.curX) * 0.1;
+        rotState.curY += (rotState.targetY - rotState.curY) * 0.1;
+
+        solidGroup.rotation.x = rotState.curX;
+        solidGroup.rotation.y = rotState.curY;
+
+        // 当前立体缓慢自转（在 group 内部叠加）
+        const cur = meshes[currentIndex];
+        cur.rotation.y += 0.004;
+        const curWire = wireMeshes[currentIndex];
+        curWire.rotation.copy(cur.rotation);
+
+        // 粒子轨道飘动
+        const posAttr = particleGeo.attributes.position;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const s = seeds[i];
+          const theta = s.theta + t * s.speed * 0.4;
+          const r = s.r + Math.sin(t * s.speed + i) * 0.18;
+          posAttr.array[i * 3 + 0] = r * Math.cos(theta);
+          posAttr.array[i * 3 + 1] = s.y + Math.sin(t * s.speed * 1.3 + i) * s.bobAmp;
+          posAttr.array[i * 3 + 2] = r * Math.sin(theta);
+        }
+        posAttr.needsUpdate = true;
+        particles.rotation.y = rotState.curY * 0.3;
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(tick);
+      }
+      tick();
+    }
+
+  // ===== 大型可互动 3D 数学模型：环面纽结 (Torus Knot) =====
+  (async () => {
+    const decorCanvas = document.getElementById('decor-3d-canvas');
+    if (!decorCanvas) return;
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+
+    const wrap = decorCanvas.parentElement;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 8);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: decorCanvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight, false);
+
+    // 灯光
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const goldLight = new THREE.PointLight(0xd4af37, 1.4, 50);
+    goldLight.position.set(5, 5, 5);
+    scene.add(goldLight);
+    const whiteLight = new THREE.PointLight(0xffffff, 0.9, 50);
+    whiteLight.position.set(-5, -3, 4);
+    scene.add(whiteLight);
+
+    // 环面纽结：TorusKnotGeometry(半径, 管半径, 段数, 截面段数, p, q)
+    const knotGeo = new THREE.TorusKnotGeometry(2, 0.6, 200, 32, 3, 4);
+    const knotMat = new THREE.MeshStandardMaterial({
+      color: 0xd4af37,
+      metalness: 0.85,
+      roughness: 0.25
+    });
+    const knot = new THREE.Mesh(knotGeo, knotMat);
+    scene.add(knot);
+
+    // 线框叠加
+    const wire = new THREE.LineSegments(
+      new THREE.WireframeGeometry(knotGeo),
+      new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.18 })
+    );
+    scene.add(wire);
+
+    // OrbitControls：自动旋转 + 阻尼 + 禁用缩放
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.2;
+
+    // 响应式 resize
+    const ro = new ResizeObserver(() => {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      if (w === 0 || h === 0) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(wrap);
+
+    // 渲染循环
+    function decorTick() {
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(decorTick);
+    }
+    decorTick();
+  })();
+
+  // ===== NAVIGATION =====
+  gsap.to('#main-nav', { y: 80, duration: 0.8, delay: 0.3, ease: 'power3.out' });
+  window.addEventListener('scroll', () => { const nav = document.getElementById('main-nav'); if (window.scrollY > 100) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const hamburger = document.getElementById('hamburger'); const navLinks = document.getElementById('navLinks'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('open'); }); navLinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }); });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="../assets/space-bg.js"></script>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" aria-label="页面导航">
+    <a href="welcome.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">首页</span></a>
+    <a href="about.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">学院</span></a>
+    <a href="college.html" class="bottom-nav-link active"><span class="bn-dot"></span><span class="bn-label">专业</span></a>
+    <a href="map.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">地图</span></a>
+    <a href="gallery.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">画廊</span></a>
+    <a href="games.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">试炼</span></a>
+    <a href="guide.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">指南</span></a>
+</nav>
+
+<!-- ===== HIDDEN QUESTION WIDGET（隐藏题目） ===== -->
+<style>
+.hidden-q-trigger{position:fixed;bottom:110px;right:18px;z-index:999;width:24px;height:24px;border-radius:50%;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.15);color:rgba(212,175,55,0.18);font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:500;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;transition:all 0.4s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0.5;box-shadow:none}.hidden-q-trigger:hover{opacity:1;background:rgba(212,175,55,0.18);color:#d4af37;border-color:rgba(212,175,55,0.6);transform:rotate(180deg) scale(1.6);box-shadow:0 0 25px rgba(212,175,55,0.5);width:30px;height:30px;font-size:0.85rem}.hidden-q-modal{position:fixed;inset:0;z-index:9999;background:rgba(4,4,16,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1rem}.hidden-q-modal.open{display:flex}.hidden-q-card{width:100%;max-width:460px;background:linear-gradient(180deg,#0a0a1c 0%,#111128 100%);border:1px solid rgba(212,175,55,0.3);padding:2.4rem 2rem 1.8rem;position:relative;box-shadow:0 0 50px rgba(212,175,55,0.15);font-family:'Noto Serif SC',serif}.hidden-q-card::before,.hidden-q-card::after{content:'';position:absolute;width:18px;height:18px;border:1px solid #d4af37;opacity:0.5}.hidden-q-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none}.hidden-q-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none}.hidden-q-eyebrow{font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.4em;color:#d4af37;text-align:center;margin-bottom:0.6rem}.hidden-q-eyebrow::before,.hidden-q-eyebrow::after{content:'';display:inline-block;width:24px;height:1px;background:#d4af37;vertical-align:middle;margin:0 0.6rem;opacity:0.5}.hidden-q-text{font-family:'Cambria Math','Noto Serif SC',serif;font-size:1.5rem;color:#e8e8f0;text-align:center;margin:1rem 0 1.4rem;letter-spacing:0.1em}.hidden-q-input{display:block;width:100%;padding:0.8rem 1rem;background:rgba(4,4,16,0.6);border:1px solid rgba(212,175,55,0.3);color:#e8e8f0;font-family:'Orbitron',sans-serif;font-size:1.1rem;text-align:center;letter-spacing:0.1em;outline:none;transition:all 0.3s}.hidden-q-input:focus{border-color:#d4af37;box-shadow:0 0 12px rgba(212,175,55,0.25)}.hidden-q-actions{display:flex;gap:0.8rem;margin-top:1.2rem}.hidden-q-btn{flex:1;padding:0.7rem 1rem;background:transparent;border:1px solid rgba(212,175,55,0.4);color:#d4af37;font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.3em;cursor:pointer;text-transform:uppercase;transition:all 0.3s}.hidden-q-btn:hover{background:#d4af37;color:#040410}.hidden-q-btn.primary{background:rgba(212,175,55,0.12)}.hidden-q-feedback{margin-top:1rem;text-align:center;font-family:'Noto Serif SC',serif;font-size:0.9rem;min-height:1.4em;color:#d4af37}.hidden-q-feedback.error{color:#ef4444}.hidden-q-feedback.success{color:#22c55e}.hidden-q-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid rgba(212,175,55,0.3);color:#d4af37;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all 0.3s}.hidden-q-close:hover{background:#d4af37;color:#040410;transform:rotate(90deg)}
+</style>
+
+<div class="hidden-q-modal" id="hidden-q-modal">
+  <div class="hidden-q-card">
+    <button class="hidden-q-close" data-close>×</button>
+    <div class="hidden-q-eyebrow">HIDDEN CHALLENGE</div>
+    <div class="hidden-q-text" id="hidden-q-text"></div>
+    <input type="number" class="hidden-q-input" id="hidden-q-input" placeholder="输入答案" autocomplete="off">
+    <div class="hidden-q-actions">
+      <button class="hidden-q-btn" data-close>关闭</button>
+      <button class="hidden-q-btn primary" id="hidden-q-submit">提交</button>
+    </div>
+    <div class="hidden-q-feedback" id="hidden-q-feedback"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 隐藏题目配置：数学分析 · 0·∞型未定式
+  var QUESTION = '求下列表达式的值：\n\n lim(x→0) [sin(2x) / x] × lim(x→0) [sin(2x) / x]\n\n（两个相同极限相乘）';
+  var ANSWER = '4';
+  var HINT = '提示：先单独求 lim(x→0) sin(2x)/x = 2（等价无穷小 sin(2x)~2x）；再平方 2² = 4';
+  var EXPLANATION = '解题要点：\n• 等价无穷小 sin(2x) ~ 2x（x→0）\n• lim(x→0) sin(2x)/x = 2\n• 两个相同极限相乘 = 2 × 2 = 4\n• ⚠ 易错点：不要展开 sin²(2x)/x² 求解（那需要更多步骤）\n• ⚠ 易错点：不要写成 2+2 = 4（这是加法！）';
+  var trigger = document.createElement('button');
+  trigger.className = 'hidden-q-trigger';
+  trigger.type = 'button';
+  trigger.setAttribute('aria-label', '发现隐藏题目');
+  trigger.textContent = 'Σ';
+  trigger.title = '你发现了隐藏题目';
+  document.body.appendChild(trigger);
+  var modal = document.getElementById('hidden-q-modal');
+  var qText = document.getElementById('hidden-q-text');
+  var qInput = document.getElementById('hidden-q-input');
+  var qSubmit = document.getElementById('hidden-q-submit');
+  var qFeedback = document.getElementById('hidden-q-feedback');
+  function openModal(){qText.textContent=QUESTION;qInput.value='';qFeedback.textContent=HINT;qFeedback.className='hidden-q-feedback';modal.classList.add('open');setTimeout(function(){qInput.focus();},100);}
+  function closeModal(){modal.classList.remove('open');}
+  trigger.addEventListener('click', openModal);
+  modal.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click', closeModal);});
+  modal.addEventListener('click', function(e){if (e.target === modal) closeModal();});
+  qSubmit.addEventListener('click', function(){
+    var v = qInput.value.trim();
+    if (v === ANSWER) { qFeedback.innerHTML = '<div style="text-align:center;color:#22c55e;font-size:1rem;letter-spacing:0.2em;margin-bottom:0.7rem;font-family:\'Orbitron\',sans-serif;">✓ 回答正确 · 密码 ' + ANSWER + '</div><div style="white-space:pre-line;text-align:left;font-size:0.78rem;line-height:1.7;color:#a8d8a8;font-family:\'Noto Sans SC\',sans-serif;">' + EXPLANATION + '</div>'; qFeedback.className = 'hidden-q-feedback'; qInput.disabled = true; qSubmit.disabled = true; }
+    else if (v === '') { qFeedback.textContent = '请输入一个数字'; qFeedback.className = 'hidden-q-feedback error'; }
+    else { qFeedback.textContent = '✗ 再想想，' + HINT; qFeedback.className = 'hidden-q-feedback error'; }
+  });
+  qInput.addEventListener('keydown', function(e){if (e.key === 'Enter') qSubmit.click();});
+  document.addEventListener('keydown', function(e){if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();});
+})();
+</script>
+</body>
+</html>

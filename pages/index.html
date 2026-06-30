@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四川师范大学数学科学学院 · 迎新宇宙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; overflow: hidden; background: #040410; color: #e8e8f0; }
+      body { font-family: 'Noto Sans SC', sans-serif; -webkit-font-smoothing: antialiased; }
+
+      /* ===== 3D Canvas ===== */
+      #three-canvas { position: fixed; inset: 0; z-index: 0; display: block; mix-blend-mode: screen; }
+
+      /* ===== UI Overlay ===== */
+      .ui-overlay { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+
+      /* 左上品牌 */
+      .brand { position: absolute; top: 2.2rem; left: 2.2rem; pointer-events: auto; }
+      .brand-eyebrow {
+        font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 500;
+        letter-spacing: 0.4em; color: #d4af37; opacity: 0.85;
+      }
+      .brand-eyebrow::before {
+        content: ''; display: inline-block; width: 24px; height: 1px;
+        background: #d4af37; vertical-align: middle; margin-right: 0.8rem; opacity: 0.7;
+      }
+      .brand-title {
+        font-family: 'Noto Serif SC', serif; font-weight: 400; font-size: 1.35rem;
+        margin-top: 0.7rem; letter-spacing: 0.12em; color: #e8e8f0;
+      }
+      .brand-meta {
+        font-family: 'Orbitron', sans-serif; font-size: 0.6rem; font-weight: 400;
+        letter-spacing: 0.35em; color: #5a5a78; margin-top: 0.45rem;
+      }
+
+      /* 右上数学公式装饰 */
+      .formula-corner {
+        position: absolute; top: 2.2rem; right: 2.2rem; text-align: right;
+        font-family: 'Cambria Math', 'Consolas', serif; font-size: 0.8rem; font-weight: 400;
+        letter-spacing: 0.05em; color: #5a5a78; line-height: 2.2;
+        opacity: 0.75;
+      }
+      .formula-corner .gold { color: #d4af37; }
+      .formula-corner .label {
+        font-family: 'Orbitron', sans-serif; font-size: 0.55rem; font-weight: 500;
+        letter-spacing: 0.35em; color: #3a3a50; display: block; margin-top: 0.4rem;
+      }
+
+      /* 左侧竖排数学符号列 */
+      .math-rail {
+        position: absolute; left: 2.2rem; top: 50%; transform: translateY(-50%);
+        display: flex; flex-direction: column; gap: 1.4rem;
+        font-family: 'Cambria Math', serif; font-size: 1.1rem; color: #2a2a40;
+        opacity: 0.5;
+      }
+      .math-rail span { display: block; transition: color 0.5s, opacity 0.5s; }
+      .math-rail span:hover { color: #d4af37; opacity: 1; }
+
+      /* 右侧竖排坐标轴指示 */
+      .axis-rail {
+        position: absolute; right: 2.2rem; top: 50%; transform: translateY(-50%);
+        font-family: 'Orbitron', sans-serif; font-size: 0.5rem; font-weight: 400;
+        letter-spacing: 0.3em; color: #2a2a40; text-align: right; line-height: 3;
+      }
+      .axis-rail .gold { color: #3a3a50; }
+
+      /* 底部院训 */
+      .footer-motto {
+        position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+        font-family: 'Noto Serif SC', serif; font-weight: 300; font-size: 0.9rem;
+        letter-spacing: 0.65em; color: #4a4a60; text-align: center;
+      }
+      .footer-motto::before, .footer-motto::after {
+        content: ''; display: inline-block; width: 36px; height: 1px;
+        background: #4a4a60; vertical-align: middle; margin: 0 1.2rem; opacity: 0.6;
+      }
+
+      /* 左下版本号 */
+      .version {
+        position: absolute; bottom: 2.2rem; left: 2.2rem;
+        font-family: 'Orbitron', sans-serif; font-size: 0.6rem;
+        letter-spacing: 0.3em; color: #3a3a50;
+      }
+
+      /* 右下计数 */
+      .counter {
+        position: absolute; bottom: 2.2rem; right: 2.2rem;
+        font-family: 'Orbitron', sans-serif; font-size: 0.6rem;
+        letter-spacing: 0.3em; color: #3a3a50; text-align: right;
+      }
+      .counter span { color: #d4af37; }
+
+      /* hover 星球标签 */
+      .planet-label {
+        position: absolute; pointer-events: none; opacity: 0;
+        transition: opacity 0.35s ease; transform: translate(-50%, -130%);
+        text-align: center; will-change: transform, left, top;
+      }
+      .planet-label.active { opacity: 1; }
+      .planet-label-name {
+        font-family: 'Noto Serif SC', serif; font-size: 1rem; font-weight: 400;
+        color: #e8e8f0; letter-spacing: 0.15em; white-space: nowrap;
+      }
+      .planet-label-sub {
+        font-family: 'Orbitron', sans-serif; font-size: 0.58rem; font-weight: 500;
+        color: #d4af37; letter-spacing: 0.4em; margin-top: 0.35rem;
+      }
+      .planet-label-line {
+        width: 1px; height: 28px; background: #d4af37; margin: 0.5rem auto 0;
+        opacity: 0.6;
+      }
+
+      /* ===== 内容面板（点击星球后滑入）===== */
+      .content-panel {
+        position: fixed; top: 0; right: 0; height: 100vh; width: 520px; max-width: 92vw;
+        background: rgba(6, 6, 14, 0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        border-left: 1px solid rgba(212,175,55,0.25);
+        transform: translateX(105%); transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 20; overflow-y: auto; pointer-events: auto;
+      }
+      .content-panel.active { transform: translateX(0); }
+      .content-panel::-webkit-scrollbar { width: 4px; }
+      .content-panel::-webkit-scrollbar-track { background: transparent; }
+      .content-panel::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); }
+
+      .panel-close {
+        position: absolute; top: 1.8rem; right: 1.8rem; width: 40px; height: 40px;
+        border: 1px solid rgba(212,175,55,0.4); background: transparent; color: #d4af37;
+        cursor: pointer; font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+        transition: all 0.3s; border-radius: 0;
+      }
+      .panel-close:hover { background: #d4af37; color: #040410; transform: rotate(90deg); }
+
+      .panel-content { padding: 4.5rem 3.2rem; }
+      .panel-eyebrow {
+        font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 500;
+        letter-spacing: 0.45em; color: #d4af37;
+      }
+      .panel-eyebrow::before {
+        content: ''; display: inline-block; width: 20px; height: 1px;
+        background: #d4af37; vertical-align: middle; margin-right: 0.7rem; opacity: 0.7;
+      }
+      .panel-title {
+        font-family: 'Noto Serif SC', serif; font-weight: 400; font-size: 2.6rem;
+        margin: 0.8rem 0 0.4rem; color: #e8e8f0; letter-spacing: 0.08em;
+      }
+      .panel-en {
+        font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 400;
+        letter-spacing: 0.3em; color: #5a5a78; margin-bottom: 2.5rem;
+      }
+      .panel-body {
+        font-family: 'Noto Sans SC', sans-serif; font-weight: 300; font-size: 0.95rem;
+        line-height: 2.0; color: #a0a0b8; margin-bottom: 2.5rem;
+      }
+      .panel-divider {
+        width: 100%; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,0.4), transparent);
+        margin: 2rem 0;
+      }
+      .panel-stats {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; margin: 1.5rem 0 2.5rem;
+      }
+      .panel-stat { border-top: 1px solid rgba(212,175,55,0.2); padding-top: 0.9rem; }
+      .panel-stat-num {
+        font-family: 'Orbitron', sans-serif; font-weight: 500; font-size: 1.7rem;
+        color: #d4af37; line-height: 1;
+      }
+      .panel-stat-label {
+        font-family: 'Noto Sans SC', sans-serif; font-size: 0.7rem; font-weight: 300;
+        color: #6a6a80; margin-top: 0.5rem; letter-spacing: 0.12em;
+      }
+      .panel-features { margin-bottom: 2.5rem; }
+      .panel-features-title {
+        font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 500;
+        letter-spacing: 0.35em; color: #5a5a78; margin-bottom: 1rem;
+      }
+      .panel-feature {
+        display: flex; align-items: baseline; padding: 0.7rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+      }
+      .panel-feature-num {
+        font-family: 'Orbitron', sans-serif; font-size: 0.65rem; color: #d4af37;
+        letter-spacing: 0.2em; width: 32px; flex-shrink: 0;
+      }
+      .panel-feature-text {
+        font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; font-weight: 300;
+        color: #b0b0c4; line-height: 1.6;
+      }
+      .panel-cta {
+        display: inline-block; margin-top: 1rem; padding: 1rem 2.2rem;
+        border: 1px solid #d4af37; color: #d4af37; text-decoration: none;
+        font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 500;
+        letter-spacing: 0.35em; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        background: transparent; cursor: pointer;
+      }
+      .panel-cta:hover {
+        background: #d4af37; color: #040410; letter-spacing: 0.45em; padding-right: 2.6rem;
+      }
+      .panel-cta::after {
+        content: '→'; margin-left: 0.8rem; transition: margin 0.4s;
+      }
+      .panel-cta:hover::after { margin-left: 1.2rem; }
+
+      /* 入场动画初始状态（由 GSAP 接管）*/
+      .fade-in { opacity: 0; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* 移动端 */
+      @media (max-width: 768px) {
+        .brand { top: 1.5rem; left: 1.5rem; }
+        .brand-title { font-size: 1.1rem; }
+        .hint, .version, .math-rail, .axis-rail { display: none; }
+        .formula-corner { font-size: 0.65rem; }
+        .content-panel { width: 100vw; }
+        .panel-content { padding: 3.5rem 1.8rem; }
+        .panel-title { font-size: 2rem; }
+      }
+    </style>
+</head>
+<body>
+    <canvas id="three-canvas"></canvas>
+
+    <div class="ui-overlay">
+      <div class="brand fade-in">
+        <div class="brand-eyebrow">SICNU · MATHEMATICAL SCIENCES</div>
+        <div class="brand-title">四川师范大学 数学科学学院</div>
+        <div class="brand-meta">EST. 1946 · 80TH ANNIVERSARY</div>
+      </div>
+
+      <div class="formula-corner fade-in">
+        e<sup>iπ</sup> + 1 = <span class="gold">0</span><br>
+        φ = <span class="gold">(1+√5)/2</span>
+        <span class="label">EULER · GOLDEN RATIO</span>
+      </div>
+
+      <div class="math-rail fade-in">
+        <span>∀</span><span>∃</span><span>∂</span><span>∇</span><span>∫</span><span>∑</span><span>∞</span>
+      </div>
+
+      <div class="axis-rail fade-in">
+        +Y<br>↑<br>·<br>·<br>·<br>↓<br>−Y
+      </div>
+
+      <div class="footer-motto fade-in">万物皆数 · 大衍求真</div>
+
+      <div class="version fade-in">v 2.0 / UNIVERSE</div>
+
+      <div class="counter fade-in">
+        <span>07</span> SECTORS · <span>01</span> CORE
+      </div>
+
+      <!-- ===== 鼠标操作提示（OrbitControls）===== -->
+      <div class="hint fade-in" style="position:absolute;bottom:6rem;left:50%;transform:translateX(-50%);font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:rgba(212,175,55,0.5);text-transform:uppercase;white-space:nowrap;text-align:center;line-height:1.8;">
+        <div>⟲ 拖拽旋转视角 &nbsp;·&nbsp; ⊕ 滚轮缩放查看行星细节 &nbsp;·&nbsp; ⊙ 点击行星展开</div>
+      </div>
+
+      <div class="planet-label" id="planet-label">
+        <div class="planet-label-line"></div>
+        <div class="planet-label-name"></div>
+        <div class="planet-label-sub"></div>
+      </div>
+    </div>
+
+    <div class="content-panel" id="content-panel">
+      <button class="panel-close" id="panel-close" aria-label="关闭">✕</button>
+      <div class="panel-content" id="panel-content"></div>
+    </div>
+
+    <script type="module">
+      import { init as initUniverse } from '../assets/universe-scene.js';
+
+      // 7 颗星球对应的内容数据（从现有 7 页提取核心信息）
+      const PLANET_DATA = {
+        index: {
+          eyebrow: 'PROLOGUE', title: '欢迎首页', en: 'PROLOGUE',
+          body: '推开数学殿堂的第一扇门。这里是迎新宇宙的起点——院徽、校歌、形象片与六张真实校园实景，由学院核心向四方延展。点击进入，让旅程正式启程。',
+          stats: [
+            { num: '6', label: '校园实景' },
+            { num: '4', label: '形象视频' },
+            { num: '80', label: '建校周年' },
+            { num: '∞', label: '探索可能' }
+          ],
+          features: [
+            '院徽与院训视觉系统',
+            '四川师范大学校歌',
+            '六张真实狮子山校区实景',
+            '四支 B 站官方形象片'
+          ],
+          href: 'welcome.html'
+        },
+        about: {
+          eyebrow: 'INSTITUTE', title: '学院介绍', en: 'INSTITUTE',
+          body: '八十年沉淀，从 1946 年数学科到今日数学科学学院。教师 121 名、博导 28 位、教授 26 位；近五年主持国家自然科学基金 24 项，发表论文 595+ 篇；国家级一流本科课程 2 门。',
+          stats: [
+            { num: '121', label: '专任教师' },
+            { num: '28', label: '博导' },
+            { num: '24', label: '国自然项目' },
+            { num: '595+', label: '科研论文' }
+          ],
+          features: [
+            '学院沿革与组织架构',
+            '14 项学生活动剪影',
+            '文艺体育竞赛数据',
+            '国家级一流课程 2 门'
+          ],
+          href: 'about.html'
+        },
+        college: {
+          eyebrow: 'MAJORS', title: '专业介绍', en: 'MAJORS',
+          body: '四个本科专业，对应四种数学语言的深度探索。数学与应用数学（1946，国家级一流）、信息与计算科学（2001，省级一流，华为 ICT）、统计学（2003）、金融数学（2014）。',
+          stats: [
+            { num: '4', label: '本科专业' },
+            { num: '2', label: '一流专业' },
+            { num: '1946', label: '最早设立' },
+            { num: '7', label: '维度对比' }
+          ],
+          features: [
+            '数学与应用数学（国家级）',
+            '信息与计算科学（华为 ICT）',
+            '统计学 / 金融数学',
+            '三维教材：高代 / 数分 / 解几'
+          ],
+          href: 'college.html'
+        },
+        gallery: {
+          eyebrow: 'GALLERY', title: '宣传画廊', en: 'GALLERY',
+          body: '十二张真实校园活动照，串起一学年的高光时刻。从开学典礼到数学文化节，从师范生技能赛到毕业典礼——每一帧都是数科院人的共同记忆。',
+          stats: [
+            { num: '12', label: '实景照片' },
+            { num: '9', label: '月学年' },
+            { num: '4', label: '季度主题' },
+            { num: '∞', label: '回忆' }
+          ],
+          features: [
+            '开学典礼与军训',
+            '数学文化节盛况',
+            '师范生技能大赛',
+            '毕业季与授位仪式'
+          ],
+          href: 'gallery.html'
+        },
+        map: {
+          eyebrow: 'CAMPUS', title: '校园地图', en: 'CAMPUS',
+          body: '狮子山校区为主场，成龙校区为辅场，遂宁校区为延伸。十二栋核心建筑标记，含教学楼、图书馆、实验室、宿舍、食堂与运动场，附 VR 全景入口。',
+          stats: [
+            { num: '3', label: '校区' },
+            { num: '12', label: '核心建筑' },
+            { num: '360°', label: 'VR 全景' },
+            { num: '1946', label: '主场始建' }
+          ],
+          features: [
+            '狮子山校区主场（1946）',
+            '成龙校区辅场',
+            '遂宁校区延伸',
+            '十二栋建筑详图与 VR'
+          ],
+          href: 'map.html'
+        },
+        games: {
+          eyebrow: 'ARENA', title: '互动游戏', en: 'ARENA',
+          body: '五款专业游戏，对应五门数学核心课程。极限追逐（数学分析）、矩阵消消乐（线性代数）、曲线方程师（解析几何）、概率转盘（概率论）、数论密码锁（初等数论）。',
+          stats: [
+            { num: '5', label: '专业游戏' },
+            { num: '5', label: '核心课程' },
+            { num: '∞', label: '关卡' },
+            { num: '100%', label: '可玩' }
+          ],
+          features: [
+            '极限追逐（数学分析）',
+            '矩阵消消乐（线性代数）',
+            '曲线方程师 / 概率转盘',
+            '数论密码锁（初等数论）'
+          ],
+          href: 'games.html'
+        },
+        guide: {
+          eyebrow: 'GUIDE', title: '入学指南', en: 'GUIDE',
+          body: '九月九日至十四日，六天新生报到全流程。社团 40+ 个、志愿时长 213 小时要求、十项必备物品、十个高频问题、九条交通路线——一册在手，从容启程。',
+          stats: [
+            { num: '9.9-14', label: '报到日程' },
+            { num: '40+', label: '社团' },
+            { num: '213h', label: '志愿时长' },
+            { num: '10', label: '高频问题' }
+          ],
+          features: [
+            '九月九至十四逐日时间线',
+            '40+ 社团与志愿 213h 要求',
+            '十项必备物品清单',
+            '十条交通路线与十 FAQ'
+          ],
+          href: 'guide.html'
+        }
+      };
+
+      const label = document.getElementById('planet-label');
+      const labelName = label.querySelector('.planet-label-name');
+      const labelSub = label.querySelector('.planet-label-sub');
+      const panel = document.getElementById('content-panel');
+      const panelContent = document.getElementById('panel-content');
+      const panelClose = document.getElementById('panel-close');
+
+      function renderPanel(data) {
+        const d = PLANET_DATA[data.id];
+        if (!d) return;
+        const statsHTML = d.stats.map(s => `
+          <div class="panel-stat">
+            <div class="panel-stat-num">${s.num}</div>
+            <div class="panel-stat-label">${s.label}</div>
+          </div>
+        `).join('');
+        const featuresHTML = d.features.map((f, i) => `
+          <div class="panel-feature">
+            <div class="panel-feature-num">${String(i+1).padStart(2,'0')}</div>
+            <div class="panel-feature-text">${f}</div>
+          </div>
+        `).join('');
+        panelContent.innerHTML = `
+          <div class="panel-eyebrow">${d.eyebrow}</div>
+          <div class="panel-title">${d.title}</div>
+          <div class="panel-en">${d.en}</div>
+          <div class="panel-divider"></div>
+          <div class="panel-body">${d.body}</div>
+          <div class="panel-features-title">CORE FEATURES</div>
+          <div class="panel-features">${featuresHTML}</div>
+          <div class="panel-divider"></div>
+          <div class="panel-features-title">KEY FIGURES</div>
+          <div class="panel-stats">${statsHTML}</div>
+          <a class="panel-cta" href="${d.href}">ENTER SECTOR</a>
+        `;
+        panel.classList.add('active');
+      }
+
+      let mouseMoveHandler = null;
+      const api = initUniverse({
+        canvas: document.getElementById('three-canvas'),
+        onPlanetHover: (data) => {
+          if (data) {
+            label.classList.add('active');
+            labelName.textContent = data.name;
+            labelSub.textContent = data.subtitle;
+            if (!mouseMoveHandler) {
+              mouseMoveHandler = (e) => {
+                label.style.left = (e.clientX) + 'px';
+                label.style.top = (e.clientY) + 'px';
+              };
+              window.addEventListener('mousemove', mouseMoveHandler);
+            }
+          } else {
+            label.classList.remove('active');
+            if (mouseMoveHandler) {
+              window.removeEventListener('mousemove', mouseMoveHandler);
+              mouseMoveHandler = null;
+            }
+          }
+        },
+        onPlanetClick: (data) => {
+          renderPanel(data);
+        }
+      });
+
+      panelClose.addEventListener('click', () => {
+        panel.classList.remove('active');
+        api.resetCamera();
+      });
+
+      // ESC 关闭
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('active')) {
+          panel.classList.remove('active');
+          api.resetCamera();
+        }
+      });
+
+      // ===== GSAP 入场动画（matchMedia 无障碍）=====
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          gsap.set('.fade-in', { opacity: 1 });
+          const mm = gsap.matchMedia();
+          mm.add({
+            isDesktop: '(min-width: 769px)',
+            isMobile: '(max-width: 768px)',
+            reduceMotion: '(prefers-reduced-motion: reduce)'
+          }, (ctx) => {
+            const { reduceMotion } = ctx.conditions;
+            if (reduceMotion) {
+              gsap.set(['.brand','.formula-corner','.math-rail','.axis-rail','.footer-motto','.version','.counter','.hint'], { opacity: 1 });
+              return;
+            }
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            tl.from('.brand',          { opacity: 0, y: -12, duration: 1.2, delay: 0.4 })
+              .from('.formula-corner', { opacity: 0, y: -12, duration: 1.0 }, '-=0.8')
+              .from('.math-rail span',  { opacity: 0, x: -10, duration: 0.4, stagger: 0.06 }, '-=0.8')
+              .from('.axis-rail',       { opacity: 0, x: 10,  duration: 0.6 }, '-=0.4')
+              .from('.footer-motto',   { opacity: 0, y: 12,  duration: 1.2 }, '-=0.9')
+              .from('.version',        { opacity: 0, y: 12,  duration: 0.8 }, '-=0.9')
+              .from('.counter',        { opacity: 0, y: 12,  duration: 0.8 }, '-=0.7')
+              .from('.hint',           { opacity: 0, y: 8,   duration: 0.8 }, '-=0.5');
+          });
+        });
+      });
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="../assets/space-bg.js"></script>
+
+<style>
+.hidden-q-trigger{position:fixed;bottom:110px;right:18px;width:24px;height:24px;border-radius:50%;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.18);color:rgba(212,175,55,0.5);font-family:'Orbitron',serif;font-size:0.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:999;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);opacity:0.5;transform-style:preserve-3d;letter-spacing:0;backdrop-filter:blur(8px);}
+.hidden-q-trigger:hover{opacity:1;background:rgba(212,175,55,0.18);color:#d4af37;width:30px;height:30px;transform:scale(1.6) rotateY(180deg);box-shadow:0 0 20px rgba(212,175,55,0.4);border-color:rgba(212,175,55,0.6);}
+.hidden-q-modal{position:fixed;inset:0;background:rgba(4,4,16,0.92);backdrop-filter:blur(16px);z-index:9999;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;}
+.hidden-q-modal.open{display:flex;opacity:1;}
+.hidden-q-card{position:relative;width:min(560px,90vw);max-height:88vh;background:linear-gradient(180deg,#0a0a1f 0%,#04041a 100%);border:1px solid rgba(212,175,55,0.4);border-radius:2px;padding:2.4rem 2rem 1.6rem;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,0.8),inset 0 1px 0 rgba(212,175,55,0.15);}
+.hidden-q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.8),transparent);}
+.hidden-q-eyebrow{font-family:'Orbitron',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.5em;color:#d4af37;text-align:center;margin-bottom:1.2rem;text-transform:uppercase;}
+.hidden-q-text{font-family:'Noto Serif SC',serif;font-size:0.95rem;line-height:1.9;color:#e8e8f0;white-space:pre-line;text-align:center;margin-bottom:1.4rem;letter-spacing:0.05em;}
+.hidden-q-input{width:100%;padding:0.8rem 1rem;background:rgba(4,4,16,0.6);border:1px solid rgba(212,175,55,0.4);color:#d4af37;font-family:'Orbitron',sans-serif;font-size:1.1rem;text-align:center;letter-spacing:0.4em;outline:none;transition:all 0.3s;}
+.hidden-q-input:focus{border-color:#d4af37;box-shadow:0 0 20px rgba(212,175,55,0.3);background:rgba(212,175,55,0.05);}
+.hidden-q-actions{display:flex;gap:0.8rem;margin-top:1.2rem;}
+.hidden-q-btn{flex:1;padding:0.7rem 1rem;background:transparent;border:1px solid rgba(212,175,55,0.4);color:#d4af37;font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.3em;cursor:pointer;text-transform:uppercase;transition:all 0.3s;}
+.hidden-q-btn:hover{background:#d4af37;color:#040410;}
+.hidden-q-btn.primary{background:rgba(212,175,55,0.12);}
+.hidden-q-feedback{margin-top:1rem;text-align:center;font-family:'Noto Serif SC',serif;font-size:0.9rem;min-height:1.4em;color:#d4af37;white-space:pre-line;line-height:1.7}
+.hidden-q-feedback.error{color:#ef4444;}
+.hidden-q-feedback.success{color:#22c55e;}
+.hidden-q-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid rgba(212,175,55,0.3);color:#d4af37;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all 0.3s;}
+.hidden-q-close:hover{background:#d4af37;color:#040410;transform:rotate(90deg);}
+</style>
+<div class="hidden-q-modal" id="hidden-q-modal">
+  <div class="hidden-q-card">
+    <button class="hidden-q-close" data-close>×</button>
+    <div class="hidden-q-eyebrow">HIDDEN CHALLENGE</div>
+    <div class="hidden-q-text" id="hidden-q-text"></div>
+    <input type="number" class="hidden-q-input" id="hidden-q-input" placeholder="输入答案" autocomplete="off">
+    <div class="hidden-q-actions">
+      <button class="hidden-q-btn" data-close>关闭</button>
+      <button class="hidden-q-btn primary" id="hidden-q-submit">提交</button>
+    </div>
+    <div class="hidden-q-feedback" id="hidden-q-feedback"></div>
+  </div>
+</div>
+<script>
+(function(){
+  // 隐藏题目配置 · 数学分析 · 无穷小
+  var SECTION='index';
+  var QUESTION='求极限：\n\n lim(x→0)  x · sin(1/x)\n\n（其中 x≠0 时 f(x) = x·sin(1/x)，f(0) = 0）';
+  var ANSWER='0';
+  var HINT='提示：sin(1/x) 在 [-1,1] 之间震荡，看似无极限；但被 x 抑制（夹逼），|f(x)| ≤ |x| → 0';
+  var EXPLANATION='解题要点：\n• sin(1/x) 有界：|sin(1/x)| ≤ 1\n• 夹逼：|x·sin(1/x)| ≤ |x|\n• x→0 时 |x|→0，故 f(x)→0\n• ⚠ 易错点：因 sin(1/x) 不收敛，不能直接代入 sin(1/0)';
+  var trigger=document.createElement('button');
+  trigger.className='hidden-q-trigger';trigger.type='button';
+  trigger.setAttribute('aria-label','发现隐藏题目');trigger.textContent='∫';trigger.title='你发现了隐藏题目';
+  document.body.appendChild(trigger);
+  var modal=document.getElementById('hidden-q-modal');
+  var qText=document.getElementById('hidden-q-text');
+  var qInput=document.getElementById('hidden-q-input');
+  var qSubmit=document.getElementById('hidden-q-submit');
+  var qFeedback=document.getElementById('hidden-q-feedback');
+  function openModal(){qText.textContent=QUESTION;qInput.value='';qFeedback.textContent=HINT;qFeedback.className='hidden-q-feedback';modal.classList.add('open');setTimeout(function(){qInput.focus();},100);}
+  function closeModal(){modal.classList.remove('open');}
+  trigger.addEventListener('click',openModal);
+  modal.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',closeModal);});
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  qSubmit.addEventListener('click',function(){
+    var v=qInput.value.trim();
+    if(v===ANSWER){qFeedback.innerHTML='<div style="text-align:center;color:#22c55e;font-size:1rem;letter-spacing:0.2em;margin-bottom:0.7rem;font-family:\'Orbitron\',sans-serif;">✓ 回答正确 · 密码 '+ANSWER+'</div><div style="white-space:pre-line;text-align:left;font-size:0.78rem;line-height:1.7;color:#a8d8a8;font-family:\'Noto Sans SC\',sans-serif;">'+EXPLANATION+'</div>';qFeedback.className='hidden-q-feedback';qInput.disabled=true;qSubmit.disabled=true;}
+    else if(v===''){qFeedback.textContent='请输入一个数字';qFeedback.className='hidden-q-feedback error';}
+    else{qFeedback.textContent='再想想，'+HINT;qFeedback.className='hidden-q-feedback error';}
+  });
+  qInput.addEventListener('keydown',function(e){if(e.key==='Enter')qSubmit.click();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+})();
+</script>
+</body>
+</html>

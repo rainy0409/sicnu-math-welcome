@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迎新指南 - 川师数科院</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@500;600&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style id="theme-vars">
+/* 四川师范大学数学科学学院迎新网站 - 科技炫酷品牌样式 */
+:root {
+  /* === Cyber Scene (Hero, Games, Dark Sections) === */
+  --dark-bg: #040410;
+  --dark-bg2: #0a0a1c;
+  --dark-bg3: #111128;
+  --dark-text: #e8e8f0;
+  --dark-muted: #a0a0b8;
+  --dark-cyan: #d4af37;
+  --dark-purple: #e8c547;
+  --dark-pink: #d4af37;
+  --dark-blue: #d4af37;
+  --dark-rule: #2a2a40;
+
+  /* === Light Scene (Content Sections) === */
+  --light-bg: #040410;
+  --light-bg2: #0a0a1c;
+  --light-bg3: #111128;
+  --light-text: #e8e8f0;
+  --light-muted: #a0a0b8;
+  --light-cyan: #d4af37;
+  --light-purple: #e8c547;
+  --light-pink: #d4af37;
+  --light-blue: #d4af37;
+  --light-rule: #2a2a40;
+
+  /* === State Colors === */
+  --state-success: #22c55e;
+  --state-warning: #f59e0b;
+  --state-error: #ef4444;
+  --state-info: #d4af37;
+
+  /* === Typography === */
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  --font-sans: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-mono: "Cambria Math", "Consolas", "Courier New", monospace;
+  --font-display: "Orbitron", "Rajdhani", "Noto Sans SC", sans-serif;
+
+  /* === Spacing === */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* Light mode defaults */
+body {
+  --bg: var(--light-bg);
+  --bg2: var(--light-bg2);
+  --bg3: var(--light-bg3);
+  --text: var(--light-text);
+  --muted: var(--light-muted);
+  --cyan: var(--light-cyan);
+  --purple: var(--light-purple);
+  --pink: var(--light-pink);
+  --blue: var(--light-blue);
+  --rule: var(--light-rule);
+}
+
+/* Dark mode sections */
+.dark-section {
+  --bg: var(--dark-bg);
+  --bg2: var(--dark-bg2);
+  --bg3: var(--dark-bg3);
+  --text: var(--dark-text);
+  --muted: var(--dark-muted);
+  --cyan: var(--dark-cyan);
+  --purple: var(--dark-purple);
+  --pink: var(--dark-pink);
+  --blue: var(--dark-blue);
+  --rule: var(--dark-rule);
+}
+
+/* === Neon Glow Utilities === */
+.neon-cyan { text-shadow: 0 0 7px rgba(212,175,55,0.6), 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15); }
+.neon-purple { text-shadow: 0 0 7px rgba(232,197,71,0.6), 0 0 20px rgba(232,197,71,0.3), 0 0 40px rgba(232,197,71,0.15); }
+.neon-pink { text-shadow: 0 0 7px rgba(212,175,55,0.6), 0 0 20px rgba(212,175,55,0.3); }
+
+.glow-box-cyan { box-shadow: 0 0 15px rgba(212,175,55,0.3), 0 0 30px rgba(212,175,55,0.1), inset 0 0 15px rgba(212,175,55,0.05); }
+.glow-box-purple { box-shadow: 0 0 15px rgba(232,197,71,0.3), 0 0 30px rgba(232,197,71,0.1), inset 0 0 15px rgba(232,197,71,0.05); }
+.glow-border-cyan { border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+.glow-border-purple { border: 1px solid rgba(232,197,71,0.4); box-shadow: 0 0 10px rgba(232,197,71,0.2); }
+
+/* === Typography Scale === */
+.text-display { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: 0.08em; text-transform: uppercase; }
+.text-h1 { font-family: var(--font-serif); font-size: 2.6rem; font-weight: 700; line-height: 1.3; letter-spacing: 0.03em; }
+.text-h2 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; line-height: 1.4; }
+.text-h3 { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; line-height: 1.5; }
+.text-body { font-family: var(--font-sans); font-size: 1rem; font-weight: 400; line-height: 1.8; }
+.text-small { font-family: var(--font-sans); font-size: 0.875rem; font-weight: 400; line-height: 1.6; }
+.text-math { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 400; }
+.text-code { font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.6; }
+
+/* === Animated Background Grid === */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+    /* ==================== 鼠标跟随光点 ==================== */
+    .cursor-glow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: screen;
+      filter: blur(1px);
+      opacity: 0.85;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    @media (hover: none) { .cursor-glow { display: none; } }
+
+    </style>
+    <style>
+    /* ===== NAVIGATION ===== */
+    #main-nav {
+        position: fixed; top: -80px; left: 0; right: 0; z-index: 1000;
+        padding: 0 2rem; height: 64px;
+        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(10,14,26,0.82);
+        backdrop-filter: blur(20px) saturate(1.5);
+        -webkit-backdrop-filter: blur(20px) saturate(1.5);
+        border-bottom: 1px solid rgba(212,175,55,0.08);
+        transition: box-shadow 0.4s ease;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5), 0 0 30px rgba(212,175,55,0.05); }
+    .nav-logo {
+        display: flex; align-items: center; gap: 10px;
+        font-family: 'Orbitron', monospace; font-size: 0.95rem; font-weight: 700;
+        color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
+        text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links {
+        display: flex; gap: 0.25rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+        text-decoration: none; color: rgba(240,240,255,0.55);
+        font-family: 'Rajdhani', sans-serif; font-size: 0.92rem; font-weight: 600;
+        padding: 0.5rem 1rem; border-radius: 6px;
+        transition: color 0.3s, background 0.3s;
+        position: relative; letter-spacing: 0.02em;
+    }
+    .nav-links a::after {
+        content: ''; position: absolute; bottom: 2px; left: 50%;
+        transform: translateX(-50%) scaleX(0); width: 60%; height: 2px;
+        background: #d4af37; box-shadow: 0 0 8px rgba(212,175,55,0.6);
+        border-radius: 1px; transition: transform 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+        color: #d4af37; text-shadow: 0 0 8px rgba(212,175,55,0.4);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: translateX(-50%) scaleX(1); }
+
+    /* Hamburger */
+    .nav-hamburger {
+        display: none; flex-direction: column; gap: 5px;
+        cursor: pointer; padding: 8px; z-index: 1002;
+    }
+    .nav-hamburger .bar {
+        width: 24px; height: 2px; background: #f0f0ff; border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open .bar:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+        .nav-hamburger { display: flex; }
+        .nav-links {
+            position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+            flex-direction: column;
+            background: rgba(10,14,26,0.96); backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px); padding: 5rem 2rem 2rem;
+            gap: 0.5rem; transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+            border-left: 1px solid rgba(212,175,55,0.1);
+        }
+        .nav-links.open { right: 0; }
+        .nav-links a { font-size: 1.1rem; padding: 0.75rem 1rem; width: 100%; }
+        body { cursor: auto; }
+    }
+
+    /* ===== BOTTOM NAVIGATION ===== */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1rem;
+        background: rgba(4, 4, 16, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+    }
+    .bottom-nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.35rem 0.7rem;
+        font-family: 'Orbitron', 'Rajdhani', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        color: rgba(240, 240, 255, 0.45);
+        text-transform: uppercase;
+        border-radius: 9999px;
+        transition: all 0.3s ease;
+    }
+    .bottom-nav-link .bn-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: rgba(240, 240, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+    .bottom-nav-link:hover,
+    .bottom-nav-link.active {
+        color: var(--gold);
+        background: rgba(212, 175, 55, 0.08);
+    }
+    .bottom-nav-link:hover .bn-dot,
+    .bottom-nav-link.active .bn-dot {
+        background: var(--gold);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    body { padding-bottom: 72px; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-muted: var(--dark-muted);
+  }
+  @layer base {
+    body { background: var(--dark-background); color: var(--dark-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- ========== 背景装饰层（星点 / 数学符号 / 星云）========== -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="bg-decor-nebula"></div>
+    <div class="bg-decor-stars"></div>
+    <div class="bg-decor-symbols">
+      <span style="top:8%;left:4%"></span>
+      <span style="top:18%;right:6%"></span>
+      <span style="top:42%;left:8%;font-size:5rem">π</span>
+      <span style="top:62%;right:5%">φ</span>
+      <span style="top:78%;left:6%;font-size:3rem"></span>
+      <span style="top:30%;right:8%"></span>
+      <span style="top:88%;right:10%;font-size:3rem"></span>
+      <span style="top:52%;left:5%"></span>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="main-nav">
+      <a href="index.html" class="nav-logo">
+          <img src="../assets/math-college-logo-round.png" alt="数科院院徽">
+      </a>
+      <ul class="nav-links" id="navLinks">
+          <li><a href="welcome.html">首页</a></li>
+          <li><a href="about.html">学院</a></li>
+          <li><a href="college.html">专业</a></li>
+          <li><a href="map.html">地图</a></li>
+          <li><a href="gallery.html">画廊</a></li>
+          <li><a href="games.html">试炼</a></li>
+          <li><a href="guide.html" class="active">指南</a></li>
+      </ul>
+      <div class="nav-hamburger" id="hamburger" aria-label="菜单">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+  </nav>
+
+  <!-- ========================================
+       PART A: HERO SECTION
+       ======================================== -->
+  <header class="hero-section" id="heroSection">
+    <h1 class="hero-title" id="heroTitle">新生报到<span class="neon-word">有向</span></h1>
+    <p class="hero-subtitle" id="heroSubtitle">每个节点 = 你大学的<span class="accent">第一</span></p>
+
+    <div class="hero-math-deco" id="heroImg">
+      <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" class="hero-math-svg">
+        <!-- Background grid -->
+        <defs>
+          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(212,175,55,0.06)" stroke-width="0.5"/>
+          </pattern>
+          <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d4af37" stop-opacity="0.3"/>
+            <stop offset="50%" stop-color="#e8c547" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#d4af37" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="220" fill="url(#grid)"/>
+        <!-- Curve: y = sin(x) / x (sinc function) -->
+        <path d="M 50,110 C 70,40 90,30 110,55 C 130,80 140,130 160,140 C 180,150 200,120 220,90 C 240,60 260,50 280,65 C 300,80 310,110 330,115 C 350,120 370,105 390,85 C 410,65 430,60 450,72 C 470,84 480,100 500,105 C 520,110 540,100 550,95" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Axes -->
+        <line x1="40" y1="110" x2="560" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="300" y1="20" x2="300" y2="200" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4,4"/>
+        <!-- Nodes on curve (representing directed graph nodes) -->
+        <circle cx="110" cy="55" r="6" fill="#040410" stroke="#d4af37" stroke-width="2"/>
+        <text x="110" y="42" text-anchor="middle" fill="#d4af37" font-size="11" font-family="monospace">01</text>
+        <circle cx="220" cy="90" r="6" fill="#040410" stroke="#e8c547" stroke-width="2"/>
+        <text x="220" y="77" text-anchor="middle" fill="#e8c547" font-size="11" font-family="monospace">02</text>
+        <circle cx="330" cy="115" r="6" fill="#040410" stroke="#d4af37" stroke-width="2"/>
+        <text x="330" y="135" text-anchor="middle" fill="#d4af37" font-size="11" font-family="monospace">03</text>
+        <circle cx="450" cy="72" r="6" fill="#040410" stroke="#f59e0b" stroke-width="2"/>
+        <text x="450" y="59" text-anchor="middle" fill="#f59e0b" font-size="11" font-family="monospace">04</text>
+        <!-- Directional arrows between nodes -->
+        <line x1="116" y1="57" x2="214" y2="88" stroke="rgba(212,175,55,0.4)" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+        <line x1="226" y1="92" x2="324" y2="113" stroke="rgba(232,197,71,0.4)" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+        <line x1="336" y1="113" x2="444" y2="76" stroke="rgba(212,175,55,0.4)" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="rgba(232,197,71,0.5)"/>
+          </marker>
+        </defs>
+        <!-- Formula -->
+        <text x="480" y="180" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="14" font-family="Georgia, serif" font-style="italic">f: V → W</text>
+        <text x="120" y="180" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="13" font-family="Georgia, serif" font-style="italic">G = (V, E)</text>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ========================================
+       PART A: DIRECTED GRAPH FLOWCHART
+       ======================================== -->
+  <section class="flowchart-section" id="flowchart">
+    <div class="flowchart-container">
+
+      <!-- Node 1: 线上预报 -->
+      <div class="flow-node cyan-node" data-node="1"
+           data-materials="录取通知书、身份证、高考准考证、一寸证件照(8张)"
+           data-location="线上 / 迎新系统"
+           data-notes="请在报到前5天完成信息填报，确保联系方式准确"
+           data-contact="迎新系统：fw.sicnu.edu.cn">
+        <div class="node-circle cyan">01</div>
+        <div class="node-info">
+          <div class="node-name">线上预报</div>
+          <div class="node-desc">登录迎新系统，填写个人信息</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="1">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>录取通知书、身份证、高考准考证、一寸证件照(8张)</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>线上 / 迎新系统</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>请在报到前5天完成信息填报，确保联系方式准确</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>迎新系统：fw.sicnu.edu.cn</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 2: 抵达校区 -->
+      <div class="flow-node purple-node" data-node="2"
+           data-materials="录取通知书、身份证、健康码/行程码（按当年要求）"
+           data-location="狮子山校区 · 成都市锦江区静安路5号"
+           data-notes="建议乘坐地铁7号线至狮子山站，从南门进入"
+           data-contact="招生办：028-84768899">
+        <div class="node-circle purple">02</div>
+        <div class="node-info">
+          <div class="node-name">抵达校区</div>
+          <div class="node-desc">狮子山校区 · 成都市锦江区静安路5号</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="2">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>录取通知书、身份证、健康码/行程码（按当年要求）</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>狮子山校区 · 成都市锦江区静安路5号</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>建议乘坐地铁7号线至狮子山站，从南门进入</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>招生办：028-84768899</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 3: 现场报到 -->
+      <div class="flow-node cyan-node" data-node="3"
+           data-materials="录取通知书原件、身份证原件、高考准考证、团组织关系介绍信"
+           data-location="数学楼大厅（坐标原点(0,0)）"
+           data-notes="报到时间9:00-17:00，请勿迟到；建议家长陪同"
+           data-contact="报到咨询电话：028-84760606">
+        <div class="node-circle cyan">03</div>
+        <div class="node-info">
+          <div class="node-name">现场报到</div>
+          <div class="node-desc">数学楼大厅，出示录取通知书</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="3">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>录取通知书原件、身份证原件、高考准考证、团组织关系介绍信</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>数学楼大厅（坐标原点(0,0)）</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>报到时间9:00-17:00，请勿迟到；建议家长陪同</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>报到咨询电话：028-84760606</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 4: 领取物品 -->
+      <div class="flow-node purple-node" data-node="4"
+           data-materials="录取通知书回执、本人身份证"
+           data-location="数学楼大厅物资发放处"
+           data-notes="请当面核对校园卡信息，如有问题立即反馈"
+           data-contact="后勤处：028-84760707">
+        <div class="node-circle purple">04</div>
+        <div class="node-info">
+          <div class="node-name">领取物品</div>
+          <div class="node-desc">校园卡、宿舍钥匙、迎新手册</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="4">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>录取通知书回执、本人身份证</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>数学楼大厅物资发放处</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>请当面核对校园卡信息，如有问题立即反馈</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>后勤处：028-84760707</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 5: 入住宿舍 -->
+      <div class="flow-node cyan-node" data-node="5"
+           data-materials="宿舍钥匙、校园卡、床上用品（自备或购买）"
+           data-location="重德苑 / 博学苑 / 尚美苑 / 务实苑"
+           data-notes="宿舍为六人间（少数四人间），配有空调和独立卫浴；注意用电安全"
+           data-contact="宿管中心：028-84760808">
+        <div class="node-circle cyan">05</div>
+        <div class="node-info">
+          <div class="node-name">入住宿舍</div>
+          <div class="node-desc">重德苑 / 博学苑 / 尚美苑 / 务实苑</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="5">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>宿舍钥匙、校园卡、床上用品（自备或购买）</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>重德苑 / 博学苑 / 尚美苑 / 务实苑</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>狮子山校区宿舍多为六人间（上床下桌、独立卫浴、空调），少数四人间。床上用品可自备或报到时购买。公寓区：重德苑、博学苑、尚美苑、务实苑、聚贤楼</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>宿管中心：028-84760808</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 6: 选课指导 -->
+      <div class="flow-node purple-node" data-node="6"
+           data-materials="校园卡(用于登录)、学生手册"
+           data-location="线上 / 教务系统 jwc.sicnu.edu.cn"
+           data-notes="先修必修课，再选通识课，注意学分上限24学分"
+           data-contact="教务处：028-84760909">
+        <div class="node-circle purple">06</div>
+        <div class="node-info">
+          <div class="node-name">选课指导</div>
+          <div class="node-desc">登录教务系统 jwc.sicnu.edu.cn</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="6">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>校园卡(用于登录)、学生手册</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>线上 / 教务系统 jwc.sicnu.edu.cn</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>先修必修课，再选通识课，注意学分上限24学分</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>教务处：028-84760909</span></div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 20 50" preserveAspectRatio="none">
+          <line x1="10" y1="0" x2="10" y2="40" class="arrow-line"/>
+          <polygon points="10,50 4,38 16,38"/>
+        </svg>
+      </div>
+
+      <!-- Node 7: 军训动员 -->
+      <div class="flow-node cyan-node" data-node="7"
+           data-materials="运动鞋、水壶、防晒用品"
+           data-location="操场 / 统一安排集合"
+           data-notes="军训为期两周，请做好防晒和体力储备；身体不适请提前报备"
+           data-contact="武装部：028-84761010">
+        <div class="node-circle cyan">07</div>
+        <div class="node-info">
+          <div class="node-name">军训动员</div>
+          <div class="node-desc">开学第一周，统一安排</div>
+        </div>
+        <span class="node-expand-icon">&#9654;</span>
+      </div>
+      <div class="node-detail" data-detail="7">
+        <div class="node-detail-card">
+          <div class="detail-item"><span class="detail-label">所需材料</span><span>运动鞋、水壶、防晒用品</span></div>
+          <div class="detail-item"><span class="detail-label">办理地点</span><span>操场 / 统一安排集合</span></div>
+          <div class="detail-item"><span class="detail-label">注意事项</span><span>军训为期两周，请做好防晒和体力储备；身体不适请提前报备</span></div>
+          <div class="detail-item"><span class="detail-label">联系方式</span><span>武装部：028-84761010</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART A: CHECKLIST - ESSENTIAL ITEMS
+       ======================================== -->
+  <section class="checklist-section" id="checklist">
+    <div class="checklist-header">
+      <h2 class="checklist-title" id="checklistTitle">必备物品清单</h2>
+      <p class="checklist-subtitle" id="checklistSubtitle">{ x | x &isin; 开学必需 } // 集合中的每项都不可或缺</p>
+    </div>
+
+    <div class="checklist-grid">
+      <!-- 证件类 -->
+      <div class="checklist-card">
+        <div class="checklist-card-head">
+          <span class="checklist-card-icon">📋</span>
+          <h3 class="checklist-card-title">证件</h3>
+        </div>
+        <ul class="checklist-list">
+          <li><span class="check-bullet"></span>录取通知书（原件+复印件）</li>
+          <li><span class="check-bullet"></span>身份证原件及复印件（正反面各5份）</li>
+          <li><span class="check-bullet"></span>高考准考证</li>
+          <li><span class="check-bullet"></span>一寸/二寸证件照（蓝底白底各多张，保留电子版）</li>
+          <li><span class="check-bullet"></span>团员档案/团组织关系介绍信</li>
+          <li><span class="check-bullet"></span>学籍档案（部分省份自带，切勿拆封）</li>
+          <li><span class="check-bullet"></span>户口迁移证（如需迁户口）</li>
+          <li><span class="check-bullet"></span>银行卡（学校随通知书寄送的缴费卡）</li>
+        </ul>
+      </div>
+
+      <!-- 生活类 -->
+      <div class="checklist-card">
+        <div class="checklist-card-head">
+          <span class="checklist-card-icon">🏠</span>
+          <h3 class="checklist-card-title">生活</h3>
+        </div>
+        <ul class="checklist-list">
+          <li><span class="check-bullet"></span>床上用品三件套（学校床铺尺寸：0.9m×1.9m）</li>
+          <li><span class="check-bullet"></span>枕头、被子（春秋可用薄毯）</li>
+          <li><span class="check-bullet"></span>洗漱用品（牙刷、牙膏、毛巾、洗发水、沐浴露）</li>
+          <li><span class="check-bullet"></span>拖鞋、运动鞋、正装鞋各一双</li>
+          <li><span class="check-bullet"></span>衣架（10-15个）、夹子</li>
+          <li><span class="check-bullet"></span>插线板（3米线以上，带USB口更佳）</li>
+          <li><span class="check-bullet"></span>雨伞（成都多雨！建议备两把）</li>
+          <li><span class="check-bullet"></span>防晒霜、水壶（军训必备）</li>
+          <li><span class="check-bullet"></span>常用药品（感冒药、肠胃药、创可贴、藿香正气液）</li>
+          <li><span class="check-bullet"></span>口罩、消毒湿巾</li>
+        </ul>
+      </div>
+
+      <!-- 学习类 -->
+      <div class="checklist-card">
+        <div class="checklist-card-head">
+          <span class="checklist-card-icon">📐</span>
+          <h3 class="checklist-card-title">学习</h3>
+        </div>
+        <ul class="checklist-list">
+          <li><span class="check-bullet"></span>笔记本电脑（编程/写论文必备）</li>
+          <li><span class="check-bullet"></span>U盘（32G以上）</li>
+          <li><span class="check-bullet"></span>笔记本（建议多本，数学课笔记量大）</li>
+          <li><span class="check-bullet"></span>草稿纸（数学专业消耗极大！）</li>
+          <li><span class="check-bullet"></span>计算器（推荐CASIO fx-991CN X）</li>
+          <li><span class="check-bullet"></span>文具套装（签字笔、铅笔、橡皮、尺规）</li>
+          <li><span class="check-bullet"></span>台灯（宿舍学习用）</li>
+          <li><span class="check-bullet"></span>数学参考书（大一上核心：数学分析、高等代数、解析几何）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART A: FAQ - TERMINAL STYLE
+       ======================================== -->
+  <section class="faq-section" id="faq">
+    <div class="faq-header">
+      <h2 class="faq-title" id="faqTitle">方程求解</h2>
+      <p class="faq-subtitle" id="faqSubtitle">f(question) = answer // 点击问题展开答案</p>
+    </div>
+
+    <div class="faq-pair open" data-faq="1">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 宿舍分配规则是什么？</span>
+        <span class="faq-q-icon"></span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer open">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 按院系相对集中分配，狮子山校区宿舍多数为六人间（少数四人间），四人间上床下桌、六人间部分三人共用一张桌。宿舍配有空调、独立卫浴、热水供应，床上用品可自备或在报到时购买。公寓分为重德苑、博学苑、尚美苑、务实苑、聚贤楼五个区域</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="2">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 选课有什么建议？</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 先修必修课，再选通识课，注意学分上限。数学分析、高等代数、解析几何是大一核心课程，务必优先安排。通识课建议选择自己感兴趣的方向，拓宽视野</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="3">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 数学院在哪里</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 狮子山校区中心位置，坐标(0,0)，从南门步行5分钟即到。数学楼共6层，一楼为办公大厅，二至五层为教室和实验室</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="4">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 图书馆怎么借书</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 凭校园卡自助借还，最多10本，借期30天可续借一次。图书馆开放时间为8:00-22:00（考试周有延长），寒暑假有临时调整。狮子山校区图书馆虽规模不大但氛围很好，推荐先熟悉数学类图书区</p>
+      </div>
+    </div>
+    <div class="faq-pair" data-faq="5">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 校园卡有哪些功能</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 校园卡，校园万能钥匙。功能包括：食堂消费、超市购物、图书馆借书、宿舍门禁、洗澡热水、打水。丢失后请尽快到充值机挂失，再到一卡通中心补办（桃李园1.5楼）。充值支持支付宝和建行卡</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="6">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 食堂怎么样？有哪些推荐？</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 狮子山校区4个食堂：桃李园（一楼豆花饭，二楼小炒）、槐园餐厅、榕园（教职工也开放）、清真食堂（桃李园旁）、柳堤餐厅。必尝推荐：桃一豆花饭（菌汤/麻辣/酸菜口味）、桃二豆汤饭（鸡丝性价比最高）。人均10-15元，校园卡支付。南门外有校园广场小吃丰富，北门外也有不少美食选择</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="7">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 有哪些学生组织和社团推荐</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 院级社团（2025-2026学年注册）：数学建模社团（全年3次活动，含国奖经验分享会、云端数模笔记荟等）、图灵社团（全年9次活动，含AI浪潮讲座、计算机二级辅导等）、教育艺术社团（全年10次活动，含《天才少女》观影会等）、市场调查与统计分析社团（全年5次活动，含风采展、夜市摆摊等）。四个社团联合参加"奋进新征程"夜市等大型活动。校级组织：学生会、青年志愿者协会、大学生艺术团。兴趣爱好类：拾光摄影社团、黑晴动漫社、狮山辩论社团、川师舞协等。建议大一加入1-2个，兼顾学业与兴趣发展</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="8">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 课程考核和绩点怎么算？</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 总成绩=平时成绩(30%-40%)+期末考试成绩(60%-70%)。平时成绩包括出勤、作业、课堂表现。绩点(GPA)采用等级制对照，具体对照标准请以教务处发布的最新版为准。GPA=∑(课程绩点×学分)/∑学分。数学专业课程难度较大，建议平时打好基础，不要考前突击。挂科需重修，影响评奖评优和保研资格。川师有两次转专业机会（大一上期末和大一下开学），想转专业要提前关注相关政策</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="9">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 校园网络和WiFi怎么使用</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 校园有WiFi覆盖，具体账号和登录方式开学后由学校统一通知。宿舍内有线网接口，需自备网线。图书馆、教学楼网络信号较好。校园卡充值在桃李园1.5楼有充值机，也支持支付宝充值。建议开学时办理一张优惠套餐的电话卡</p>
+      </div>
+    </div>
+
+    <div class="faq-pair" data-faq="10">
+      <div class="faq-question">
+        <span class="faq-q-text">Q: 快递和购物方便吗？</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-eq">=</div>
+      <div class="faq-answer">
+        <p class="faq-a-text"><span class="answer-label">A:</span> 快递校内站点在南阳体育馆菜鸟驿站（中通、顺丰/邮政/京东），校外在北门外乐万家超市负一楼（圆通、韵达/申通）。大件建议指定寄校内快递！地址填写：四川省成都市锦江区静安路5号四川师范大学。驿站营业时间9:00-19:00。校内学子超市和佳禾便利店满足日常需求，北门外步行可达商业区</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART A: MATH DEPT NOTICES
+       ======================================== -->
+  <section class="notices-section" id="notices">
+    <div class="section-anchor">
+      <div class="section-anchor-dot"></div>
+      <div class="section-anchor-line"></div>
+      <div class="section-anchor-id">§01</div>
+    </div>
+    <div class="notices-header">
+      <h2 class="notices-title" id="noticesTitle">数科院·新生须知<span class="section-anchor-link" data-tip="本节对应 3D 节点 · Octahedron"></span></h2>
+      <p class="notices-subtitle" id="noticesSubtitle">&forall; 新生 &isin; 数学科学学院: 你需要知道的N件事</p>
+    </div>
+
+    <div class="notices-timeline">
+      <!-- 大一上学期课表 -->
+      <div class="notice-item">
+        <div class="notice-marker">01</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">大一上学期核心课</h3>
+          <p class="notice-text">数学分析(一)：每周5课时，最重要的基础课，务必紧跟进度。高等代数(一)：每周4课时，矩阵与线性空间入门。解析几何：每周3课时，向量与空间几何。C语言程序设计：每周3课时，编程入门必修</p>
+          <div class="notice-tip"><span class="tip-label">学习建议</span>数学分析是挂科率最高的课程，建议每天课后花2小时复习+做题。推荐参考书：华东师大版《数学分析》、北大版《高等代数》</div>
+        </div>
+      </div>
+
+      <!-- 导师制 -->
+      <div class="notice-item">
+        <div class="notice-marker">02</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">本科生导师制</h3>
+          <p class="notice-text">学院为每位本科生配备学业导师，从大一下学期开始实行。导师将指导你的学业规划、科研入门、竞赛参赛和毕业论文。请主动与导师保持联系，每月至少沟通一次。选择导师时可参考学院官网的教师研究方向介绍</p>
+          <div class="notice-tip"><span class="tip-label">进阶路径</span>本科生科研训练计划(SRTP)：大二可申请，立项后有经费支持。全国大学生数学竞赛、数学建模竞赛：含金量高，建议提前准备</div>
+        </div>
+      </div>
+
+      <!-- 学院重要地点 -->
+      <div class="notice-item">
+        <div class="notice-marker">03</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">学院重要地点指南</h3>
+          <p class="notice-text">数学楼：上课、找老师、辅导员办公室（一楼学工办）。机房3楼：编程课、数学软件实训。学院图书室(2楼)：数学专业书籍（安静自习首选）。学术报告厅(4楼)：学术讲座、数学文化节。数学文化长廊(1楼)：数学史展览、优秀学生风采</p>
+          <div class="notice-tip"><span class="tip-label">联系方式</span>辅导员办公室：数学楼1楼 028-84760606。遇到任何困难请第一时间联系辅导员！</div>
+        </div>
+      </div>
+
+      <!-- 数学专业学习特点 -->
+      <div class="notice-item">
+        <div class="notice-marker">04</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">数学专业学习特点</h3>
+          <p class="notice-text">和高中数学完全不同！大学数学重视证明和逻辑推理，而非计算技巧。你将学习&epsilon;-&delta;语言、极限严格定义、抽象代数结构。一开始可能不适应，这是正常的。坚持做习题、参与讨论课、利用答疑时间（每周各科有固定答疑时段）</p>
+          <div class="notice-tip"><span class="tip-label">资源推荐</span>3Blue1Brown（YouTube/B站）- 数学可视化；中国大学MOOC - 名校数学课程；同济大学《高等数学》视频课 - 参考辅助</div>
+        </div>
+      </div>
+
+      <!-- 开学注意事项 -->
+      <div class="notice-item">
+        <div class="notice-marker">05</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">开学第一周时间线</h3>
+          <p class="notice-text">
+            <strong>9月9日（报到注册）</strong>：新生集中报到、入住寝室、领取物品。下午新生家长会（介绍学院、播放宣传片）。当晚领导走访寝室关怀新生。<br>
+            <strong>9月10日（安顿适应）</strong>：各班分批开年级大会，辅导员提纪律要求与学年规划；班主任组织班会助熟悉校园。<br>
+            <strong>9月11日（典礼教育）</strong>：上午参加学校开学典礼，后分批体检；下午学院开学典礼，领导出席强化归属感。典礼后开展校规教育，各系主任分专业介绍学科。<br>
+            <strong>9月12-13日（信息采集+制度学习）</strong>：12日上午采集新生信息，下午学院领导开展学籍管理制度教育。13日班级心理团体辅导，分团委讲解班委职责与学生干部工作。<br>
+            <strong>9月14日（军训准备）</strong>：上午发放军训服装、编排连队、明确纪律要求；下午结核菌素试验健康筛查。<br>
+            <strong>次周起</strong>：正式上课 + 军训（两周）
+          </p>
+          <div class="notice-tip"><span class="tip-label">特别提醒</span>迎新志愿服务：8-9日有流动志愿者和寝室志愿者为新生及家长服务（路线引导、入住协助、家长座谈会保障）。π能量干部训练营（11月）等你加入！英语分级考试决定大学英语起班层次，请认真对待</div>
+        </div>
+      </div>
+
+      <!-- 志愿服务与职业发展 -->
+      <div class="notice-item">
+        <div class="notice-marker">06</div>
+        <div class="notice-content">
+          <h3 class="notice-heading">志愿服务与职业发展</h3>
+          <p class="notice-text">
+            <strong>志愿服务全年数据</strong>：开展17次活动、585人次参与、累计813小时。特色活动包括银龄行动（手把手教老人用智能手机，覆盖3个养老中心）、羌乡数梦义卖（漆扇DIY+义卖筹款帮助北川留守儿童）、红领时光地铁驿站（7号线四川师大站定期值守）。优秀志愿者分享会每年11月举办，邀请十佳志愿者分享经验。<br>
+            <strong>职业发展指导</strong>：学院联合中公教育、新东方、华新文登等机构构建"考研-就业-留学"全链条指导体系。考研板块有经验分享会、择校讲座、数据答疑；就业板块有简历面试指导、模拟面试、企业实习交流；留学板块有申请流程解析、数学专业深造优势分析。还组织参观宁德时代宜宾基地"访企拓岗"活动。2025年学生考取驾照68人、计算机二级38人、红十字救护员证13人、教师资格证7人。
+          </p>
+          <div class="notice-tip"><span class="tip-label">加入建议</span>建议大一加入社会实践与志愿服务部或志愿社团，既能积累志愿时长，又能锻炼组织协调能力。关注"新数行TIME"系列讲座（赛事一条考研+留学），尽早规划发展方向</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART A: CAMPUS LIFE TIPS
+       ======================================== -->
+  <section class="tips-section" id="tips">
+    <div class="tips-header">
+      <h2 class="tips-title" id="tipsTitle">校园生活贴士</h2>
+      <p class="tips-subtitle" id="tipsSubtitle">tips[n] = 老学长的经验教训 // 帮你避坑</p>
+    </div>
+
+    <div class="tips-grid">
+      <!-- 交通出行 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc2_image38.png" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon">🚇</div>
+        <h3 class="tip-card-title">交通出行</h3>
+        <p class="tip-card-text">
+          地铁7号线「狮子山站」出站步行8分钟到南门。狮子山校区在锦江区二环边上，出门就是地铁，去春熙路仅需15分钟。可换乘1号线、2号线。
+          公交出行可用天府通APP刷码，学生卡享优惠。
+          狮子山校区不大，教学楼之间步行即可到达。
+        </p>
+      </div>
+
+      <!-- 医疗服务 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc1_image14.png" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon">🏥</div>
+        <h3 class="tip-card-title">医疗服务</h3>
+        <p class="tip-card-text">
+          校医院在西门旁，24小时值班，凭校园卡就诊。
+          大学生医保：开学统一办理，建议务必参加。
+          周边医院：成都市第二人民医院（三甲，打车10分钟）。
+          急救电话120。
+        </p>
+      </div>
+
+      <!-- 宿舍生活 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc2_image28.jpeg" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon">🏘</div>
+        <h3 class="tip-card-title">宿舍生活</h3>
+        <p class="tip-card-text">
+          狮子山校区宿舍为六人间（少数四人间），上床下桌、有空调和独立卫浴。电费自付（校园卡充值），每月学校赠送一定额度免费电，超出自费。
+          热水供应需另行充入热水费，分时段供应。
+          断电时间：周日至周四23:00，周五周六约23:30；早上恢复供电。
+          门禁时间同断电时间，晚归需登记。
+          宿舍禁止使用大功率电器（热得快、电饭煲等），查寝不定期。
+        </p>
+      </div>
+
+      <!-- 学习场所 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc2_image4.jpeg" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon">📚</div>
+        <h3 class="tip-card-title">自习去处</h3>
+        <p class="tip-card-text">
+          图书馆：8:00-22:00开放（考试周有延长），有空调，氛围很好。
+          教室自习：教学楼空闲教室可自习（22:00关门）。
+          校外咖啡馆：南门外有多家咖啡馆（瑞幸等），适合小组讨论。
+        </p>
+      </div>
+
+      <!-- 运动健身 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc1_image5.jpeg" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon"></div>
+        <h3 class="tip-card-title">运动健身</h3>
+        <p class="tip-card-text">
+          狮子山校区有田径场、篮球场、排球场等户外运动场地。
+          体育馆内有羽毛球场、乒乓球室等室内运动设施。
+          每学期有体测（50米、800/1000米、引体向上、仰卧起坐等项目），注意平时保持锻炼。
+        </p>
+      </div>
+
+      <!-- 安全提醒 -->
+      <div class="tip-card" style="position:relative;overflow:hidden;">
+        <div style="position:relative;height:120px;margin:-1.5rem -1.5rem 1rem;border-radius:14px 14px 0 0;overflow:hidden;">
+          <img src="../assets/doc-photos/doc2_image9.jpeg" alt="" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,26,0.5) 0%,rgba(10,10,26,0.85) 100%);"></div>
+        </div>
+        <div class="tip-card-icon">🛡</div>
+        <h3 class="tip-card-title">安全提醒</h3>
+        <p class="tip-card-text">
+          谨防电信诈骗！凡涉及转账、汇款、索要验证码的电话一律挂断。
+          宿舍内注意用电安全，离开时关闭电源。
+          外出注意交通安全，成都非机动车较多，骑车勿看手机。
+          保管好个人财物，教室和图书馆离开时随手带走贵重物品。
+          遇到可疑情况请联系保卫处 028-84760110。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FAQ 3D 可点击节点导航
+       ======================================== -->
+  <section class="decor-3d-section faq-nodes-section" id="faqNodes" style="position: relative; padding: 3rem 2.2rem; z-index: 1;">
+    <div class="faq-nodes-inner">
+      <p class="faq-nodes-hint">点击金色节点 · 展开对应问题</p>
+      <div class="faq-nodes-row">
+        <button class="faq-node" data-faq-node="1" aria-label="展开问题 1：宿舍分配规则">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>01</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">宿舍</span>
+        </button>
+        <button class="faq-node" data-faq-node="2" aria-label="展开问题 2：选课建议">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>02</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">选课</span>
+        </button>
+        <button class="faq-node" data-faq-node="3" aria-label="展开问题 3：数学院位置">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>03</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">数学</span>
+        </button>
+        <button class="faq-node" data-faq-node="4" aria-label="展开问题 4：图书馆借书">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>04</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">图书</span>
+        </button>
+        <button class="faq-node" data-faq-node="5" aria-label="展开问题 5：校园卡功能">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>05</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">校园</span>
+        </button>
+        <button class="faq-node" data-faq-node="6" aria-label="展开问题 6：食堂推荐">
+          <div class="faq-node-cube">
+            <div class="faq-node-face front"><span>06</span></div>
+            <div class="faq-node-face back"></div>
+            <div class="faq-node-face right"></div>
+            <div class="faq-node-face left"></div>
+            <div class="faq-node-face top"></div>
+            <div class="faq-node-face bottom"></div>
+          </div>
+          <span class="faq-node-title">食堂</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART A: USEFUL LINKS - NEON CARDS
+       ======================================== -->
+  <section class="links-section" id="links">
+    <div class="links-header">
+      <h2 class="links-title" id="linksTitle">实用链接</h2>
+      <p class="links-subtitle" id="linksSubtitle">u(x) -> 必备资源坐标</p>
+    </div>
+
+    <div class="links-grid">
+      <a href="https://www.sicnu.edu.cn" target="_blank" rel="noopener" class="link-card cyan-card" data-tilt>
+        <div class="link-card-icon">S</div>
+        <div class="link-card-text">
+          <div class="link-card-name">学校官网</div>
+          <div class="link-card-url">www.sicnu.edu.cn</div>
+        </div>
+      </a>
+      <a href="https://msi.sicnu.edu.cn" target="_blank" rel="noopener" class="link-card purple-card" data-tilt>
+        <div class="link-card-icon">M</div>
+        <div class="link-card-text">
+          <div class="link-card-name">数科院官</div>
+          <div class="link-card-url">msi.sicnu.edu.cn</div>
+        </div>
+      </a>
+      <a href="https://jwc.sicnu.edu.cn" target="_blank" rel="noopener" class="link-card blue-card" data-tilt>
+        <div class="link-card-icon">J</div>
+        <div class="link-card-text">
+          <div class="link-card-name">教务</div>
+          <div class="link-card-url">jwc.sicnu.edu.cn</div>
+        </div>
+      </a>
+      <a href="https://zs.sicnu.edu.cn" target="_blank" rel="noopener" class="link-card pink-card" data-tilt>
+        <div class="link-card-icon">Z</div>
+        <div class="link-card-text">
+          <div class="link-card-name">招生</div>
+          <div class="link-card-url">zs.sicnu.edu.cn</div>
+        </div>
+      </a>
+      <a href="https://vr.sicnu.edu.cn" target="_blank" rel="noopener" class="link-card mixed-card" data-tilt>
+        <div class="link-card-icon">V</div>
+        <div class="link-card-text">
+          <div class="link-card-name">VR全景</div>
+          <div class="link-card-url">vr.sicnu.edu.cn</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PART B: FOOTER - DARK CYBERPUNK
+       ======================================== -->
+  <footer class="footer-dark" id="footer">
+    <div class="relative z-10">
+
+      <!-- Convergence Visual -->
+      <div class="convergence-container" id="convergenceVisual">
+        <canvas id="convergenceCanvas"></canvas>
+        <div class="convergence-center-glow"></div>
+      </div>
+
+      <!-- Footer Quote -->
+      <div class="text-center mt-12 px-6">
+        <p class="footer-quote" id="footerQuote">四年，求你人生的最优解</p>
+        <p class="footer-limit" id="footerLimit">lim<sub>(n &rarr; &infin;)</sub> f(你的努力) = &infin;</p>
+      </div>
+
+      <!-- Contact Cards -->
+      <div class="contact-grid mt-12 px-6 pb-8" id="contactCards">
+        <div class="contact-card cyan-border">
+          <div class="contact-card-name">党政</div>
+          <div class="contact-card-email">SXYdzb@sicnu.edu.cn</div>
+        </div>
+        <div class="contact-card purple-border">
+          <div class="contact-card-name">教学</div>
+          <div class="contact-card-email">SXYjxb@sicnu.edu.cn</div>
+        </div>
+        <div class="contact-card pink-border">
+          <div class="contact-card-name">学工</div>
+          <div class="contact-card-email">SXYxgb@sicnu.edu.cn</div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="footer-address">
+        成都市锦江区静安路5号 (610068) &middot; 四川师范大学数学科学学院
+      </div>
+
+      <!-- CTA Button -->
+      <div class="text-center mt-10 mb-14">
+        <a href="index.html" class="cta-home-btn cta-breathing" data-dom-id="cta-home" id="ctaHome">
+          <span class="btn-arrow">&larr;</span>
+          <span>回到首页</span>
+        </a>
+        <a href="index.html" class="cta-home-btn next-section-btn" style="margin-top:1.4rem;">
+          <span>返回宇宙</span>
+          <span class="btn-arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copyright">
+        <p>&copy; 2026 四川师范大学数学科学学院 &middot; 迎新网站</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================
+       SCRIPTS - GSAP + Lenis + Interactions
+       ======================================== -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ============================================
+    // LENIS SMOOTH SCROLL
+    // ============================================
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    // ---- 鼠标跟随金色光点 ----
+    const glow = document.getElementById('cursor-glow');
+    if (glow) {
+      const xTo = gsap.quickTo(glow, 'x', { duration: 0.4, ease: 'power3' });
+      const yTo = gsap.quickTo(glow, 'y', { duration: 0.4, ease: 'power3' });
+      window.addEventListener('pointermove', (e) => {
+        xTo(e.clientX); yTo(e.clientY);
+      });
+    }
+
+    // ============================================
+    // GSAP REGISTER
+    // ============================================
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- 背景装饰层动画（星点漂移 + 数学符号浮动）----
+    gsap.to('.bg-decor-stars', { backgroundPosition: '+=400 -=300', duration: 60, repeat: -1, ease: 'none' });
+    gsap.utils.toArray('.bg-decor-symbols span').forEach((sym) => {
+      gsap.fromTo(sym, { y: '+=20' }, { y: '-=20', duration: 8 + Math.random() * 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    });
+
+    // ============================================
+    // HERO ANIMATIONS
+    // ============================================
+    var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTL
+      .from('#heroTitle', { y: 50, opacity: 0, duration: 1 })
+      .from('#heroSubtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
+      .from('#heroImg', { y: 40, opacity: 0, scale: 0.95, duration: 0.8 }, '-=0.4');
+
+    // ============================================
+    // FLOWCHART - SEQUENTIAL LIGHT-UP (CIRCUIT)
+    // ============================================
+    var flowNodes = document.querySelectorAll('.flow-node');
+    var flowArrows = document.querySelectorAll('.flow-arrow');
+    var flowDetails = document.querySelectorAll('.node-detail');
+
+    // Set initial dim state
+    gsap.set(flowNodes, { opacity: 0.15, scale: 0.96, filter: 'brightness(0.4)' });
+    gsap.set(flowArrows, { opacity: 0 });
+    gsap.set(flowDetails, { opacity: 0 });
+
+    // Light up first node immediately
+    gsap.to(flowNodes[0], {
+      opacity: 1,
+      scale: 1,
+      filter: 'brightness(1)',
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 0.5
+    });
+
+    // Sequential circuit light-up
+    flowNodes.forEach(function (node, index) {
+      if (index === 0) return;
+
+      ScrollTrigger.create({
+        trigger: node,
+        start: 'top 88%',
+        once: true,
+        onEnter: function () {
+          var arrowIdx = index - 1;
+          var arrowEl = flowArrows[arrowIdx];
+
+          // Animate arrow with dash flow + glow
+          if (arrowEl) {
+            gsap.to(arrowEl, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+
+            var line = arrowEl.querySelector('.arrow-line');
+            var polygon = arrowEl.querySelector('polygon');
+            if (line) {
+              var len = line.getTotalLength ? line.getTotalLength() : 40;
+              gsap.set(line, { strokeDasharray: len, strokeDashoffset: len });
+              gsap.set(polygon, { opacity: 0 });
+
+              gsap.to(line, {
+                strokeDashoffset: 0,
+                duration: 0.5,
+                ease: 'power2.out'
+              });
+              gsap.to(polygon, {
+                opacity: 1,
+                duration: 0.25,
+                ease: 'power2.out',
+                delay: 0.35
+              });
+
+              // Infinite dash flow on the line after it draws
+              gsap.to(line, {
+                strokeDashoffset: -20,
+                duration: 1,
+                ease: 'none',
+                repeat: -1,
+                delay: 0.6,
+                onStart: function () {
+                  gsap.set(line, { strokeDasharray: '10 5' });
+                }
+              });
+            }
+          }
+
+          // Light up node
+          gsap.to(node, {
+            opacity: 1,
+            scale: 1,
+            filter: 'brightness(1)',
+            duration: 0.7,
+            ease: 'power2.out',
+            delay: 0.3
+          });
+
+          // Neon flash effect
+          gsap.fromTo(node, {
+            boxShadow: '0 0 0px rgba(212, 175, 55, 0)'
+          }, {
+            boxShadow: '0 0 40px rgba(212, 175, 55, 0.4), 0 0 80px rgba(212, 175, 55, 0.15)',
+            duration: 0.4,
+            ease: 'power2.out',
+            delay: 0.5,
+            clearProps: 'boxShadow'
+          });
+        }
+      });
+    });
+
+    // Flowchart node click -> expand detail
+    flowNodes.forEach(function (node) {
+      node.addEventListener('click', function () {
+        var nodeId = this.getAttribute('data-node');
+        var detail = document.querySelector('[data-detail="' + nodeId + '"]');
+        var isActive = this.classList.contains('active');
+
+        // Close all
+        flowNodes.forEach(function (n) { n.classList.remove('active'); });
+        flowDetails.forEach(function (d) {
+          d.classList.remove('open');
+          gsap.to(d, { opacity: 0, duration: 0.2 });
+        });
+
+        // Toggle
+        if (!isActive) {
+          this.classList.add('active');
+          detail.classList.add('open');
+          gsap.to(detail, { opacity: 1, duration: 0.4, delay: 0.1, ease: 'power2.out' });
+        }
+      });
+    });
+
+    // ============================================
+    // CHECKLIST SECTION ENTRANCE
+    // ============================================
+    gsap.from('#checklistTitle', {
+      scrollTrigger: { trigger: '#checklistTitle', start: 'top 85%', once: true },
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+    });
+    gsap.from('#checklistSubtitle', {
+      scrollTrigger: { trigger: '#checklistSubtitle', start: 'top 85%', once: true },
+      y: 20, opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out'
+    });
+    var checklistCards = document.querySelectorAll('.checklist-card');
+    checklistCards.forEach(function (card, index) {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true },
+        y: 35, opacity: 0, duration: 0.55, delay: index * 0.12, ease: 'power3.out'
+      });
+    });
+
+    // ============================================
+    // FAQ ACCORDION (robust version - pure CSS + JS toggle)
+    // ============================================
+
+    var faqPairs = document.querySelectorAll('.faq-pair');
+
+    function closeAllFaq() {
+      faqPairs.forEach(function (p) {
+        p.classList.remove('open');
+        var ans = p.querySelector('.faq-answer');
+        if (ans) ans.classList.remove('open');
+        var icon = p.querySelector('.faq-q-icon');
+        if (icon) icon.textContent = '+';
+      });
+    }
+
+    function openFaqPair(pair) {
+      pair.classList.add('open');
+      var targetAns = pair.querySelector('.faq-answer');
+      if (targetAns) {
+        targetAns.classList.add('open');
+        // Force reflow to trigger CSS transition
+        void targetAns.offsetHeight;
+      }
+      var targetIcon = pair.querySelector('.faq-q-icon');
+      if (targetIcon) targetIcon.textContent = '▼';
+    }
+
+    faqPairs.forEach(function (pair) {
+      var question = pair.querySelector('.faq-question');
+
+      question.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = pair.classList.contains('open');
+
+        // Close all first
+        closeAllFaq();
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          openFaqPair(pair);
+        }
+      });
+    });
+
+    // Method 2: Event delegation backup (catch-all)
+    document.addEventListener('click', function(e) {
+      var q = e.target.closest('.faq-question');
+      if (q) {
+        q.click(); // Trigger primary handler
+      }
+    });
+
+    // Ensure first FAQ is open by default
+    var firstFaq = document.querySelector('.faq-pair[data-faq="1"]');
+    if (firstFaq && !firstFaq.classList.contains('open')) {
+      openFaqPair(firstFaq);
+    }
+
+    // ============================================
+    // FAQ 3D NODES - click to scroll + expand
+    // ============================================
+    var faqNodes = document.querySelectorAll('.faq-node');
+
+    function resetFaqNodes() {
+      faqNodes.forEach(function (n) {
+        n.classList.remove('active');
+        var cube = n.querySelector('.faq-node-cube');
+        if (cube) {
+          gsap.to(cube, { scale: 1, rotateY: 0, duration: 0.4, ease: 'power2.out', overwrite: true });
+        }
+      });
+    }
+
+    faqNodes.forEach(function (node) {
+      node.addEventListener('click', function () {
+        var faqId = node.getAttribute('data-faq-node');
+        var targetPair = document.querySelector('.faq-pair[data-faq="' + faqId + '"]');
+        if (!targetPair) return;
+
+        // Reset other nodes, highlight current
+        resetFaqNodes();
+        node.classList.add('active');
+
+        // GSAP scale + rotateY animation
+        var cube = node.querySelector('.faq-node-cube');
+        if (cube) {
+          gsap.fromTo(cube,
+            { scale: 1, rotateY: 0 },
+            { scale: 1.15, rotateY: 180, duration: 0.7, ease: 'back.out(1.7)' }
+          );
+        }
+
+        // Smooth scroll to FAQ
+        if (typeof lenis !== 'undefined') {
+          lenis.scrollTo(targetPair, { offset: -120, duration: 1.2 });
+        } else {
+          targetPair.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Expand corresponding answer
+        closeAllFaq();
+        openFaqPair(targetPair);
+      });
+    });
+
+    // FAQ section entrance
+    gsap.from('#faqTitle', {
+      scrollTrigger: { trigger: '#faqTitle', start: 'top 85%', once: true },
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+    });
+    gsap.from('#faqSubtitle', {
+      scrollTrigger: { trigger: '#faqSubtitle', start: 'top 85%', once: true },
+      y: 20, opacity: 0, duration: 0.6, delay: 0.2, ease: 'power3.out'
+    });
+    faqPairs.forEach(function (pair, index) {
+      gsap.from(pair, {
+        scrollTrigger: { trigger: pair, start: 'top 90%', once: true },
+        y: 30, opacity: 0, duration: 0.5, delay: index * 0.1, ease: 'power3.out'
+      });
+    });
+
+    // ============================================
+    // MATH DEPT NOTICES - TIMELINE ENTRANCE
+    // ============================================
+    gsap.from('#noticesTitle', {
+      scrollTrigger: { trigger: '#noticesTitle', start: 'top 85%', once: true },
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+    });
+    gsap.from('#noticesSubtitle', {
+      scrollTrigger: { trigger: '#noticesSubtitle', start: 'top 85%', once: true },
+      y: 20, opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out'
+    });
+    var noticeItems = document.querySelectorAll('.notice-item');
+    noticeItems.forEach(function (item, index) {
+      gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 88%', once: true },
+        y: 40, opacity: 0, duration: 0.6, delay: index * 0.15, ease: 'power3.out'
+      });
+    });
+
+    // ============================================
+    // CAMPUS LIFE TIPS ENTRANCE
+    // ============================================
+    gsap.from('#tipsTitle', {
+      scrollTrigger: { trigger: '#tipsTitle', start: 'top 85%', once: true },
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+    });
+    gsap.from('#tipsSubtitle', {
+      scrollTrigger: { trigger: '#tipsSubtitle', start: 'top 85%', once: true },
+      y: 20, opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out'
+    });
+    var tipCards = document.querySelectorAll('.tip-card');
+    tipCards.forEach(function (card, index) {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true },
+        y: 35, opacity: 0, duration: 0.5, delay: index * 0.08, ease: 'power3.out'
+      });
+    });
+
+    // ============================================
+    // LINKS SECTION ENTRANCE + 3D TILT
+    // ============================================
+    gsap.from('#linksTitle', {
+      scrollTrigger: { trigger: '#linksTitle', start: 'top 85%', once: true },
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+    });
+    gsap.from('#linksSubtitle', {
+      scrollTrigger: { trigger: '#linksSubtitle', start: 'top 85%', once: true },
+      y: 20, opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out'
+    });
+
+    var linkCards = document.querySelectorAll('.link-card');
+    linkCards.forEach(function (card, index) {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true },
+        y: 30, opacity: 0, duration: 0.5, delay: index * 0.08, ease: 'power3.out'
+      });
+    });
+
+    // 3D Tilt Effect on link cards
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = (y - centerY) / centerY * -8;
+        var rotateY = (x - centerX) / centerX * 8;
+        card.style.transform = 'perspective(600px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+
+    // ============================================
+    // CONVERGENCE CANVAS - NEON PARTICLES
+    // ============================================
+    var canvas = document.getElementById('convergenceCanvas');
+    var ctx = canvas.getContext('2d');
+    var containerW = 300;
+    var containerH = 300;
+
+    function resizeCanvas() {
+      var el = document.getElementById('convergenceVisual');
+      if (el) {
+        containerW = el.offsetWidth;
+        containerH = el.offsetHeight;
+      }
+      canvas.width = containerW;
+      canvas.height = containerH;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    var neonColors = [
+      'rgba(212, 175, 55, 0.8)',
+      'rgba(232, 197, 71, 0.8)',
+      'rgba(212, 175, 55, 0.8)',
+      'rgba(59, 130, 246, 0.8)',
+      'rgba(212, 175, 55, 0.6)',
+      'rgba(232, 197, 71, 0.6)',
+      'rgba(212, 175, 55, 0.6)',
+    ];
+
+    var particles = [];
+    var particleCount = 30;
+    var centerX = containerW / 2;
+    var centerY = containerH / 2;
+    var convergenceActive = false;
+
+    for (var i = 0; i < particleCount; i++) {
+      var angle = (i / particleCount) * Math.PI * 2;
+      var radius = 100 + Math.random() * 40;
+      particles.push({
+        angle: angle,
+        radius: radius,
+        initialRadius: radius,
+        speed: 0.008 + Math.random() * 0.012,
+        size: 2 + Math.random() * 3,
+        color: neonColors[i % neonColors.length],
+        opacity: 0.4 + Math.random() * 0.5,
+        trail: [],
+        converging: false
+      });
+    }
+
+    function drawConvergence() {
+      ctx.clearRect(0, 0, containerW, containerH);
+
+      centerX = containerW / 2;
+      centerY = containerH / 2;
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+
+        if (convergenceActive && !p.converging) continue;
+        if (!convergenceActive) {
+          // Orbit around
+          p.angle += p.speed;
+          var x = centerX + Math.cos(p.angle) * p.initialRadius;
+          var y = centerY + Math.sin(p.angle) * p.initialRadius;
+
+          // Draw trail
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(0.1, p.size * 0.6), 0, Math.PI * 2);
+          ctx.fillStyle = p.color.replace(/[\d.]+\)$/, (p.opacity * 0.2).toFixed(2) + ')');
+          ctx.fill();
+
+          // Draw particle
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(0.1, p.size), 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      requestAnimationFrame(drawConvergence);
+    }
+    drawConvergence();
+
+    // Activate convergence on scroll
+    ScrollTrigger.create({
+      trigger: '#footer',
+      start: 'top 80%',
+      once: true,
+      onEnter: function () {
+        convergenceActive = true;
+
+        // Spiral particles toward center
+        particles.forEach(function (p, i) {
+          var delay = i * 0.06;
+          var duration = 2.5 + Math.random() * 0.8;
+
+          gsap.to(p, {
+            angle: p.angle + Math.PI * 4,
+            radius: 0,
+            size: 0,
+            opacity: 0,
+            duration: duration,
+            delay: delay,
+            ease: 'power2.in',
+            repeat: -1,
+            repeatDelay: 0.8,
+            onRepeat: function () {
+              p.radius = p.initialRadius;
+              p.opacity = 0.4 + Math.random() * 0.5;
+              p.size = 2 + Math.random() * 3;
+            }
+          });
+        });
+
+        // Footer quote fade in
+        gsap.from('#footerQuote', { y: 25, opacity: 0, duration: 1, delay: 0.5, ease: 'power3.out' });
+        gsap.from('#footerLimit', { y: 15, opacity: 0, duration: 0.8, delay: 1, ease: 'power3.out' });
+
+        // Neon pulse on quote (infinite yoyo)
+        gsap.to('#footerQuote', {
+          textShadow: '0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4), 0 0 100px rgba(212, 175, 55, 0.2)',
+          duration: 1.5,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: 2
+        });
+
+        // Contact cards stagger float up
+        gsap.from('.contact-card', {
+          y: 50,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.2,
+          delay: 1.5,
+          ease: 'power3.out'
+        });
+      }
+    });
+
+    // ============================================
+    // MAGNETIC CTA BUTTON
+    // ============================================
+    var ctaBtn = document.getElementById('ctaHome');
+
+    ctaBtn.addEventListener('mousemove', function (e) {
+      var rect = ctaBtn.getBoundingClientRect();
+      var x = e.clientX - rect.left - rect.width / 2;
+      var y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(ctaBtn, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+
+    ctaBtn.addEventListener('mouseleave', function () {
+      gsap.to(ctaBtn, {
+        x: 0,
+        y: 0,
+        duration: 0.6,
+        ease: 'elastic.out(1, 0.4)'
+      });
+    });
+
+    // ============================================
+    // SECTION TRANSITIONS (light to dark)
+    // ============================================
+    gsap.set('#footer', { opacity: 0.95 });
+
+  });
+  </script>
+
+
+    <style>
+    /* ============================================
+       CYBERPUNK GUIDE PAGE - COMPLETE REBUILD
+       ============================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #040410;
+      color: #e8e8f0;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ---- CUSTOM SCROLLBAR ---- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a1a; }
+    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #e8c547; }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero-section {
+      background: #040410;
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent 80%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent 80%);
+    }
+    .hero-section::after {
+      content: 'f(x) -> inf  nabla  pi  lim  int  sum  partial  matrix  eigenvalue  gradient';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      font-family: 'Cambria Math', serif;
+      font-size: 1.2rem;
+      color: rgba(212, 175, 55, 0.04);
+      letter-spacing: 0.4em;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      line-height: 4;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #e8e8f0;
+      margin: 0 0 0.8rem;
+      position: relative;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.15);
+    }
+    .hero-title .neon-word {
+      background: linear-gradient(135deg, #d4af37, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+    }
+    .hero-subtitle {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1rem;
+      color: #a0a0b8;
+      margin: 0;
+      position: relative;
+      letter-spacing: 0.04em;
+    }
+    .hero-subtitle .accent {
+      color: #e8c547;
+      font-weight: 600;
+    }
+
+    .hero-math-deco {
+      margin-top: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.1), 0 8px 40px rgba(232, 197, 71, 0.08);
+      background: #1a1a2e;
+    }
+    .hero-math-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================
+       FLOWCHART - DIRECTED GRAPH
+       ============================================ */
+    .flowchart-section {
+      padding: 3rem 1.5rem 5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      background: #040410;
+      position: relative;
+    }
+
+    .flowchart-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-node {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      padding: 1.3rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .flow-node:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15), 0 0 20px rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+    .flow-node.active {
+      border-color: #d4af37;
+      box-shadow: 0 8px 40px rgba(212, 175, 55, 0.2), 0 0 30px rgba(212, 175, 55, 0.1), inset 0 0 20px rgba(212, 175, 55, 0.03);
+    }
+    .flow-node.active.purple-node {
+      border-color: #e8c547;
+      box-shadow: 0 8px 40px rgba(232, 197, 71, 0.2), 0 0 30px rgba(232, 197, 71, 0.1), inset 0 0 20px rgba(232, 197, 71, 0.03);
+    }
+
+    /* Neon circle node indicator */
+    .node-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      position: relative;
+      transition: all 0.4s;
+    }
+    .node-circle.cyan {
+      background: rgba(212, 175, 55, 0.1);
+      border: 2px solid rgba(212, 175, 55, 0.5);
+      color: #d4af37;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.1);
+    }
+    .node-circle.purple {
+      background: rgba(232, 197, 71, 0.1);
+      border: 2px solid rgba(232, 197, 71, 0.5);
+      color: #e8c547;
+      box-shadow: 0 0 15px rgba(232, 197, 71, 0.2), inset 0 0 10px rgba(232, 197, 71, 0.1);
+    }
+    .flow-node.active .node-circle.cyan {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), 0 0 50px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      border-color: #d4af37;
+    }
+    .flow-node.active .node-circle.purple {
+      box-shadow: 0 0 25px rgba(232, 197, 71, 0.4), 0 0 50px rgba(232, 197, 71, 0.15), inset 0 0 15px rgba(232, 197, 71, 0.2);
+      border-color: #e8c547;
+    }
+
+    .node-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .node-name {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #e8e8f0;
+      line-height: 1.3;
+    }
+    .node-desc {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.82rem;
+      color: #a0a0b8;
+      margin-top: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .node-expand-icon {
+      color: #a0a0b8;
+      font-size: 1rem;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .flow-node.active .node-expand-icon {
+      transform: rotate(90deg);
+      color: #d4af37;
+    }
+
+    /* Neon connecting arrow */
+    .flow-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-arrow svg {
+      width: 24px;
+      height: 50px;
+      overflow: visible;
+    }
+    .flow-arrow svg line {
+      stroke: #d4af37;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
+    }
+    .flow-arrow svg polygon {
+      fill: #d4af37;
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
+    }
+
+    /* Node detail glass panel */
+    .node-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, margin 0.3s ease;
+      opacity: 0;
+      margin: 0;
+      width: 100%;
+      max-width: 440px;
+    }
+    .node-detail.open {
+      max-height: 500px;
+      opacity: 1;
+      margin: 0.8rem 0;
+    }
+    .node-detail-card {
+      background: rgba(10, 10, 26, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.1), 0 0 20px rgba(232, 197, 71, 0.05);
+    }
+    .node-detail-card .detail-item {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.85rem;
+      color: #c0c0e0;
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+    }
+    .node-detail-card .detail-item:last-child {
+      border-bottom: none;
+    }
+    .detail-label {
+      color: #d4af37;
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 72px;
+      font-size: 0.82rem;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ============================================
+       CHECKLIST - ESSENTIAL ITEMS
+       ============================================ */
+    .checklist-section {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #040410;
+      position: relative;
+    }
+
+    .checklist-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .checklist-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin: 0 0 0.6rem;
+    }
+    .checklist-subtitle {
+      font-family: 'Cambria Math', monospace;
+      color: #d4af37;
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .checklist-card {
+      background: rgba(10, 10, 26, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 16px;
+      padding: 1.6rem 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .checklist-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 36px rgba(212, 175, 55, 0.1), 0 4px 24px rgba(0, 0, 0, 0.18);
+      transform: translateY(-4px);
+    }
+
+    .checklist-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    .checklist-card-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .checklist-card-title {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #d4af37;
+      margin: 0;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    }
+
+    .checklist-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .checklist-list li {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.9rem;
+      color: #c8c8e8;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .check-bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d4af37;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+    }
+
+    /* ============================================
+       FAQ - TERMINAL STYLE
+       ============================================ */
+    .faq-section {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: #040410;
+      position: relative;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .faq-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin: 0 0 0.6rem;
+    }
+    .faq-subtitle {
+      font-family: 'Cambria Math', monospace;
+      color: #d4af37;
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .faq-pair {
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    .faq-pair:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.08), 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .faq-question {
+      padding: 1rem 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      user-select: none;
+      transition: background 0.3s;
+    }
+    .faq-question:hover {
+      background: rgba(212, 175, 55, 0.04);
+    }
+    .faq-question:hover .faq-q-text {
+      color: #d4af37;
+    }
+    .faq-q-text {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e8e8f0;
+      flex: 1;
+      transition: color 0.3s;
+    }
+    .faq-q-icon {
+      font-family: 'Orbitron', monospace;
+      color: #d4af37;
+      font-size: 1rem;
+      transition: transform 0.3s;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+    }
+    .faq-pair.open .faq-q-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-eq {
+      text-align: center;
+      font-family: 'Orbitron', 'Cambria Math', monospace;
+      font-size: 1.2rem;
+      color: #d4af37;
+      padding: 0.25rem 0;
+      background: rgba(212, 175, 55, 0.04);
+      border-top: 1px dashed rgba(212, 175, 55, 0.15);
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.15);
+      text-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+      letter-spacing: 0.3em;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease;
+      padding: 0 1.4rem;
+      opacity: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .faq-answer.open {
+      max-height: 800px !important;
+      padding: 1rem 1.4rem 1.3rem !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+    /* Ensure FAQ answers are always visible when parent is open */
+    .faq-pair.open > .faq-answer {
+      max-height: 800px;
+      padding: 1rem 1.4rem 1.3rem;
+      opacity: 1;
+    }
+    .faq-a-text {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 0.9rem;
+      color: #a0a0b8;
+      line-height: 1.7;
+    }
+    .faq-a-text .answer-label {
+      color: #d4af37;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+    }
+
+    /* ============================================
+       FAQ 3D 可点击节点导航
+       ============================================ */
+    .faq-nodes-section {
+      background: transparent;
+    }
+    .faq-nodes-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .faq-nodes-hint {
+      font-family: var(--mono, 'Orbitron', monospace);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: rgba(212, 175, 55, 0.65);
+      text-transform: uppercase;
+      margin: 0 0 1.6rem;
+    }
+    .faq-nodes-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .faq-node {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      perspective: 200px;
+      outline: none;
+    }
+    .faq-node-cube {
+      width: 56px;
+      height: 56px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-node-face {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: inset 0 0 14px rgba(212, 175, 55, 0.12);
+      backface-visibility: visible;
+    }
+    .faq-node-face.front {
+      transform: translateZ(28px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    .faq-node-face.back  { transform: rotateY(180deg) translateZ(28px); }
+    .faq-node-face.right { transform: rotateY(90deg) translateZ(28px); }
+    .faq-node-face.left  { transform: rotateY(-90deg) translateZ(28px); }
+    .faq-node-face.top   { transform: rotateX(90deg) translateZ(28px); }
+    .faq-node-face.bottom{ transform: rotateX(-90deg) translateZ(28px); }
+
+    .faq-node:hover .faq-node-cube,
+    .faq-node:focus-visible .faq-node-cube {
+      transform: rotateY(45deg) scale(1.08);
+    }
+    .faq-node.active .faq-node-face {
+      background: rgba(212, 175, 55, 0.28);
+      border-color: #d4af37;
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.35), inset 0 0 18px rgba(212, 175, 55, 0.22);
+    }
+    .faq-node-title {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.75rem;
+      color: #a0a0b8;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .faq-node:hover .faq-node-title,
+    .faq-node.active .faq-node-title {
+      color: #d4af37;
+    }
+    @media (max-width: 640px) {
+      .faq-nodes-row { gap: 1.2rem; }
+      .faq-node-cube, .faq-node-face { width: 46px; height: 46px; }
+      .faq-node-face.front { transform: translateZ(23px); font-size: 0.72rem; }
+      .faq-node-face.back  { transform: rotateY(180deg) translateZ(23px); }
+      .faq-node-face.right { transform: rotateY(90deg) translateZ(23px); }
+      .faq-node-face.left  { transform: rotateY(-90deg) translateZ(23px); }
+      .faq-node-face.top   { transform: rotateX(90deg) translateZ(23px); }
+      .faq-node-face.bottom{ transform: rotateX(-90deg) translateZ(23px); }
+    }
+
+    /* ============================================
+       MATH DEPT NOTICES - TIMELINE STYLE
+       ============================================ */
+    .notices-section {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 850px;
+      margin: 0 auto;
+      background: #040410;
+      position: relative;
+    }
+
+    .notices-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .notices-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin: 0 0 0.6rem;
+    }
+    .notices-subtitle {
+      font-family: 'Cambria Math', monospace;
+      color: #d4af37;
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    .notices-timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .notices-timeline::before {
+      content: '';
+      position: absolute;
+      left: 34px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #d4af37, #e8c547, #d4af37);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .notice-item {
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+    }
+    .notice-marker {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(10, 10, 26, 0.9);
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      z-index: 2;
+      position: relative;
+      left: 8px;
+    }
+    .notice-item:nth-child(even) .notice-marker {
+      border-color: #e8c547;
+      color: #e8c547;
+      box-shadow: 0 0 15px rgba(232, 197, 71, 0.3);
+    }
+
+    .notice-content {
+      flex: 1;
+      background: rgba(10, 10, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    .notice-content:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.08), 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .notice-heading {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #d4af37;
+      margin: 0 0 0.7rem;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+    }
+    .notice-text {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.92rem;
+      color: #b8b8d8;
+      line-height: 1.8;
+      margin: 0 0 0.8rem;
+    }
+
+    .notice-tip {
+      background: rgba(232, 197, 71, 0.08);
+      border-left: 3px solid #e8c547;
+      border-radius: 0 8px 8px 0;
+      padding: 0.7rem 1rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.85rem;
+      color: #c4b5fd;
+      line-height: 1.7;
+    }
+    .tip-label {
+      color: #e8c547;
+      font-weight: 700;
+      margin-right: 0.4rem;
+      text-shadow: 0 0 6px rgba(232, 197, 71, 0.3);
+    }
+
+    /* ============================================
+       CAMPUS LIFE TIPS - GRID CARDS
+       ============================================ */
+    .tips-section {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #040410;
+      position: relative;
+    }
+
+    .tips-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .tips-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin: 0 0 0.6rem;
+    }
+    .tips-subtitle {
+      font-family: 'Cambria Math', monospace;
+      color: #d4af37;
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .tip-card {
+      background: rgba(10, 10, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tip-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 36px rgba(212, 175, 55, 0.1), 0 4px 24px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+    }
+    .tip-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+    .tip-card-title {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #d4af37;
+      margin: 0 0 0.6rem;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+    }
+    .tip-card-text {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.88rem;
+      color: #b8b8d8;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ============================================
+       USEFUL LINKS - NEON CARDS
+       ============================================ */
+    .links-section {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background: #040410;
+    }
+
+    .links-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .links-title {
+      font-family: 'Orbitron', 'Noto Serif SC', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin: 0 0 0.6rem;
+    }
+    .links-subtitle {
+      font-family: 'Cambria Math', monospace;
+      color: #d4af37;
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 1.3rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      border-radius: 14px;
+      z-index: -1;
+      transition: opacity 0.3s;
+    }
+
+    .link-card.cyan-card { border: 1.5px solid rgba(212, 175, 55, 0.25); }
+    .link-card.cyan-card:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 8px 40px rgba(212, 175, 55, 0.1);
+      transform: translateY(-4px);
+    }
+    .link-card.purple-card { border: 1.5px solid rgba(232, 197, 71, 0.25); }
+    .link-card.purple-card:hover {
+      border-color: #e8c547;
+      box-shadow: 0 0 30px rgba(232, 197, 71, 0.2), 0 8px 40px rgba(232, 197, 71, 0.1);
+      transform: translateY(-4px);
+    }
+    .link-card.pink-card { border: 1.5px solid rgba(212, 175, 55, 0.25); }
+    .link-card.pink-card:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 8px 40px rgba(212, 175, 55, 0.1);
+      transform: translateY(-4px);
+    }
+    .link-card.blue-card { border: 1.5px solid rgba(59, 130, 246, 0.25); }
+    .link-card.blue-card:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2), 0 8px 40px rgba(59, 130, 246, 0.1);
+      transform: translateY(-4px);
+    }
+    .link-card.mixed-card { border: 1.5px solid rgba(212, 175, 55, 0.2); }
+    .link-card.mixed-card::after {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(232,197,71,0.2), rgba(212,175,55,0.2));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .link-card.mixed-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(232, 197, 71, 0.15), 0 8px 40px rgba(212, 175, 55, 0.1);
+    }
+    .link-card.mixed-card:hover::after { opacity: 1; }
+
+    .link-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.4s;
+    }
+    .cyan-card .link-card-icon {
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .purple-card .link-card-icon {
+      background: rgba(232, 197, 71, 0.1);
+      color: #e8c547;
+      border: 1px solid rgba(232, 197, 71, 0.3);
+    }
+    .pink-card .link-card-icon {
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .blue-card .link-card-icon {
+      background: rgba(59, 130, 246, 0.1);
+      color: #d4af37;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .mixed-card .link-card-icon {
+      background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(232,197,71,0.1));
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .link-card-text { flex: 1; }
+    .link-card-name {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e8e8f0;
+      margin-bottom: 0.15rem;
+    }
+    .link-card-url {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #a0a0b8;
+    }
+
+    /* ============================================
+       FOOTER - DARK CYBERPUNK
+       ============================================ */
+    .footer-dark {
+      background: #0a0a1a;
+      color: #f0f0ff;
+      position: relative;
+      overflow: hidden;
+      padding-top: 6rem;
+    }
+    .footer-dark::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.8), transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.8), transparent 70%);
+    }
+    .footer-dark::after {
+      content: 'partial int sum nabla gradient eigenvalue limit infinity matrix transform tensor topology convergence divergence';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      font-family: 'Cambria Math', serif;
+      font-size: 1.2rem;
+      color: rgba(212, 175, 55, 0.03);
+      letter-spacing: 0.4em;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      line-height: 4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Convergence Canvas */
+    .convergence-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+    .convergence-container canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .convergence-center-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow:
+        0 0 10px #fff,
+        0 0 20px #d4af37,
+        0 0 40px #d4af37,
+        0 0 30px #e8c547,
+        0 0 60px #e8c547,
+        0 0 20px #d4af37,
+        0 0 40px #d4af37,
+        0 0 80px rgba(212, 175, 55, 0.3);
+      z-index: 5;
+      animation: centerPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes centerPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 10px #fff,
+          0 0 20px #d4af37,
+          0 0 40px #d4af37,
+          0 0 30px #e8c547,
+          0 0 60px #e8c547,
+          0 0 20px #d4af37,
+          0 0 40px #d4af37,
+          0 0 80px rgba(212, 175, 55, 0.3);
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        box-shadow:
+          0 0 15px #fff,
+          0 0 30px #d4af37,
+          0 0 60px #d4af37,
+          0 0 40px #e8c547,
+          0 0 80px #e8c547,
+          0 0 30px #d4af37,
+          0 0 50px #d4af37,
+          0 0 120px rgba(212, 175, 55, 0.4),
+          0 0 160px rgba(232, 197, 71, 0.2);
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+    }
+
+    /* Footer Quote */
+    .footer-quote {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #d4af37;
+      text-align: center;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.2), 0 0 80px rgba(212, 175, 55, 0.1);
+    }
+    .footer-limit {
+      font-family: 'Cambria Math', 'Orbitron', monospace;
+      color: #e8c547;
+      text-align: center;
+      margin: 1.2rem 0 0;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 0 15px rgba(232, 197, 71, 0.5), 0 0 30px rgba(232, 197, 71, 0.2);
+    }
+
+    /* Contact Cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 1.4rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .contact-card.cyan-border {
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .contact-card.cyan-border:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.03);
+      transform: translateY(-5px);
+    }
+    .contact-card.purple-border {
+      border: 1px solid rgba(232, 197, 71, 0.25);
+    }
+    .contact-card.purple-border:hover {
+      border-color: #e8c547;
+      box-shadow: 0 0 30px rgba(232, 197, 71, 0.15), inset 0 0 20px rgba(232, 197, 71, 0.03);
+      transform: translateY(-5px);
+    }
+    .contact-card.pink-border {
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .contact-card.pink-border:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.03);
+      transform: translateY(-5px);
+    }
+    .contact-card-name {
+      font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7b7ba0;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+    .contact-card-email {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+    .cyan-border .contact-card-email { color: #d4af37; text-shadow: 0 0 6px rgba(212, 175, 55, 0.3); }
+    .purple-border .contact-card-email { color: #e8c547; text-shadow: 0 0 6px rgba(232, 197, 71, 0.3); }
+    .pink-border .contact-card-email { color: #d4af37; text-shadow: 0 0 6px rgba(212, 175, 55, 0.3); }
+
+    /* Address */
+    .footer-address {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.88rem;
+      color: #7b7ba0;
+      text-align: center;
+      margin: 2rem 0 0;
+      position: relative;
+      z-index: 2;
+      letter-spacing: 0.04em;
+    }
+
+    /* CTA Button - Magnetic */
+    .cta-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2.8rem;
+      background: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      border-radius: 9999px;
+      font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), 0 0 30px rgba(212, 175, 55, 0.05);
+      letter-spacing: 0.06em;
+    }
+    .cta-home-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+      transition: left 0.6s;
+    }
+    .cta-home-btn:hover::before {
+      left: 100%;
+    }
+    .cta-home-btn:hover {
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.3), 0 0 50px rgba(212, 175, 55, 0.15), 0 0 80px rgba(212, 175, 55, 0.08);
+      transform: scale(1.05);
+    }
+    .cta-home-btn .btn-arrow {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      transition: transform 0.3s;
+    }
+    .cta-home-btn:hover .btn-arrow {
+      transform: translateX(-5px);
+    }
+
+    @keyframes ctaBreath {
+      0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), 0 0 30px rgba(212, 175, 55, 0.05); }
+      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.3), 0 0 50px rgba(212, 175, 55, 0.12), 0 0 70px rgba(232, 197, 71, 0.08); }
+    }
+    .cta-breathing {
+      animation: ctaBreath 3s ease-in-out infinite;
+    }
+
+    /* Copyright */
+    .footer-copyright {
+      text-align: center;
+      padding: 1.5rem 1.5rem 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.08);
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-copyright p {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.78rem;
+      color: #4a4a70;
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 1.8rem; }
+      .hero-section { padding: 4rem 1rem 3rem; }
+      .faq-title, .links-title { font-size: 1.4rem; }
+      .footer-quote { font-size: 1.3rem; }
+      .footer-limit { font-size: 1rem; }
+      .convergence-container { width: 220px; height: 220px; }
+      .flowchart-container { padding: 0 0.5rem; }
+      .flow-node { padding: 1rem 1.1rem; }
+      .node-circle { width: 40px; height: 40px; font-size: 0.85rem; }
+      .links-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .notices-timeline::before { left: 26px; }
+      .notice-marker { width: 36px; height: 36px; font-size: 0.75rem; left: 4px; }
+      .notice-content { padding: 1rem 1.1rem; }
+      .checklist-card { padding: 1.2rem 1.1rem; }
+    }
+
+    /* === 3D 模型节点标记系统 === */
+    .model-anchor-frame { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+    .model-anchor-corner {
+      position: absolute;
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.55rem;
+      letter-spacing: 0.15em; color: var(--gold, #d4af37);
+      opacity: 0.55;
+    }
+    .model-anchor-corner.tl { top: 0.6rem; left: 0.6rem; }
+    .model-anchor-corner.tr { top: 0.6rem; right: 0.6rem; }
+    .model-anchor-corner.bl { bottom: 0.6rem; left: 0.6rem; }
+    .model-anchor-corner.br { bottom: 0.6rem; right: 0.6rem; }
+    .model-anchor-corner::before {
+      content: '+'; display: inline-block; margin-right: 0.4rem;
+      color: var(--gold, #d4af37); font-weight: 700;
+    }
+    .model-anchor-crosshair {
+      position: absolute; top: 50%; left: 50%;
+      width: 14px; height: 14px;
+      transform: translate(-50%, -50%);
+      opacity: 0.3;
+    }
+    .model-anchor-crosshair::before, .model-anchor-crosshair::after {
+      content: ''; position: absolute; background: var(--gold, #d4af37);
+    }
+    .model-anchor-crosshair::before { left: 50%; top: 0; width: 1px; height: 100%; transform: translateX(-50%); }
+    .model-anchor-crosshair::after { top: 50%; left: 0; height: 1px; width: 100%; transform: translateY(-50%); }
+
+    .anchor-mapping {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.8rem; padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.05);
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; color: var(--gold, #d4af37);
+      text-transform: uppercase;
+    }
+
+    .section-anchor {
+      position: absolute; left: -1.4rem; top: 0;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.4rem;
+    }
+    .section-anchor-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold, #d4af37);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+    .section-anchor-line {
+      width: 1px; height: 30px;
+      background: linear-gradient(180deg, var(--gold, #d4af37), transparent);
+      opacity: 0.4;
+    }
+    .section-anchor-id {
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.5rem;
+      letter-spacing: 0.2em; color: var(--gold, #d4af37);
+      writing-mode: vertical-rl;
+      opacity: 0.7;
+    }
+
+    .section-title-wrap { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .section-anchor-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px;
+      border: 1px solid var(--gold, #d4af37); border-radius: 50%;
+      color: var(--gold, #d4af37); font-size: 0.7rem;
+      position: relative; cursor: help;
+      transition: background 0.3s;
+    }
+    .section-anchor-link:hover { background: rgba(212, 175, 55, 0.2); }
+    .section-anchor-link[data-tip]::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      white-space: nowrap;
+      background: rgba(4, 4, 16, 0.95); color: var(--gold, #d4af37);
+      border: 1px solid var(--rule, #2a2a40);
+      padding: 0.4rem 0.7rem;
+      font-family: var(--mono, "Orbitron", monospace); font-size: 0.55rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .section-anchor-link:hover::after { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .model-anchor-corner, .model-anchor-crosshair { display: none; }
+      .section-anchor { display: none; }
+    }
+
+    /* === 风格统一覆盖（与 about/college/gallery 一致：深空黑 + 金色）=== */
+    :root {
+      --bg: #040410; --bg-soft: #0a0a1c; --text: #e8e8f0;
+      --muted: #a0a0b8; --muted-dim: #5a5a78; --muted-fade: #3a3a50;
+      --gold: #d4af37; --gold-soft: rgba(212, 175, 55, 0.18); --rule: #2a2a40;
+      --serif: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+      --sans: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+      --mono: "Orbitron", "Rajdhani", monospace;
+    }
+    body { background: var(--bg) !important; color: var(--text) !important; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+      background-size: 80px 80px; pointer-events: none; z-index: 0;
+    }
+    .hero-section, .flowchart-section, .checklist-section, .faq-section,
+    .notices-section, .tips-section, .links-section { background: transparent !important; }
+    .hero-title, .checklist-title, .faq-title, .notices-title,
+    .tips-title, .links-title { color: var(--text) !important; }
+    .checklist-subtitle, .faq-subtitle, .notices-subtitle,
+    .tips-subtitle, .links-subtitle { color: var(--muted) !important; }
+    .hero-subtitle, .hero-subtitle .accent { color: var(--muted) !important; }
+    .link-card-name { color: var(--text) !important; }
+
+    /* ==================== 背景装饰层（星点 / 数学符号 / 星云）==================== */
+    .bg-decor { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .bg-decor-stars {
+      position: absolute; inset: -10%;
+      background-image:
+        radial-gradient(1px 1px at 25% 15%, rgba(212,175,55,0.7), transparent 60%),
+        radial-gradient(1px 1px at 75% 35%, rgba(232,232,240,0.6), transparent 60%),
+        radial-gradient(1px 1px at 45% 65%, rgba(212,175,55,0.5), transparent 60%),
+        radial-gradient(1px 1px at 90% 80%, rgba(232,232,240,0.7), transparent 60%),
+        radial-gradient(1px 1px at 10% 90%, rgba(212,175,55,0.6), transparent 60%),
+        radial-gradient(1px 1px at 60% 10%, rgba(232,232,240,0.5), transparent 60%),
+        radial-gradient(1.5px 1.5px at 30% 45%, rgba(212,175,55,0.7), transparent 60%),
+        radial-gradient(1px 1px at 85% 25%, rgba(232,232,240,0.5), transparent 60%),
+        radial-gradient(1px 1px at 5% 50%, rgba(212,175,55,0.4), transparent 60%),
+        radial-gradient(1px 1px at 95% 60%, rgba(232,232,240,0.5), transparent 60%);
+      background-size: 250px 250px, 200px 200px, 300px 300px, 180px 180px, 220px 220px, 280px 280px, 320px 320px, 240px 240px, 260px 260px, 210px 210px;
+      background-repeat: repeat;
+      opacity: 0.4;
+    }
+    .bg-decor-nebula {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 40% 30% at 15% 25%, rgba(90,42,122,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 85% 60%, rgba(42,90,138,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 20% at 50% 90%, rgba(212,175,55,0.06) 0%, transparent 60%);
+    }
+    .bg-decor-symbols span {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: rgba(212,175,55,0.06);
+      font-weight: 300;
+      user-select: none;
+      line-height: 1;
+    }
+    @media (max-width: 768px) { .bg-decor { display: none; } }
+    </style>
+    <!-- 表面螺旋3D已移除（遮挡视野）-->
+
+    <script type="module">
+        // ===== 大型可互动 3D 数学模型：正八面体 (Octahedron) =====
+        (async () => {
+          const decorCanvas = document.getElementById('decor-3d-canvas');
+          if (!decorCanvas) return;
+          const THREE = await import('three');
+          const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+
+          const wrap = decorCanvas.parentElement;
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(45, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+          camera.position.set(0, 0, 8);
+
+          const renderer = new THREE.WebGLRenderer({ canvas: decorCanvas, antialias: true, alpha: true });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          renderer.setSize(wrap.clientWidth, wrap.clientHeight, false);
+
+          // 灯光
+          scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+          const goldLight = new THREE.PointLight(0xd4af37, 1.4, 50);
+          goldLight.position.set(5, 5, 5);
+          scene.add(goldLight);
+          const whiteLight = new THREE.PointLight(0xffffff, 0.9, 50);
+          whiteLight.position.set(-5, -3, 4);
+          scene.add(whiteLight);
+
+          // 正八面体：OctahedronGeometry(半径, 细分)
+          const octaGeo = new THREE.OctahedronGeometry(2.5, 0);
+          const octaMat = new THREE.MeshStandardMaterial({
+            color: 0xd4af37,
+            metalness: 0.85,
+            roughness: 0.25
+          });
+          const octa = new THREE.Mesh(octaGeo, octaMat);
+          scene.add(octa);
+
+          // 线框叠加
+          const wire = new THREE.LineSegments(
+            new THREE.WireframeGeometry(octaGeo),
+            new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.18 })
+          );
+          scene.add(wire);
+
+          // OrbitControls：自动旋转 + 阻尼 + 禁用缩放
+          const controls = new OrbitControls(camera, renderer.domElement);
+          controls.enableDamping = true;
+          controls.dampingFactor = 0.08;
+          controls.enableZoom = false;
+          controls.enablePan = false;
+          controls.autoRotate = true;
+          controls.autoRotateSpeed = 1.2;
+
+          // 响应式 resize
+          const ro = new ResizeObserver(() => {
+            const w = wrap.clientWidth, h = wrap.clientHeight;
+            if (w === 0 || h === 0) return;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+          });
+          ro.observe(wrap);
+
+          // 渲染循环
+          function decorTick() {
+            controls.update();
+            renderer.render(scene, camera);
+            requestAnimationFrame(decorTick);
+          }
+          decorTick();
+        })();
+
+        // ===== NAVIGATION =====
+        gsap.to('#main-nav', { y: 80, duration: 0.8, delay: 0.3, ease: 'power3.out' });
+        window.addEventListener('scroll', () => { const nav = document.getElementById('main-nav'); if (window.scrollY > 100) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+        const hamburger = document.getElementById('hamburger'); const navLinks = document.getElementById('navLinks'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('open'); }); navLinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }); });
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/MotionPathPlugin.min.js"></script>
+  <script src="../assets/space-bg.js"></script>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" aria-label="页面导航">
+    <a href="welcome.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">首页</span></a>
+    <a href="about.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">学院</span></a>
+    <a href="college.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">专业</span></a>
+    <a href="map.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">地图</span></a>
+    <a href="gallery.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">画廊</span></a>
+    <a href="games.html" class="bottom-nav-link"><span class="bn-dot"></span><span class="bn-label">试炼</span></a>
+    <a href="guide.html" class="bottom-nav-link active"><span class="bn-dot"></span><span class="bn-label">指南</span></a>
+</nav>
+
+<!-- ===== HIDDEN QUESTION WIDGET（隐藏题目） ===== -->
+<style>
+.hidden-q-trigger{position:fixed;bottom:110px;right:18px;z-index:999;width:24px;height:24px;border-radius:50%;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.15);color:rgba(212,175,55,0.18);font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:500;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;transition:all 0.4s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0.5;box-shadow:none;}
+.hidden-q-trigger:hover{opacity:1;background:rgba(212,175,55,0.18);color:#d4af37;border-color:rgba(212,175,55,0.6);transform:rotate(180deg) scale(1.6);box-shadow:0 0 25px rgba(212,175,55,0.5);width:30px;height:30px;font-size:0.85rem;}
+.hidden-q-modal{position:fixed;inset:0;z-index:9999;background:rgba(4,4,16,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1rem;font-family:'Noto Serif SC',serif;}
+.hidden-q-modal.open{display:flex;}
+.hidden-q-card{width:100%;max-width:460px;background:linear-gradient(180deg,#0a0a1c 0%,#111128 100%);border:1px solid rgba(212,175,55,0.3);padding:2.4rem 2rem 1.8rem;position:relative;box-shadow:0 0 50px rgba(212,175,55,0.15);}
+.hidden-q-card::before,.hidden-q-card::after{content:'';position:absolute;width:18px;height:18px;border:1px solid #d4af37;opacity:0.5;}
+.hidden-q-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+.hidden-q-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+.hidden-q-eyebrow{font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.4em;color:#d4af37;text-align:center;margin-bottom:0.6rem;}
+.hidden-q-eyebrow::before,.hidden-q-eyebrow::after{content:'';display:inline-block;width:24px;height:1px;background:#d4af37;vertical-align:middle;margin:0 0.6rem;opacity:0.5;}
+.hidden-q-text{font-family:'Cambria Math','Noto Serif SC',serif;font-size:1.5rem;color:#e8e8f0;text-align:center;margin:1rem 0 1.4rem;letter-spacing:0.1em;}
+.hidden-q-input{display:block;width:100%;padding:0.8rem 1rem;background:rgba(4,4,16,0.6);border:1px solid rgba(212,175,55,0.3);color:#e8e8f0;font-family:'Orbitron',sans-serif;font-size:1.1rem;text-align:center;letter-spacing:0.1em;outline:none;transition:all 0.3s;}
+.hidden-q-input:focus{border-color:#d4af37;box-shadow:0 0 12px rgba(212,175,55,0.25);}
+.hidden-q-actions{display:flex;gap:0.8rem;margin-top:1.2rem;}
+.hidden-q-btn{flex:1;padding:0.7rem 1rem;background:transparent;border:1px solid rgba(212,175,55,0.4);color:#d4af37;font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.3em;cursor:pointer;text-transform:uppercase;transition:all 0.3s;}
+.hidden-q-btn:hover{background:#d4af37;color:#040410;}
+.hidden-q-btn.primary{background:rgba(212,175,55,0.12);}
+.hidden-q-feedback{margin-top:1rem;text-align:center;font-family:'Noto Serif SC',serif;font-size:0.9rem;min-height:1.4em;color:#d4af37;white-space:pre-line;line-height:1.7}.hidden-q-feedback.explanation{color:#a8d8a8;text-align:left;font-size:0.78rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-left:3px solid #22c55e;padding:0.9rem 1.1rem;margin-top:1.2rem;font-family:'Noto Sans SC',sans-serif;letter-spacing:0.02em;max-height:240px;overflow-y:auto}
+.hidden-q-feedback.error{color:#ef4444;}
+.hidden-q-feedback.success{color:#22c55e;}
+.hidden-q-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid rgba(212,175,55,0.3);color:#d4af37;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all 0.3s;}
+.hidden-q-close:hover{background:#d4af37;color:#040410;transform:rotate(90deg);}
+</style>
+<div class="hidden-q-modal" id="hidden-q-modal">
+  <div class="hidden-q-card">
+    <button class="hidden-q-close" data-close>×</button>
+    <div class="hidden-q-eyebrow">HIDDEN CHALLENGE</div>
+    <div class="hidden-q-text" id="hidden-q-text"></div>
+    <input type="text" class="hidden-q-input" id="hidden-q-input" placeholder="输入答案（英文）" autocomplete="off">
+    <div class="hidden-q-actions">
+      <button class="hidden-q-btn" data-close>关闭</button>
+      <button class="hidden-q-btn primary" id="hidden-q-submit">提交</button>
+    </div>
+    <div class="hidden-q-feedback" id="hidden-q-feedback"></div>
+  </div>
+</div>
+<script>
+(function(){
+  // 隐藏题目配置 · 校园生活小知识
+  var SECTION='guide';
+  var QUESTION='校园生活小知识：\n\n 成都的天气常以"X"为代号出现在天气预报中\n （例：sunny = 晴 / cloudy = 多云）。\n\n 请问"雨天"的英文是什么？\n（小写、英文）';
+  var ANSWER='rainy';
+  var HINT='提示：rain（雨）+ y → 形容词"有雨的"，与 sunny（晴）同结构。发音 /ˈreɪni/';
+  var EXPLANATION='解题要点：\n• rain 是名词/动词"雨"（/reɪn/）\n• 加后缀 -y 构成形容词"有雨的"\n• 天气预报常见三件套：sunny 晴 / cloudy 多云 / rainy 雨\n• 拓展：rainy day 雨天、rainy season 雨季\n• ⚠ 易错点：不要写成 rainning（重复 n）、rainy 是形容词不是名词';
+  var trigger=document.createElement('button');
+  trigger.className='hidden-q-trigger';trigger.type='button';
+  trigger.setAttribute('aria-label','发现隐藏题目');trigger.textContent='φ';trigger.title='你发现了隐藏题目';
+  document.body.appendChild(trigger);
+  var modal=document.getElementById('hidden-q-modal');
+  var qText=document.getElementById('hidden-q-text');
+  var qInput=document.getElementById('hidden-q-input');
+  var qSubmit=document.getElementById('hidden-q-submit');
+  var qFeedback=document.getElementById('hidden-q-feedback');
+  function openModal(){qText.textContent=QUESTION;qInput.value='';qFeedback.textContent=HINT;qFeedback.className='hidden-q-feedback';modal.classList.add('open');setTimeout(function(){qInput.focus();},100);}
+  function closeModal(){modal.classList.remove('open');}
+  trigger.addEventListener('click',openModal);
+  modal.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',closeModal);});
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  qSubmit.addEventListener('click',function(){
+    var v=qInput.value.trim().toLowerCase();
+    if(v===ANSWER){qFeedback.innerHTML='<div style="text-align:center;color:#22c55e;font-size:1rem;letter-spacing:0.2em;margin-bottom:0.7rem;font-family:\'Orbitron\',sans-serif;">✓ 回答正确 · 密码 '+ANSWER+'</div><div style="white-space:pre-line;text-align:left;font-size:0.78rem;line-height:1.7;color:#a8d8a8;font-family:\'Noto Sans SC\',sans-serif;">'+EXPLANATION+'</div>';qFeedback.className='hidden-q-feedback';qInput.disabled=true;qSubmit.disabled=true;}
+    else if(v===''){qFeedback.textContent='请输入答案';qFeedback.className='hidden-q-feedback error';}
+    else{qFeedback.textContent='再想想，'+HINT;qFeedback.className='hidden-q-feedback error';}
+  });
+  qInput.addEventListener('keydown',function(e){if(e.key==='Enter')qSubmit.click();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+})();
+</script>
+</body>
+</html>

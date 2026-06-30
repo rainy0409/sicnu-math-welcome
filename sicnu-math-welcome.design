@@ -1,0 +1,331 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页 - ∞启程",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562000000,
+      "canvasData": {
+        "x": 624,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "cta-explore",
+            "targetPageId": "page-about"
+          },
+          {
+            "domId": "nav-college",
+            "targetPageId": "page-about"
+          },
+          {
+            "domId": "nav-map",
+            "targetPageId": "page-map"
+          },
+          {
+            "domId": "nav-gallery",
+            "targetPageId": "page-gallery"
+          },
+          {
+            "domId": "nav-games",
+            "targetPageId": "page-games"
+          },
+          {
+            "domId": "nav-guide",
+            "targetPageId": "page-guide"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-about",
+      "title": "学院介绍 - 数轴时间线",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562100000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/about.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index"
+          },
+          {
+            "domId": "nav-map",
+            "targetPageId": "page-map"
+          },
+          {
+            "domId": "cta-map",
+            "targetPageId": "page-map"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-map",
+      "title": "校园地图 - 坐标系里的川师",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562200000,
+      "canvasData": {
+        "x": 620,
+        "y": 804,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/map.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index"
+          },
+          {
+            "domId": "nav-gallery",
+            "targetPageId": "page-gallery"
+          },
+          {
+            "domId": "cta-gallery",
+            "targetPageId": "page-gallery"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-gallery",
+      "title": "宣传画廊 - 斐波那契螺旋",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562300000,
+      "canvasData": {
+        "x": 0,
+        "y": 1591,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/gallery.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index"
+          },
+          {
+            "domId": "nav-games",
+            "targetPageId": "page-games"
+          },
+          {
+            "domId": "cta-games",
+            "targetPageId": "page-games"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-games",
+      "title": "数科试炼场 - 互动游戏",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562400000,
+      "canvasData": {
+        "x": 0,
+        "y": 4710,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/games.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index"
+          },
+          {
+            "domId": "nav-guide",
+            "targetPageId": "page-guide"
+          },
+          {
+            "domId": "cta-guide",
+            "targetPageId": "page-guide"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-guide",
+      "title": "迎新指南 - 有向图流程",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1782562500000,
+      "canvasData": {
+        "x": 0,
+        "y": 5087,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/guide.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index"
+          },
+          {
+            "domId": "cta-home",
+            "targetPageId": "page-index"
+          }
+        ]
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "赛博朋克首屏背景",
+      "type": "image",
+      "version": 2,
+      "createdAt": 1782563000000,
+      "canvasData": {
+        "x": 0,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-cyberpunk.jpg"
+      }
+    },
+    {
+      "id": "image-002",
+      "title": "校园鸟瞰图",
+      "type": "image",
+      "version": 2,
+      "createdAt": 1782563000000,
+      "canvasData": {
+        "x": 620,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/campus-aerial.jpg"
+      }
+    },
+    {
+      "id": "image-003",
+      "title": "数学楼实景",
+      "type": "image",
+      "version": 2,
+      "createdAt": 1782563000000,
+      "canvasData": {
+        "x": 1240,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/math-building.jpg"
+      }
+    },
+    {
+      "id": "image-004",
+      "title": "川师大校徽",
+      "type": "image",
+      "version": 2,
+      "createdAt": 1782563000000,
+      "canvasData": {
+        "x": 1860,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/university-emblem.jpg"
+      }
+    },
+    {
+      "id": "image-005",
+      "title": "校园坐标地图",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562100000,
+      "canvasData": {
+        "x": 2480,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/campus-map.jpg"
+      }
+    },
+    {
+      "id": "image-006",
+      "title": "数学课堂场景",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562200000,
+      "canvasData": {
+        "x": 3100,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/math-classroom.jpg"
+      }
+    },
+    {
+      "id": "image-007",
+      "title": "斐波那契画廊",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562300000,
+      "canvasData": {
+        "x": 3720,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/fibonacci-gallery.jpg"
+      }
+    },
+    {
+      "id": "image-008",
+      "title": "游戏徽章图标",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562400000,
+      "canvasData": {
+        "x": 4340,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/game-badges.jpg"
+      }
+    },
+    {
+      "id": "image-009",
+      "title": "迎新指南流程图",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562500000,
+      "canvasData": {
+        "x": 4960,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/welcome-guide.jpg"
+      }
+    },
+    {
+      "id": "image-010",
+      "title": "原首屏背景(经典版)",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1782562000000,
+      "canvasData": {
+        "x": 5580,
+        "y": 6307
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-background.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "desktop",
+    "projectName": "川师数科院迎新网站"
+  }
+}
