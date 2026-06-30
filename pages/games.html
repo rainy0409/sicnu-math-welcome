@@ -333,6 +333,7 @@
       cursor: grab;
       position: relative;
       z-index: 1;
+      touch-action: pan-y;
     }
     #arena-canvas:active { cursor: grabbing; }
 
@@ -2096,6 +2097,17 @@
       canvas.addEventListener('pointercancel', endDrag);
       canvas.addEventListener('pointerleave', endDrag);
 
+      // 修复：setPointerCapture 拦截滚轮，capture 阶段 stopImmediatePropagation 后手动驱动 Lenis
+      canvas.style.touchAction = 'pan-y';
+      canvas.addEventListener('wheel', (e) => {
+        e.stopImmediatePropagation();
+        if (typeof lenis !== 'undefined' && lenis) {
+          lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
+        } else {
+          window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+        }
+      }, { capture: true, passive: true });
+
       // === Raycaster：hover 高亮 + tooltip ===
       const raycaster = new THREE.Raycaster();
       const pointer = new THREE.Vector2();
@@ -2261,6 +2273,17 @@
     controls.enablePan = false;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
+
+    // 修复：OrbitControls wheel listener 拦截滚轮，capture 阶段拦截后手动驱动 Lenis
+    decorCanvas.style.touchAction = 'pan-y';
+    decorCanvas.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation();
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
+      } else {
+        window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+      }
+    }, { capture: true, passive: true });
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {

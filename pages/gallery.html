@@ -1770,15 +1770,16 @@
         mouse.x = -2; mouse.y = -2;
       });
 
-      // 修复：setPointerCapture 会拦截滚轮事件，重新派发到 window 让 Lenis 处理
+      // 修复：canvas 拦截滚轮事件，用 capture 阶段拦截并阻止 OrbitControls/pCapture 吞事件
+      // 手动调用 lenis.scrollTo() 驱动平滑滚动（synthetic dispatch 的 isTrusted=false 被 Lenis 忽略）
       canvas.addEventListener('wheel', (e) => {
-        window.dispatchEvent(new WheelEvent('wheel', {
-          deltaX: e.deltaX, deltaY: e.deltaY, deltaZ: e.deltaZ,
-          deltaMode: e.deltaMode,
-          clientX: e.clientX, clientY: e.clientY,
-          screenX: e.screenX, screenY: e.screenY
-        }));
-      }, { passive: true });
+        e.stopImmediatePropagation();
+        if (typeof lenis !== 'undefined' && lenis) {
+          lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
+        } else {
+          window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+        }
+      }, { capture: true, passive: true });
 
       // === 自适应尺寸 ===
       function resize() {
@@ -1913,16 +1914,17 @@
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.2;
 
-    // 修复：OrbitControls 即使 enableZoom=false 也会调用 preventDefault() 拦截滚轮
-    // 将滚轮事件重新派发到 window，让 Lenis 平滑滚动正常工作
+    // 修复：OrbitControls 即使 enableZoom=false 仍添加 wheel listener 并可能调 preventDefault()
+    // capture 阶段 stopImmediatePropagation 阻止 OrbitControls 看到事件
+    // 手动调用 lenis.scrollTo() 驱动平滑滚动
     decorCanvas.addEventListener('wheel', (e) => {
-      window.dispatchEvent(new WheelEvent('wheel', {
-        deltaX: e.deltaX, deltaY: e.deltaY, deltaZ: e.deltaZ,
-        deltaMode: e.deltaMode,
-        clientX: e.clientX, clientY: e.clientY,
-        screenX: e.screenX, screenY: e.screenY
-      }));
-    }, { passive: true });
+      e.stopImmediatePropagation();
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo((lenis.scroll || window.scrollY) + e.deltaY, { immediate: false, lock: false, duration: 0.4 });
+      } else {
+        window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+      }
+    }, { capture: true, passive: true });
 
     // 响应式 resize
     const ro = new ResizeObserver(() => {
