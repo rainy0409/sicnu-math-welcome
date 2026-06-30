@@ -84,7 +84,7 @@
         color: #d4af37; letter-spacing: 0.08em; white-space: nowrap;
         text-decoration: none; text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; background: #fff; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
     .nav-links {
         display: flex; gap: 0.25rem; list-style: none; align-items: center;
     }
@@ -1640,13 +1640,16 @@
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
       smooth: true,
+      wheelMultiplier: 1,
     });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
     window.lenis = lenis;
+    // 额外备用 raf（参考 guide.html，双 RAF 确保 Lenis 不会被 3D 卡顿中断）
+    function _raf(time) { lenis.raf(time); requestAnimationFrame(_raf); }
+    requestAnimationFrame(_raf);
 
     // ---- 鼠标跟随金色光点 ----
     const glow = document.getElementById('cursor-glow');
